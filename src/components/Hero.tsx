@@ -59,7 +59,7 @@ export default function Hero() {
         initial="hidden"
         animate="show"
         variants={container}
-        className="grid-shell grid-cols relative z-[var(--z-content)]"
+        className="grid-shell grid-cols relative z-[var(--z-content)] translate-y-[64%]"
       >
         {/* headline: smaller and wider than before — each fixed line now
             comfortably fits more text, so it reads as long confident lines

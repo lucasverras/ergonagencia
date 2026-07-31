@@ -70,7 +70,7 @@ export default function WhatWeBuild() {
         whileInView="show"
         viewport={viewportOnce}
         variants={revealUp}
-        className="grid-shell relative z-10 flex justify-center pt-20"
+        className="grid-shell relative z-10 flex justify-center pt-16"
       >
         <div className="flex items-center gap-3 rounded-full border border-line bg-surface/80 py-2 pr-5 pl-2 shadow-2xl shadow-black/40 backdrop-blur-sm">
           <div className="flex -space-x-2.5">
@@ -90,7 +90,7 @@ export default function WhatWeBuild() {
         </div>
       </motion.div>
 
-      <div className="grid-shell grid-cols section-pad">
+      <div className="grid-shell grid-cols pt-8 pb-[var(--section-gap)]">
         <div className="col-label">
           <div className="xl:sticky xl:top-28">
             <motion.span

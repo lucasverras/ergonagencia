@@ -18,7 +18,10 @@ export default function LayoutGrid() {
     >
       <div className="grid-shell grid-cols h-full">
         {Array.from({ length: columns }).map((_, i) => (
-          <div key={i} className="h-full border-x border-white/[0.035]" />
+          <div
+            key={i}
+            className="h-full border-x border-white/[0.035] first:border-l-0 last:border-r-0"
+          />
         ))}
       </div>
     </div>
