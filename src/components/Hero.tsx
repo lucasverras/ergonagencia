@@ -41,7 +41,7 @@ export default function Hero() {
           (no scanlines/noise, slow speed, low opacity) so it reads as
           ambient depth behind the headline rather than the protagonist —
           DarkVeil itself no-ops under prefers-reduced-motion. */}
-      <div className="pointer-events-none absolute inset-0 z-[1] opacity-60">
+      <div className="pointer-events-none absolute inset-0 z-[1] opacity-70">
         <DarkVeil
           hueShift={0}
           speed={0.4}
@@ -66,7 +66,7 @@ export default function Hero() {
             rather than a stacked wall of giant type. The dynamic word still
             gets its own line (unconstrained width, whitespace-nowrap) so
             "em operação" never wraps or reflows the line above it. */}
-        <h1 className="col-headline text-[clamp(2.25rem,4.8vw,4.75rem)] leading-[1.08] font-semibold tracking-tight">
+        <h1 className="col-headline text-[clamp(1.9rem,4.08vw,4rem)] leading-[1.08] font-semibold tracking-tight">
           <RevealText className="block w-fit text-balance" barClassName="bg-bg">
             Menos ideia parada.
           </RevealText>
@@ -91,7 +91,7 @@ export default function Hero() {
             achieved with grid alignment, not translate or percentage offsets */}
         <motion.p
           variants={item}
-          className="col-support mt-8 max-w-[85%] self-end text-sm text-graphite xl:mt-0 xl:text-base"
+          className="col-support mt-7 max-w-[72%] self-end text-sm text-graphite xl:mt-0 xl:text-base"
         >
           Somos um digital product studio dedicado a tirar ideias do papel.
           Da estratégia de UX à interface final, desenhamos e construímos
