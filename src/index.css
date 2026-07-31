@@ -1,0 +1,174 @@
+@import 'tailwindcss';
+@import './fonts/host-grotesk.css';
+
+@theme {
+  --font-sans: 'Host Grotesk', system-ui, sans-serif;
+
+  --color-bg: #05000f;
+  --color-lime: #e3ff0c;
+  --color-violet: #8b5cf6;
+  --color-violet-deep: #7c3aed;
+  --color-ink: #ffffff;
+  --color-graphite: #9a97a6;
+  --color-graphite-dim: #6b6875;
+  --color-line: rgba(255, 255, 255, 0.1);
+  --color-surface: #111018;
+  --color-surface-2: #17121f;
+
+  /* z-index scale — keep every layered element on one of these tiers.
+     background/behind are negative on purpose: a positioned element only
+     reliably paints behind *static* siblings (navbar text, buttons, etc.)
+     when its z-index is negative — a positive value like 0 or 1 still
+     paints in front of non-positioned content per CSS stacking rules. */
+  --z-background: -10;
+  --z-behind: -1;
+  --z-decorative: 1;
+  --z-content: 10;
+  --z-navbar: 50;
+  --z-cursor: 100;
+  --z-modal: 200;
+}
+
+/* ------------------------------------------------------------------ */
+/* 12-column layout system — the single source of truth for every      */
+/* section's left/right edges. Nothing outside these variables should  */
+/* ever hardcode a side margin, gutter or max-width.                   */
+/* ------------------------------------------------------------------ */
+:root {
+  --grid-columns: 4;
+  --grid-gutter: 16px;
+  --grid-margin: 20px;
+  --grid-max-width: 1728px;
+  --section-gap: 4.5rem;
+}
+
+@media (min-width: 768px) {
+  :root {
+    --grid-columns: 8;
+    --grid-gutter: 20px;
+    --grid-margin: 32px;
+  }
+}
+
+@media (min-width: 1280px) {
+  :root {
+    --grid-columns: 12;
+    --grid-gutter: 24px;
+    --grid-margin: 64px;
+  }
+}
+
+@media (min-width: 768px) {
+  :root {
+    --section-gap: 6rem;
+  }
+}
+
+/* the ONE container every section uses for its left/right edges. */
+.grid-shell {
+  width: 100%;
+  max-width: var(--grid-max-width);
+  margin-inline: auto;
+  padding-inline: var(--grid-margin);
+}
+
+/* opt-in modifier for sections that need real column spans */
+.grid-cols {
+  display: grid;
+  grid-template-columns: repeat(var(--grid-columns), minmax(0, 1fr));
+  column-gap: var(--grid-gutter);
+  row-gap: 3rem;
+}
+
+/* the only elements allowed to ignore --grid-margin */
+.full-bleed {
+  width: 100%;
+  max-width: none;
+  margin-inline: 0;
+  padding-inline: 0;
+}
+
+.section-pad {
+  padding-block: var(--section-gap);
+}
+
+/* column-line based spans — never a custom fractional/pixel template */
+.col-headline {
+  grid-column: 1 / -1;
+}
+.col-support {
+  grid-column: 1 / -1;
+}
+.col-label {
+  grid-column: 1 / -1;
+}
+.col-body {
+  grid-column: 1 / -1;
+}
+.col-prose {
+  grid-column: 1 / -1;
+}
+
+@media (min-width: 1280px) {
+  .col-headline {
+    grid-column: 1 / 8;
+  }
+  .col-support {
+    grid-column: 8 / 13;
+  }
+  .col-label {
+    grid-column: 1 / 5;
+  }
+  .col-body {
+    grid-column: 5 / 13;
+  }
+  .col-prose {
+    grid-column: 1 / 7;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+  background: var(--color-bg);
+}
+
+body {
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: var(--color-lime);
+  color: var(--color-bg);
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
