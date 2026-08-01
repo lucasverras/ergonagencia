@@ -33,8 +33,24 @@ export function UnderstandVisual() {
         transition={{ duration: 3.5, repeat: Infinity, ease: 'linear' }}
         style={{ originX: '60px', originY: '60px' }}
       >
-        <path d="M60,60 L60,14 A46,46 0 0 1 92,27 Z" fill="var(--color-lime)" fillOpacity="0.18" />
-        <line x1="60" y1="60" x2="60" y2="14" stroke="var(--color-lime)" strokeWidth="2" />
+        {[0, 9, 18, 27, 36].map((deg, i) => {
+          const rad = (deg * Math.PI) / 180
+          const x = 60 - Math.sin(rad) * 44
+          const y = 60 - Math.cos(rad) * 44
+          return (
+            <line
+              key={deg}
+              x1="60"
+              y1="60"
+              x2={x}
+              y2={y}
+              stroke="var(--color-lime)"
+              strokeWidth={i === 0 ? 2 : 1.5}
+              strokeLinecap="round"
+              opacity={1 - i * 0.22}
+            />
+          )
+        })}
       </motion.g>
       {[44, 32].map((r) => (
         <circle
@@ -111,11 +127,11 @@ export function DesignVisual() {
               y1={y1}
               x2={x2}
               y2={y2}
-              stroke="currentColor"
-              strokeWidth="1.5"
+              stroke="var(--color-lime)"
+              strokeWidth="2"
               strokeLinecap="round"
-              initial={{ pathLength: 0.3, opacity: 0.15 }}
-              animate={{ pathLength: [0.3, 1, 0.3], opacity: [0.15, 0.7, 0.15] }}
+              initial={{ pathLength: 0.3, opacity: 0.35 }}
+              animate={{ pathLength: [0.3, 1, 0.3], opacity: [0.35, 1, 0.35] }}
               transition={{
                 duration: 2.2,
                 repeat: Infinity,
