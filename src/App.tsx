@@ -1,6 +1,5 @@
 import { MotionConfig } from 'framer-motion'
 import { SmoothCursor } from './components/ui/smooth-cursor'
-import LayoutGrid from './components/LayoutGrid'
 import GridDebugOverlay from './components/GridDebugOverlay'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
@@ -21,7 +20,6 @@ function App() {
     // without having to thread a check through every new interaction.
     <MotionConfig reducedMotion="user">
       <div className="relative isolate min-h-svh bg-bg text-ink">
-        <LayoutGrid />
         <GridDebugOverlay />
         <SmoothCursor />
         <Navbar />

@@ -1,68 +1,45 @@
 import { motion } from 'framer-motion'
 
-// four abstract, line-art loops — one per step, each echoing what that
-// step actually does rather than a generic icon:
-// understand = a radar beam sweeping and pinging outward as it picks up signal,
+// four abstract, line-art loops — one per step, sharing a frame (a faint
+// r=40 ring) and a stroke language so they read as one family:
+// understand = a single radar line sweeping inside the frame,
 // clarify = scattered points settling into a single aligned line,
-// design = a core idea drawing outward into radiating flows,
+// design = a core pulsing outward into radiating spokes,
 // build = a shipped node lighting up connected pieces one by one
+
+function Frame() {
+  return <circle cx="60" cy="60" r="40" stroke="currentColor" strokeOpacity="0.15" strokeWidth="1" />
+}
 
 export function UnderstandVisual() {
   return (
     <svg viewBox="0 0 120 120" className="h-28 w-28" fill="none">
-      {[0, 1, 2].map((i) => (
+      <Frame />
+      {[0, 1].map((i) => (
         <motion.circle
           key={i}
           cx="60"
           cy="60"
-          r="10"
+          r="8"
           stroke="var(--color-lime)"
           strokeWidth="1.5"
-          initial={{ r: 10, opacity: 0.8 }}
-          animate={{ r: 48, opacity: 0 }}
+          initial={{ r: 8, opacity: 0.7 }}
+          animate={{ r: 40, opacity: 0 }}
           transition={{
-            duration: 2.6,
+            duration: 2.8,
             repeat: Infinity,
             ease: 'easeOut',
-            delay: i * 0.9,
+            delay: i * 1.4,
           }}
         />
       ))}
       <motion.g
         animate={{ rotate: 360 }}
-        transition={{ duration: 3.5, repeat: Infinity, ease: 'linear' }}
+        transition={{ duration: 3, repeat: Infinity, ease: 'linear' }}
         style={{ originX: '60px', originY: '60px' }}
       >
-        {[0, 9, 18, 27, 36].map((deg, i) => {
-          const rad = (deg * Math.PI) / 180
-          const x = 60 - Math.sin(rad) * 44
-          const y = 60 - Math.cos(rad) * 44
-          return (
-            <line
-              key={deg}
-              x1="60"
-              y1="60"
-              x2={x}
-              y2={y}
-              stroke="var(--color-lime)"
-              strokeWidth={i === 0 ? 2 : 1.5}
-              strokeLinecap="round"
-              opacity={1 - i * 0.22}
-            />
-          )
-        })}
+        <line x1="60" y1="60" x2="60" y2="20" stroke="var(--color-lime)" strokeWidth="2" strokeLinecap="round" />
       </motion.g>
-      {[44, 32].map((r) => (
-        <circle
-          key={r}
-          cx="60"
-          cy="60"
-          r={r}
-          stroke="currentColor"
-          strokeOpacity="0.2"
-          strokeWidth="1"
-        />
-      ))}
       <circle cx="60" cy="60" r="3.5" fill="currentColor" />
     </svg>
   )
@@ -70,17 +47,18 @@ export function UnderstandVisual() {
 
 export function ClarifyVisual() {
   const scattered = [
-    { x: 22, y: 30 },
-    { x: 34, y: 78 },
-    { x: 20, y: 60 },
-    { x: 40, y: 24 },
-    { x: 30, y: 92 },
+    { x: 26, y: 34 },
+    { x: 36, y: 76 },
+    { x: 24, y: 60 },
+    { x: 42, y: 28 },
+    { x: 32, y: 88 },
   ]
-  const aligned = [24, 42, 60, 78, 96]
+  const aligned = [28, 44, 60, 76, 92]
 
   return (
     <svg viewBox="0 0 120 120" className="h-28 w-28" fill="none">
-      <line x1="16" y1="60" x2="104" y2="60" stroke="currentColor" strokeOpacity="0.15" strokeWidth="1" />
+      <Frame />
+      <line x1="24" y1="60" x2="96" y2="60" stroke="currentColor" strokeOpacity="0.15" strokeWidth="1" />
       {scattered.map((p, i) => (
         <motion.circle
           key={i}
@@ -106,48 +84,43 @@ export function ClarifyVisual() {
 }
 
 export function DesignVisual() {
-  const count = 14
+  const count = 8
   return (
     <svg viewBox="0 0 120 120" className="h-28 w-28" fill="none">
-      <motion.g
-        animate={{ rotate: 360 }}
-        transition={{ duration: 18, repeat: Infinity, ease: 'linear' }}
-        style={{ originX: '60px', originY: '60px' }}
-      >
-        {Array.from({ length: count }).map((_, i) => {
-          const angle = (i / count) * Math.PI * 2
-          const x1 = 60 + Math.cos(angle) * 14
-          const y1 = 60 + Math.sin(angle) * 14
-          const x2 = 60 + Math.cos(angle) * 46
-          const y2 = 60 + Math.sin(angle) * 46
-          return (
-            <motion.line
-              key={i}
-              x1={x1}
-              y1={y1}
-              x2={x2}
-              y2={y2}
-              stroke="var(--color-lime)"
-              strokeWidth="2"
-              strokeLinecap="round"
-              initial={{ pathLength: 0.3, opacity: 0.35 }}
-              animate={{ pathLength: [0.3, 1, 0.3], opacity: [0.35, 1, 0.35] }}
-              transition={{
-                duration: 2.2,
-                repeat: Infinity,
-                ease: 'easeInOut',
-                delay: i * 0.09,
-              }}
-            />
-          )
-        })}
-      </motion.g>
+      <Frame />
+      {Array.from({ length: count }).map((_, i) => {
+        const angle = (i / count) * Math.PI * 2
+        const x1 = 60 + Math.cos(angle) * 14
+        const y1 = 60 + Math.sin(angle) * 14
+        const x2 = 60 + Math.cos(angle) * 38
+        const y2 = 60 + Math.sin(angle) * 38
+        return (
+          <motion.line
+            key={i}
+            x1={x1}
+            y1={y1}
+            x2={x2}
+            y2={y2}
+            stroke="var(--color-lime)"
+            strokeWidth="2"
+            strokeLinecap="round"
+            initial={{ opacity: 0.3 }}
+            animate={{ opacity: [0.3, 1, 0.3] }}
+            transition={{
+              duration: 2.2,
+              repeat: Infinity,
+              ease: 'easeInOut',
+              delay: i * 0.1,
+            }}
+          />
+        )
+      })}
       <motion.circle
         cx="60"
         cy="60"
         r="9"
         fill="var(--color-lime)"
-        animate={{ scale: [1, 1.2, 1] }}
+        animate={{ scale: [1, 1.15, 1] }}
         transition={{ duration: 2.2, repeat: Infinity, ease: 'easeInOut' }}
         style={{ originX: '60px', originY: '60px' }}
       />
@@ -157,17 +130,18 @@ export function DesignVisual() {
 
 export function BuildVisual() {
   const nodes = [
-    { x: 98, y: 34 },
-    { x: 104, y: 60 },
-    { x: 98, y: 86 },
+    { x: 92, y: 36 },
+    { x: 98, y: 60 },
+    { x: 92, y: 84 },
   ]
   return (
     <svg viewBox="0 0 120 120" className="h-28 w-28" fill="none">
+      <Frame />
       <motion.rect
-        x="16"
+        x="20"
         y="50"
-        width="22"
-        height="22"
+        width="20"
+        height="20"
         rx="6"
         fill="var(--color-lime)"
         animate={{ opacity: [1, 0.7, 1] }}
@@ -176,7 +150,7 @@ export function BuildVisual() {
       {nodes.map((n, i) => (
         <g key={i}>
           <motion.path
-            d={`M38,61 L${n.x - 9},${n.y}`}
+            d={`M40,61 L${n.x - 8},${n.y}`}
             stroke="var(--color-lime)"
             strokeWidth="1.5"
             strokeDasharray="5 4"
@@ -191,10 +165,10 @@ export function BuildVisual() {
             }}
           />
           <motion.rect
-            x={n.x - 9}
-            y={n.y - 9}
-            width="18"
-            height="18"
+            x={n.x - 8}
+            y={n.y - 8}
+            width="16"
+            height="16"
             rx="5"
             stroke="currentColor"
             strokeOpacity="0.5"
