@@ -1,0 +1,78 @@
+.magic-bento-card {
+  --glow-x: 50%;
+  --glow-y: 50%;
+  --glow-intensity: 0;
+  --glow-radius: 260px;
+}
+
+/* soft local spotlight, sits under the content */
+.magic-bento-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    var(--glow-radius) circle at var(--glow-x) var(--glow-y),
+    rgba(227, 255, 12, calc(var(--glow-intensity) * 0.12)),
+    transparent 65%
+  );
+  border-radius: inherit;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* border glow ring, masked to only paint the border itself */
+.magic-bento-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  padding: 1px;
+  background: radial-gradient(
+    var(--glow-radius) circle at var(--glow-x) var(--glow-y),
+    rgba(227, 255, 12, calc(var(--glow-intensity) * 0.9)) 0%,
+    rgba(227, 255, 12, calc(var(--glow-intensity) * 0.35)) 35%,
+    transparent 65%
+  );
+  border-radius: inherit;
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.bento-ripple {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(227, 255, 12, 0.35) 0%,
+    rgba(227, 255, 12, 0.15) 30%,
+    transparent 70%
+  );
+  pointer-events: none;
+  z-index: 5;
+  animation: bento-ripple 0.7s ease-out forwards;
+}
+
+@keyframes bento-ripple {
+  from {
+    transform: scale(0);
+    opacity: 1;
+  }
+  to {
+    transform: scale(1);
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .magic-bento-card::before,
+  .magic-bento-card::after {
+    display: none;
+  }
+}

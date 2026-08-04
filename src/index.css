@@ -1,8 +1,11 @@
 @import 'tailwindcss';
 @import './fonts/host-grotesk.css';
+@import './fonts/gc-grind.css';
 
 @theme {
   --font-sans: 'Host Grotesk', system-ui, sans-serif;
+  --font-display: 'Agharti-DemiUltraWide', 'Host Grotesk', system-ui, sans-serif;
+  --font-mono: 'Host Grotesk', system-ui, sans-serif;
 
   --color-bg: #05000f;
   --color-lime: #e3ff0c;
@@ -158,6 +161,14 @@ body {
   color: var(--color-bg);
 }
 
+/* every small mono/label bit site-wide (eyebrows, indices, badges) —
+   Host Grotesk at its lightest weight, always caps, instead of a
+   monospace typeface */
+.font-mono {
+  font-weight: 300;
+  text-transform: uppercase;
+}
+
 @keyframes marquee {
   from {
     transform: translateX(0);
@@ -170,5 +181,11 @@ body {
 @keyframes blink {
   50% {
     opacity: 0;
+  }
+}
+
+@keyframes radar-spin {
+  to {
+    transform: rotate(360deg);
   }
 }

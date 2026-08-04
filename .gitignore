@@ -18,6 +18,14 @@ dist-ssr
 !.vscode/extensions.json
 .idea
 .DS_Store
+
+# raw reference material (source font deliverables, screen recordings,
+# generated image drafts) — not used by the app; the assets actually
+# consumed by the site live under public/fonts and public/images
+/fontes/
+/*.mov
+/Generated image*.png
+/d9f4dfab-*.png
 *.suo
 *.ntvs*
 *.njsproj

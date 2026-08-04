@@ -1,7 +1,8 @@
 import { motion } from 'framer-motion'
 import { revealUp, viewportOnce } from '../lib/reveal'
 import ProcessCard, { type ProcessCardData } from './ProcessCard'
-import RevealText from './RevealText'
+import { GradualSpacing } from './ui/gradual-spacing'
+import { TextReveal } from './ui/text-reveal'
 import {
   UnderstandVisual,
   ClarifyVisual,
@@ -53,17 +54,16 @@ export default function Process() {
             Como pensamos
           </motion.span>
           <h2 className="text-3xl leading-[1.05] font-semibold tracking-tight md:text-5xl">
-            <RevealText className="block w-fit">Clareza antes da interface.</RevealText>
+            <GradualSpacing as="span" text="Clareza antes da interface." />
           </h2>
-          <motion.p
-            initial="hidden"
-            whileInView="show"
-            viewport={viewportOnce}
-            variants={revealUp}
+          <TextReveal
+            as="p"
+            per="word"
+            preset="fade-in-blur"
             className="mt-6 text-base font-medium text-ink md:text-lg"
           >
             A gente não recebe briefing. A gente constrói um.
-          </motion.p>
+          </TextReveal>
         </div>
 
         <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-4">

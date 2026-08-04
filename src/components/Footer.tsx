@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
 import { revealUp, viewportOnce } from '../lib/reveal'
 import logo from '../assets/logo.png'
+import { TextReveal } from './ui/text-reveal'
 
 const links = [
   { label: 'Produtos', href: '#produtos' },
@@ -15,16 +16,38 @@ export default function Footer() {
       whileInView="show"
       viewport={viewportOnce}
       variants={revealUp}
-      className="relative overflow-hidden border-t border-line"
+      className="relative overflow-hidden border-t border-line bg-surface/40"
     >
-      <div className="grid-shell section-pad">
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-x-0 top-0 h-px"
+        style={{
+          background:
+            'linear-gradient(90deg, transparent, rgba(227,255,12,0.4), transparent)',
+        }}
+      />
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-x-0 top-0 h-[420px]"
+        style={{
+          background:
+            'radial-gradient(680px circle at 50% 0%, rgba(227,255,12,0.08), transparent 70%)',
+        }}
+      />
+
+      <div className="grid-shell section-pad relative z-10">
         <div className="flex flex-col gap-10 md:flex-row md:items-end md:justify-between">
           <div>
             <img src={logo} alt="Ergon" className="h-7 w-auto md:h-8" />
-            <p className="mt-6 max-w-sm text-sm text-graphite md:text-base">
+            <TextReveal
+              as="p"
+              per="word"
+              preset="fade"
+              className="mt-6 max-w-sm text-sm text-graphite md:text-base"
+            >
               Digital product studio dedicado a tirar ideias do papel — da
               estratégia à operação.
-            </p>
+            </TextReveal>
           </div>
 
           <a

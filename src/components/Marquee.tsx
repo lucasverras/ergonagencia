@@ -1,51 +1,60 @@
 import { motion } from 'framer-motion'
 import { revealUp, viewportOnce } from '../lib/reveal'
 import StatCard, { type StatCardData } from './StatCard'
-import RevealText from './RevealText'
+import { GradualSpacing } from './ui/gradual-spacing'
 
 const stats: StatCardData[] = [
   {
-    n: '01',
     prefix: '+',
-    value: 8.4,
-    decimals: 1,
+    value: 39,
+    decimals: 0,
     suffix: '%',
-    desc: 'em conversão a cada 0,1s de ganho de velocidade',
-    source: 'Google + Deloitte Digital · 37 marcas · 30M sessões',
+    desc: 'de buscas pelo nome da empresa no Google',
+    source: 'Google Search Console · maio 24',
   },
   {
-    n: '02',
     prefix: '+',
-    value: 35,
+    value: 50,
     decimals: 0,
     suffix: '%',
-    desc: 'de aumento em conversão apenas corrigindo usabilidade de checkout',
-    source: 'Baymard Institute · meta-análise de 50 estudos',
+    desc: 'em solicitações de orçamento pelo site',
+    source: 'Google Analytics · novembro 25',
   },
   {
-    n: '03',
-    prefix: '',
-    value: 70,
+    prefix: '+',
+    value: 30,
     decimals: 0,
     suffix: '%',
-    desc: 'dos carrinhos são abandonados antes da compra ser concluída',
-    source: 'Baymard Institute · média global',
+    desc: 'de páginas indexadas após a reestruturação',
+    source: 'Google Search Console · fevereiro 26',
   },
   {
-    n: '04',
-    prefix: '',
-    value: 80,
+    prefix: '+',
+    value: 40,
     decimals: 0,
     suffix: '%',
-    desc: 'é a taxa de abandono no mobile, contra 68% no desktop',
-    source: 'Dynamic Yield · últimos 12 meses',
+    desc: 'de cliques nas páginas de produto',
+    source: 'Google Analytics · janeiro 26',
   },
 ]
 
 export default function Marquee() {
   return (
     <section className="relative overflow-hidden border-y border-line py-14">
-      <div className="grid-shell grid-cols">
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 bg-cover bg-top opacity-80"
+        style={{
+          backgroundImage: 'url(/images/results-grid.png)',
+          maskImage:
+            'linear-gradient(to bottom, transparent, black 25%, black 75%, transparent)',
+          WebkitMaskImage:
+            'linear-gradient(to bottom, transparent, black 25%, black 75%, transparent)',
+        }}
+      />
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-bg via-bg/10 to-bg" />
+
+      <div className="grid-shell grid-cols relative z-10">
         <div className="xl:[grid-column:1/9]">
           <motion.span
             initial="hidden"
@@ -57,16 +66,19 @@ export default function Marquee() {
             [ resultados ]
           </motion.span>
           <h2 className="mt-4 max-w-2xl text-2xl leading-[1.1] font-semibold tracking-tight md:text-4xl">
-            <RevealText className="block w-fit">
-              Projetos feitos para funcionar e{' '}
-              <span className="text-lime">gerar resultados</span>.
-            </RevealText>
+            <GradualSpacing as="span" text="Projetos feitos para funcionar e" className="w-full" />
+            <GradualSpacing
+              as="span"
+              text="gerar resultados."
+              className="mt-1 w-full text-lime"
+              delayMultiple={0.025}
+            />
           </h2>
         </div>
 
         <div className="col-span-full mt-8 grid grid-cols-2 gap-4 xl:mt-10 xl:[grid-column:5/13]">
           {stats.map((stat) => (
-            <StatCard key={stat.n} stat={stat} />
+            <StatCard key={stat.source} stat={stat} />
           ))}
         </div>
       </div>

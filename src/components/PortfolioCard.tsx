@@ -1,11 +1,4 @@
-import { useRef } from 'react'
-import {
-  motion,
-  useReducedMotion,
-  useScroll,
-  useSpring,
-  useTransform,
-} from 'framer-motion'
+import { motion, useReducedMotion, useTransform, type MotionValue } from 'framer-motion'
 
 export interface Project {
   name: string
@@ -14,61 +7,63 @@ export interface Project {
   tags: string[]
 }
 
-const hoverSpring = { type: 'spring', stiffness: 300, damping: 26, mass: 0.6 } as const
-
-const cardVariants = {
-  rest: {
-    borderColor: 'rgba(255,255,255,0.1)',
-    y: 0,
-    boxShadow: '0 25px 50px -12px rgba(0,0,0,0.4)',
-  },
-  hover: {
-    borderColor: 'rgba(227,255,12,0.35)',
-    y: -6,
-    boxShadow: '0 25px 60px -12px rgba(227,255,12,0.15)',
-  },
-}
+// each settled card rests a little lower than the one before it (a fixed
+// step) so once the next card finishes its turn and covers it, its own top
+// strip (index/category row) keeps peeking out above — a fanned deck, not
+// a hard swap. Idle cards before their turn are glued in a plain vertical
+// line, waiting below.
+export const PEEK_STEP = 72
+const RISE_FROM = 640
 
 export default function PortfolioCard({
   project,
   index,
   total,
+  progress,
 }: {
   project: Project
   index: number
   total: number
+  progress: MotionValue<number>
 }) {
-  const ref = useRef<HTMLDivElement>(null)
   const reduced = useReducedMotion()
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ['start end', 'start center'],
-  })
+  const restY = index * PEEK_STEP
 
-  // raw scroll progress ticks in discrete steps on trackpad/wheel input —
-  // springing it smooths that into a continuous, less mechanical motion
-  const scaleRaw = useTransform(scrollYProgress, [0, 1], [0.92, 1])
-  const opacityRaw = useTransform(scrollYProgress, [0, 1], [0.45, 1])
-  const scale = useSpring(scaleRaw, { stiffness: 300, damping: 40, mass: 0.5 })
-  const opacity = useSpring(opacityRaw, { stiffness: 300, damping: 40, mass: 0.5 })
+  // slides up from below (glued in line with the others, waiting its turn)
+  // and settles at restY partway through its slot in the shared progress,
+  // then holds there while later cards slide over it. Mapped across the
+  // full 0–1 domain explicitly (not just [start,end]) because relying on
+  // useTransform's implicit clamp-outside-range left not-yet-risen cards
+  // sitting at y=0 instead of parked below at RISE_FROM.
+  const start = Math.max(index / total, 0.0001)
+  const end = start + 0.5 / total
+  const y = useTransform(
+    progress,
+    [0, start, end, 1],
+    [RISE_FROM, RISE_FROM, restY, restY],
+  )
+
+  // while a card is still rising it sits *behind* every already-settled
+  // card (so it visibly emerges from underneath the one on top, instead of
+  // covering it the instant it appears from below); only once it finishes
+  // settling does it take its place above the others
+  const zIndexRaw = useTransform(
+    progress,
+    [0, start, end, 1],
+    [index - total - 1, index - total - 1, index, index],
+  )
+  const zIndex = useTransform(zIndexRaw, (v) => `calc(var(--z-content) + ${v})`)
 
   return (
-    <div ref={ref} className="mb-8 xl:mb-0 xl:h-[140vh]">
-      {/* z-index only affects positioned elements — this is the sticky one,
-          so it's the one that needs the content-tier offset, not the wrapper.
-          Stays on the shared token scale (index.css) instead of a bare number. */}
-      <motion.div
-        variants={cardVariants}
-        initial="rest"
-        whileHover={reduced ? undefined : 'hover'}
-        transition={hoverSpring}
-        style={{
-          zIndex: `calc(var(--z-content) + ${index})`,
-          ...(reduced ? undefined : { scale, opacity }),
-        }}
-        className="relative flex min-h-[520px] flex-col justify-between overflow-hidden rounded-2xl border border-line bg-surface p-8 md:p-12 xl:sticky xl:top-28 xl:h-[70vh]"
-      >
-        <div className="flex items-start justify-between">
+    <motion.div
+      style={{
+        zIndex: index === 0 || reduced ? `calc(var(--z-content) + ${index})` : zIndex,
+        y: index === 0 || reduced ? restY : y,
+      }}
+      className="absolute inset-x-0 top-0 h-full"
+    >
+      <div className="relative flex h-full min-h-[520px] flex-col justify-between overflow-hidden rounded-2xl border border-line bg-surface p-8 md:p-12">
+        <div className="relative z-10 flex items-start justify-between">
           <span className="font-mono text-xs text-graphite-dim">
             {String(index + 1).padStart(2, '0')} / {String(total).padStart(2, '0')}
           </span>
@@ -79,7 +74,7 @@ export default function PortfolioCard({
 
         <div
           aria-hidden="true"
-          className="relative my-8 flex-1 overflow-hidden rounded-xl border border-line/70 bg-gradient-to-br from-white/[0.04] via-transparent to-violet/10"
+          className="relative z-10 my-8 flex-1 overflow-hidden rounded-xl border border-line/70 bg-gradient-to-br from-white/[0.04] via-transparent to-violet/10"
         >
           <div className="absolute inset-0 flex items-center justify-center">
             <span className="text-6xl font-semibold tracking-tighter text-white/[0.06] md:text-8xl">
@@ -96,7 +91,7 @@ export default function PortfolioCard({
           />
         </div>
 
-        <div>
+        <div className="relative z-10">
           <h3 className="text-3xl font-semibold tracking-tight text-ink md:text-5xl">
             {project.name}
           </h3>
@@ -114,7 +109,7 @@ export default function PortfolioCard({
             ))}
           </div>
         </div>
-      </motion.div>
-    </div>
+      </div>
+    </motion.div>
   )
 }

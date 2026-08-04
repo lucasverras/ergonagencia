@@ -1,9 +1,10 @@
 import { useEffect, useRef, useState } from 'react'
 import { animate, motion, useInView, useReducedMotion } from 'framer-motion'
 import { revealUp, viewportOnce } from '../lib/reveal'
+import MagicBentoCard from './ui/MagicBentoCard'
+import { TextReveal } from './ui/text-reveal'
 
 export interface StatCardData {
-  n: string
   prefix: string
   value: number
   decimals: number
@@ -32,12 +33,6 @@ export default function StatCard({ stat }: { stat: StatCardData }) {
     return () => controls.stop()
   }, [inView, reduced, stat.value])
 
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    const rect = e.currentTarget.getBoundingClientRect()
-    e.currentTarget.style.setProperty('--mx', `${e.clientX - rect.left}px`)
-    e.currentTarget.style.setProperty('--my', `${e.clientY - rect.top}px`)
-  }
-
   return (
     <motion.div
       ref={ref}
@@ -45,36 +40,29 @@ export default function StatCard({ stat }: { stat: StatCardData }) {
       whileInView="show"
       viewport={viewportOnce}
       variants={revealUp}
-      whileHover={reduced ? undefined : { y: -4 }}
-      transition={{ type: 'spring', stiffness: 300, damping: 26 }}
-      onMouseMove={handleMouseMove}
-      className="group relative overflow-hidden rounded-2xl border border-line bg-surface/60 p-5"
     >
-      <div
-        className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-        style={{
-          background:
-            'radial-gradient(320px circle at var(--mx) var(--my), rgba(227,255,12,0.08), transparent 70%)',
-        }}
-      />
-
-      <div className="relative z-10">
-        <span className="font-mono text-[10px] text-graphite-dim uppercase">
-          Card {stat.n}
-        </span>
-
-        <p className="mt-1 text-3xl font-semibold tracking-tight text-ink md:text-4xl">
+      <MagicBentoCard className="group rounded-2xl border border-line bg-surface/60 p-5 transition-colors duration-300 hover:border-lime/30">
+        <p className="relative z-10 text-3xl font-semibold tracking-tight text-ink transition-colors duration-300 group-hover:text-lime md:text-4xl">
           {stat.prefix}
           {display.toFixed(stat.decimals).replace('.', ',')}
           {stat.suffix}
         </p>
 
-        <p className="mt-2 text-xs text-graphite md:text-sm">{stat.desc}</p>
+        <div className="relative z-10 mt-3 h-px w-8 bg-lime/40 transition-all duration-300 group-hover:w-14 group-hover:bg-lime" />
 
-        <p className="mt-3 font-mono text-[10px] text-graphite-dim">
+        <TextReveal
+          as="p"
+          per="word"
+          preset="fade"
+          className="relative z-10 mt-3 text-xs text-graphite md:text-sm"
+        >
+          {stat.desc}
+        </TextReveal>
+
+        <p className="relative z-10 mt-3 font-mono text-[10px] text-graphite-dim">
           {stat.source}
         </p>
-      </div>
+      </MagicBentoCard>
     </motion.div>
   )
 }

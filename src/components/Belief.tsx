@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
 import { revealUp, viewportOnce } from '../lib/reveal'
-import RevealText from './RevealText'
+import { GradualSpacing } from './ui/gradual-spacing'
+import { TextReveal } from './ui/text-reveal'
 
 export default function Belief() {
   return (
@@ -18,10 +19,8 @@ export default function Belief() {
               Sobre
             </motion.span>
             <h2 className="text-4xl leading-[1.05] font-semibold tracking-tight md:text-6xl">
-              <RevealText className="block w-fit">Damos ordem</RevealText>
-              <RevealText className="block w-fit" delay={0.12}>
-                ao possível.
-              </RevealText>
+              <GradualSpacing as="span" text="Damos ordem" className="w-full" />
+              <GradualSpacing as="span" text="ao possível." className="w-full" delayMultiple={0.03} />
             </h2>
             <motion.a
               href="#processo"
@@ -38,17 +37,16 @@ export default function Belief() {
             </motion.a>
           </div>
 
-          <motion.p
-            initial="hidden"
-            whileInView="show"
-            viewport={viewportOnce}
-            variants={revealUp}
+          <TextReveal
+            as="p"
+            per="word"
+            preset="fade-in-blur"
             className="col-support mt-10 text-sm text-graphite xl:mt-0 xl:text-base"
           >
             A Ergon é um Digital Product Studio que desenha, desenvolve e
             lança produtos digitais para empresas que querem vender melhor,
             operar com mais eficiência e criar novas experiências.
-          </motion.p>
+          </TextReveal>
         </div>
       </div>
     </section>
