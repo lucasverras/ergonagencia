@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
 import { revealUp, viewportOnce } from '../lib/reveal'
-import ProcessCard, { type ProcessCardData } from './ProcessCard'
+import ProcessStep, { type Step } from './ProcessStep'
 import { GradualSpacing } from './ui/gradual-spacing'
 import { TextReveal } from './ui/text-reveal'
 import {
@@ -10,7 +10,7 @@ import {
   BuildVisual,
 } from './ProcessIcons'
 
-const steps: ProcessCardData[] = [
+const steps: Step[] = [
   {
     n: '01',
     title: 'Entender',
@@ -66,9 +66,16 @@ export default function Process() {
           </TextReveal>
         </div>
 
-        <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-4">
+        <div className="relative mt-4 grid grid-cols-1 gap-x-12 gap-y-2 sm:grid-cols-2 md:mt-8">
+          {/* a hairline cross running the full width/height of the grid,
+              crossing exactly where the four quadrants meet */}
+          <div aria-hidden="true" className="absolute inset-0 hidden sm:block">
+            <span className="absolute top-1/2 right-0 left-0 h-px origin-center -translate-y-1/2 scale-y-50 bg-gradient-to-r from-white/50 to-graphite-dim/50" />
+            <span className="absolute top-0 bottom-0 left-1/2 w-px origin-center -translate-x-1/2 scale-x-50 bg-gradient-to-b from-white/50 to-graphite-dim/50" />
+          </div>
+
           {steps.map((step, i) => (
-            <ProcessCard key={step.n} step={step} Visual={visuals[i]} />
+            <ProcessStep key={step.n} step={step} Visual={visuals[i]} />
           ))}
         </div>
       </div>

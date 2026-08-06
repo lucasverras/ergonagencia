@@ -65,7 +65,7 @@ export default function ProductStep({
           <TextReveal as="p" per="word" preset="fade" className="mt-1.5 text-sm text-graphite">
             {step.blurb}
           </TextReveal>
-          <p className="mt-3 font-mono text-[10px] tracking-[0.2em] text-lime uppercase opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+          <p className="mt-3 font-mono text-[10px] tracking-[0.2em] text-lime uppercase">
             {step.badge}
           </p>
         </div>

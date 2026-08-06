@@ -1,173 +1,203 @@
-import { useMemo, useRef } from 'react'
-import { motion, useScroll, useSpring, useTransform } from 'framer-motion'
+import { useState } from 'react'
+import { AnimatePresence, motion } from 'framer-motion'
 import { revealUp, viewportOnce } from '../lib/reveal'
-import PortfolioCard, { PEEK_STEP, type Project } from './PortfolioCard'
+import { FocusRail, type FocusRailItem } from './ui/focus-rail'
 import { GradualSpacing } from './ui/gradual-spacing'
 import { TextReveal } from './ui/text-reveal'
+
+interface Project {
+  name: string
+  description: string
+  tags: string[]
+  href?: string
+  image?: string
+}
 
 const projects: Project[] = [
   {
     name: 'GBC',
-    category: 'Website & Digital Experience',
     description:
       'Experiência digital para apresentar veículos com mais clareza, desejo e confiança.',
     tags: ['Web', 'UX', 'Automotivo'],
+    href: 'https://www.gbccar.com.br',
+    image: '/images/portfolio/gbc.png',
   },
   {
     name: 'Ergon',
-    category: 'Brand Website & Studio Presence',
     description:
       'Presença digital da própria marca, conectando serviços, portfólio e conversão.',
     tags: ['Branding', 'Web'],
+    href: 'https://www.ergonagencia.com.br',
+    image: '/images/portfolio/ergon.png',
   },
   {
     name: 'Garagi',
-    category: 'Automotive Digital Experience',
     description:
       'Identidade e experiência digital para um projeto do universo automotivo.',
     tags: ['Identidade', 'Web'],
   },
   {
     name: 'Mosaiclab',
-    category: 'Corporate Website',
     description:
       'Site institucional corporativo para organizar serviços, setores e autoridade.',
     tags: ['Institucional', 'Web'],
+    href: 'https://www.mosaiclab.com.br',
+    image: '/images/portfolio/mosaiclab.png',
   },
   {
     name: 'Soccer Station',
-    category: 'Campaign & Experience Pages',
     description:
       'Páginas e experiências digitais para eventos, campanhas e operação comercial.',
     tags: ['Campanha', 'Landing Page'],
+    href: 'https://www.soccerstation.com.br',
+    image: '/images/portfolio/soccer-station.png',
   },
   {
     name: 'Navegando CRM',
-    category: 'Internal Tool',
     description:
       'Ferramenta interna para organizar leads, clientes e oportunidades comerciais.',
     tags: ['CRM', 'Internal Tool'],
+    href: 'https://navegandocrm.vercel.app/',
+    image: '/images/portfolio/navegando-crm.png',
   },
   {
     name: 'Navegando Site',
-    category: 'Website & Content Platform',
     description: 'Presença digital para conteúdo, audiência e posicionamento.',
     tags: ['Conteúdo', 'Web'],
+    href: 'https://www.navegandomkt.com.br',
+    image: '/images/portfolio/navegando-site.png',
   },
   {
     name: 'Cardápio Franco',
-    category: 'Digital Menu',
     description:
       'Cardápio digital mobile para organizar produtos e facilitar a experiência do cliente.',
     tags: ['Mobile', 'Cardápio'],
+    href: 'https://www.francogastrobar.com.br',
+    image: '/images/portfolio/cardapio-franco.png',
   },
 ]
 
-export default function Portfolio() {
-  // one shared tall scroll track for the whole deck — each card reads its
-  // own slice of this single progress value to slide up and settle, instead
-  // of each card owning an independent position:sticky (two sticky elements
-  // can never be pinned at once: one always releases before the next
-  // engages, so overlap between them is mathematically impossible)
-  const trackRef = useRef<HTMLDivElement>(null)
-  const { scrollYProgress } = useScroll({
-    target: trackRef,
-    offset: ['start start', 'end end'],
-  })
-  // smoothed once here, shared by every card — a per-card useSpring wrapping
-  // a per-card useTransform doesn't work for this: a spring only animates
-  // once its source *changes*, so a card whose derived value sits constant
-  // at its "parked below" position (not yet its turn) never fires a change
-  // event, and the spring stays stuck at its own stale default (0) instead
-  // of that value, until the moment it finally starts moving
-  const smoothProgress = useSpring(scrollYProgress, {
-    stiffness: 260,
-    damping: 32,
-    mass: 0.6,
-  })
+// case-study photography isn't shot yet — a monogram-on-grid placeholder in
+// the site's own surface/line colors, same language as every other
+// placeholder on the page, rather than borrowing unrelated stock photos for
+// a real client's portfolio
+function placeholderImage(name: string) {
+  const initials = name.slice(0, 2).toUpperCase()
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000">
+    <rect width="100%" height="100%" fill="#111018" />
+    <defs>
+      <pattern id="grid" width="36" height="36" patternUnits="userSpaceOnUse">
+        <path d="M 36 0 L 0 0 0 36" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1" />
+      </pattern>
+    </defs>
+    <rect width="100%" height="100%" fill="url(#grid)" />
+    <text x="50%" y="52%" font-family="sans-serif" font-size="320" font-weight="700" fill="rgba(255,255,255,0.08)" text-anchor="middle" dominant-baseline="middle">${initials}</text>
+  </svg>`
+  return `data:image/svg+xml;utf8,${encodeURIComponent(svg)}`
+}
 
-  // the sticky "stage" climbs by the same amount the active card has sunk
-  // (mirrors each card's own rest curve — see PortfolioCard) so the two
-  // cancel out and the arriving card's full body always lands back in the
-  // same framed spot, instead of creeping further down the viewport with
-  // every card and eventually pushing its title/description off-screen
-  const total = projects.length
-  const { breakpoints, values } = useMemo(() => {
-    const bp: number[] = [0]
-    const vals: number[] = [0]
-    for (let i = 0; i < total; i++) {
-      const start = Math.max(i / total, 0.0001)
-      const end = start + 0.5 / total
-      const restY = i * PEEK_STEP
-      bp.push(start, end)
-      vals.push(vals[vals.length - 1], restY)
-    }
-    bp.push(1)
-    vals.push(vals[vals.length - 1])
-    return { breakpoints: bp, values: vals }
-  }, [total])
-  const stageYRaw = useTransform(smoothProgress, breakpoints, values)
-  const stageTop = useTransform(stageYRaw, (v) => `calc(7rem - ${v}px)`)
+const railItems: FocusRailItem[] = projects.map((project) => ({
+  id: project.name,
+  title: project.name,
+  description: project.description,
+  tags: project.tags,
+  href: project.href,
+  imageSrc: project.image ?? placeholderImage(project.name),
+}))
+
+export default function Portfolio() {
+  const [ambient, setAmbient] = useState({
+    id: railItems[0].id,
+    imageSrc: railItems[0].imageSrc,
+  })
 
   return (
-    <section id="portfolio" className="relative pb-32 md:pb-48">
-      <div className="grid-shell grid-cols section-pad">
-        <div className="col-label">
-          <div className="xl:sticky xl:top-28">
+    <section id="portfolio" className="relative section-pad">
+      {/* a tall track under a sticky stage pinned near the top of the
+          viewport — normal scroll carries the whole thing (section title,
+          card title, image, description, button) fully into view and holds
+          it there *before* the wheel-lock takes over, so browsing through
+          projects never traps the page mid-scroll with anything cut off
+          below the fold. Anchored to a fixed top offset rather than
+          viewport-center: centering would "catch" the sticky content as
+          soon as it crosses the screen's middle, which — now that Process
+          above it is short — happens while Process's tail is still visible,
+          overlapping it. Anchoring near the top only engages once Process
+          has actually scrolled out of the way. */}
+      <div className="relative" style={{ height: '200vh' }}>
+        <motion.div
+          initial="hidden"
+          whileInView="show"
+          viewport={viewportOnce}
+          variants={revealUp}
+          className="sticky top-24"
+        >
+          {/* ambient glow for the whole stage — deliberately larger than the
+              rail's own box and behind everything (heading included), faded
+              out with a radial mask instead of a hard rectangular edge */}
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute -inset-x-10 -inset-y-32 z-0 overflow-hidden md:-inset-x-24 md:-inset-y-48"
+            style={{
+              maskImage:
+                'radial-gradient(ellipse 55% 65% at 50% 55%, black 0%, transparent 70%)',
+              WebkitMaskImage:
+                'radial-gradient(ellipse 55% 65% at 50% 55%, black 0%, transparent 70%)',
+            }}
+          >
+            <AnimatePresence mode="popLayout">
+              <motion.img
+                key={ambient.id}
+                src={ambient.imageSrc}
+                alt=""
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 0.55 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.8, ease: 'easeOut' }}
+                className="absolute inset-0 h-full w-full object-cover blur-3xl saturate-200"
+              />
+            </AnimatePresence>
+          </div>
+
+          <div className="relative z-10 grid-shell text-center">
             <motion.span
               initial="hidden"
               whileInView="show"
               viewport={viewportOnce}
               variants={revealUp}
-              className="mb-6 block text-xs tracking-[0.25em] text-graphite-dim uppercase"
+              className="mb-3 block text-xs tracking-[0.25em] text-graphite-dim uppercase"
             >
               Portfólio
             </motion.span>
-            <h2 className="text-3xl leading-[1.05] font-semibold tracking-tight md:text-5xl">
-              <GradualSpacing as="span" text="O QUE JÁ" className="w-full" duration={0.35} />
+
+            <h2 className="mx-auto max-w-2xl text-2xl leading-[1.05] font-semibold tracking-tight md:text-4xl">
               <GradualSpacing
                 as="span"
-                text="COLOCAMOS"
-                className="w-full"
+                text="O que já colocamos no ar"
+                className="w-full justify-center"
                 duration={0.35}
-                delayMultiple={0.025}
-              />
-              <GradualSpacing
-                as="span"
-                text="NO AR"
-                className="w-full"
-                duration={0.35}
-                delayMultiple={0.025}
               />
             </h2>
+
             <TextReveal
               as="p"
               per="word"
               preset="fade-in-blur"
-              className="mt-6 max-w-xs text-sm text-graphite md:text-base"
+              className="mx-auto mt-3 max-w-md text-sm text-graphite"
             >
               Projetos, marcas e experiências digitais construídas pela Ergon.
             </TextReveal>
           </div>
-        </div>
 
-        <div
-          ref={trackRef}
-          className="col-body relative"
-          style={{ height: `${projects.length * 90}vh` }}
-        >
-          <motion.div className="sticky h-[70vh]" style={{ top: stageTop }}>
-            {projects.map((project, i) => (
-              <PortfolioCard
-                key={project.name}
-                project={project}
-                index={i}
-                total={projects.length}
-                progress={smoothProgress}
-              />
-            ))}
-          </motion.div>
-        </div>
+          <div className="relative z-10 mt-6 md:mt-8">
+            <FocusRail
+              items={railItems}
+              loop={false}
+              autoPlay={false}
+              onActiveChange={(item) => setAmbient({ id: item.id, imageSrc: item.imageSrc })}
+            />
+          </div>
+        </motion.div>
       </div>
     </section>
   )

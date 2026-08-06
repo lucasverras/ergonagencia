@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
 import { revealUp, viewportOnce } from '../lib/reveal'
-import logo from '../assets/logo.png'
+import logo from '../assets/logo.svg'
 import { TextReveal } from './ui/text-reveal'
 
 const links = [
@@ -38,7 +38,7 @@ export default function Footer() {
       <div className="grid-shell section-pad relative z-10">
         <div className="flex flex-col gap-10 md:flex-row md:items-end md:justify-between">
           <div>
-            <img src={logo} alt="Ergon" className="h-7 w-auto md:h-8" />
+            <img src={logo} alt="Ergon" className="h-9 w-auto md:h-11" />
             <TextReveal
               as="p"
               per="word"
@@ -66,19 +66,19 @@ export default function Footer() {
             © {new Date().getFullYear()} Ergon Digital Product Studio.
           </p>
 
-          <nav className="flex items-center gap-6">
+          <nav className="flex items-center gap-4">
             {links.map((l) => (
               <a
                 key={l.href}
                 href={l.href}
-                className="text-xs text-graphite transition-colors hover:text-ink"
+                className="-my-3 px-1 py-3 text-xs text-graphite transition-colors hover:text-ink"
               >
                 {l.label}
               </a>
             ))}
             <a
               href="#top"
-              className="text-xs text-graphite transition-colors hover:text-lime"
+              className="-my-3 px-1 py-3 text-xs text-graphite transition-colors hover:text-lime"
             >
               Voltar ao topo
             </a>

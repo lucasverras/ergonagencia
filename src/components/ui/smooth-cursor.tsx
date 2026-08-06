@@ -89,6 +89,7 @@ export function SmoothCursor({
   },
 }: SmoothCursorProps) {
   const [, setIsMoving] = useState(false)
+  const [isInteractive, setIsInteractive] = useState(false)
   const lastMousePos = useRef<Position>({ x: 0, y: 0 })
   const velocity = useRef<Position>({ x: 0, y: 0 })
   const lastUpdateTime = useRef(Date.now())
@@ -141,6 +142,12 @@ export function SmoothCursor({
 
       cursorX.set(currentPos.x)
       cursorY.set(currentPos.y)
+
+      // flips to a white/black-outline mark over anything clickable — the
+      // same feedback a native pointer gives for free, kept since the
+      // native cursor itself is hidden everywhere
+      const target = e.target as Element | null
+      setIsInteractive(!!target?.closest('a, button, [role="button"]'))
 
       if (speed > 0.1) {
         const currentAngle =
@@ -201,11 +208,10 @@ export function SmoothCursor({
         willChange: 'transform',
       }}
       initial={{ scale: 0 }}
-      animate={{ scale: 1 }}
+      animate={{ scale: 1, filter: isInteractive ? 'invert(1)' : 'invert(0)' }}
       transition={{
-        type: 'spring',
-        stiffness: 400,
-        damping: 30,
+        scale: { type: 'spring', stiffness: 400, damping: 30 },
+        filter: { duration: 0.15, ease: 'easeOut' },
       }}
       className="hidden md:block"
     >

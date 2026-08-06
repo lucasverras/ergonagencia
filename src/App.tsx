@@ -9,7 +9,6 @@ import Marquee from './components/Marquee'
 import Portfolio from './components/Portfolio'
 import Process from './components/Process'
 import Manifesto from './components/Manifesto'
-import WhyErgon from './components/WhyErgon'
 import FinalCTA from './components/FinalCTA'
 import Footer from './components/Footer'
 
@@ -32,7 +31,6 @@ function App() {
           <Process />
           <Portfolio />
           <Manifesto />
-          <WhyErgon />
           <FinalCTA />
         </main>
         <Footer />

@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
-import { motion } from 'framer-motion'
-import logo from '../assets/logo.png'
+import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
+import logo from '../assets/logo.svg'
 
 const links = [
   { label: 'Produtos', href: '#produtos' },
@@ -8,13 +8,34 @@ const links = [
   { label: 'Portfólio', href: '#portfolio' },
 ]
 
+// two bars that rotate into an X — same currentColor language as
+// BrandIcons.tsx rather than a Unicode glyph
+function MenuGlyph({ open }: { open: boolean }) {
+  return (
+    <span className="relative flex h-5 w-5 items-center justify-center">
+      <motion.span
+        className="absolute h-[1.4px] w-4 rounded-full bg-current"
+        animate={open ? { y: 0, rotate: 45 } : { y: -4, rotate: 0 }}
+        transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+      />
+      <motion.span
+        className="absolute h-[1.4px] w-4 rounded-full bg-current"
+        animate={open ? { y: 0, rotate: -45 } : { y: 4, rotate: 0 }}
+        transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+      />
+    </span>
+  )
+}
+
 // once scrolled, the header detaches from the hero and becomes an inset
 // floating bar — toggled by a single boolean and animated purely with CSS
 // transitions, since the properties involved (backdrop-filter, box-shadow,
 // border-radius) aren't things Framer Motion interpolates natively
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
+  const [menuOpen, setMenuOpen] = useState(false)
   const ticking = useRef(false)
+  const reduced = useReducedMotion()
 
   useEffect(() => {
     const onScroll = () => {
@@ -30,6 +51,31 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
+  // close on Escape and lock page scroll behind the open drawer
+  useEffect(() => {
+    if (!menuOpen) return
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setMenuOpen(false)
+    }
+    document.addEventListener('keydown', onKey)
+    const { overflow } = document.body.style
+    document.body.style.overflow = 'hidden'
+    return () => {
+      document.removeEventListener('keydown', onKey)
+      document.body.style.overflow = overflow
+    }
+  }, [menuOpen])
+
+  // a route change or resize past the breakpoint should never leave the
+  // drawer open and the underlying page scroll-locked
+  useEffect(() => {
+    const onResize = () => {
+      if (window.innerWidth >= 768) setMenuOpen(false)
+    }
+    window.addEventListener('resize', onResize)
+    return () => window.removeEventListener('resize', onResize)
+  }, [])
+
   return (
     <motion.header
       initial={{ y: -80 }}
@@ -41,14 +87,14 @@ export default function Navbar() {
       <div
         className={`mx-auto transition-all duration-[450ms] ease-[cubic-bezier(0.22,1,0.36,1)] ${
           scrolled
-            ? 'mt-3 max-w-3xl rounded-2xl border border-line bg-bg/70 px-2 shadow-[0_20px_40px_-24px_rgba(0,0,0,0.6)] backdrop-blur-md'
+            ? 'mt-4 max-w-4xl rounded-2xl border border-line bg-bg/70 px-3 shadow-[0_20px_40px_-24px_rgba(0,0,0,0.6)] backdrop-blur-md'
             : 'mt-0 max-w-none rounded-none border border-transparent bg-transparent px-0 shadow-none'
         }`}
         style={{ width: scrolled ? 'calc(100% - 24px)' : '100%' }}
       >
         <nav
           className={`flex items-center justify-between transition-all duration-[450ms] ease-[cubic-bezier(0.22,1,0.36,1)] ${
-            scrolled ? 'h-12 px-2' : 'grid-shell h-16 py-4'
+            scrolled ? 'h-16 px-3' : 'grid-shell h-24 py-5 md:h-28'
           }`}
         >
           <a href="#top" className="flex items-center">
@@ -56,14 +102,14 @@ export default function Navbar() {
               src={logo}
               alt="Ergon"
               className={`w-auto transition-all duration-[450ms] ease-[cubic-bezier(0.22,1,0.36,1)] ${
-                scrolled ? 'h-4' : 'h-5 md:h-6'
+                scrolled ? 'h-7' : 'h-9 md:h-12'
               }`}
             />
           </a>
 
           <ul
             className={`hidden items-center md:flex transition-all duration-[450ms] ease-[cubic-bezier(0.22,1,0.36,1)] ${
-              scrolled ? 'gap-5' : 'gap-8'
+              scrolled ? 'gap-6' : 'gap-10'
             }`}
           >
             {links.map((l) => (
@@ -80,22 +126,67 @@ export default function Navbar() {
             ))}
           </ul>
 
-          <motion.a
-            href="#cta"
-            whileHover={{ scale: 1.04 }}
-            whileTap={{ scale: 0.95 }}
-            transition={{ type: 'spring', stiffness: 400, damping: 25 }}
-            className={`group flex items-center gap-2 rounded-full bg-lime font-medium text-bg shadow-[0_0_0_0_rgba(227,255,12,0)] transition-all duration-[450ms] ease-[cubic-bezier(0.22,1,0.36,1)] hover:shadow-[0_0_24px_2px_rgba(227,255,12,0.35)] ${
-              scrolled ? 'px-4 py-2 text-xs' : 'px-5 py-2.5 text-sm'
-            }`}
-          >
-            Começar um projeto
-            <span className="transition-transform group-hover:translate-x-0.5">
-              →
-            </span>
-          </motion.a>
+          <div className="flex items-center gap-4">
+            <motion.a
+              href="#cta"
+              whileHover={{ scale: 1.04 }}
+              whileTap={{ scale: 0.95 }}
+              transition={{ type: 'spring', stiffness: 400, damping: 25 }}
+              className={`group flex items-center gap-2 rounded-full bg-lime font-medium text-bg shadow-[0_0_0_0_rgba(227,255,12,0)] transition-all duration-[450ms] ease-[cubic-bezier(0.22,1,0.36,1)] hover:shadow-[0_0_24px_2px_rgba(227,255,12,0.35)] ${
+                scrolled ? 'px-5 py-2.5 text-xs' : 'px-6 py-3 text-sm'
+              }`}
+            >
+              Começar um projeto
+              <span className="transition-transform group-hover:translate-x-0.5">
+                →
+              </span>
+            </motion.a>
+
+            <button
+              type="button"
+              onClick={() => setMenuOpen((v) => !v)}
+              aria-expanded={menuOpen}
+              aria-controls="mobile-nav"
+              aria-label={menuOpen ? 'Fechar menu' : 'Abrir menu'}
+              className="flex h-10 w-10 items-center justify-center rounded-full border border-line text-ink transition-colors hover:border-lime/40 md:hidden"
+            >
+              <MenuGlyph open={menuOpen} />
+            </button>
+          </div>
         </nav>
       </div>
+
+      <AnimatePresence>
+        {menuOpen && (
+          <motion.div
+            id="mobile-nav"
+            initial={reduced ? { opacity: 0 } : { opacity: 0, y: -12 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={reduced ? { opacity: 0 } : { opacity: 0, y: -12 }}
+            transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
+            className="grid-shell mt-3 md:hidden"
+          >
+            <nav
+              aria-label="Navegação principal"
+              className="overflow-hidden rounded-2xl border border-line bg-bg/95 shadow-[0_20px_40px_-24px_rgba(0,0,0,0.6)] backdrop-blur-md"
+            >
+              <ul className="divide-y divide-line">
+                {links.map((l) => (
+                  <li key={l.href}>
+                    <a
+                      href={l.href}
+                      onClick={() => setMenuOpen(false)}
+                      className="flex items-center px-5 py-4 text-base text-graphite transition-colors hover:text-ink"
+                    >
+                      {l.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.header>
   )
 }

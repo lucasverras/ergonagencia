@@ -13,7 +13,7 @@
   --color-violet-deep: #7c3aed;
   --color-ink: #ffffff;
   --color-graphite: #9a97a6;
-  --color-graphite-dim: #6b6875;
+  --color-graphite-dim: #807d8a;
   --color-line: rgba(255, 255, 255, 0.1);
   --color-surface: #111018;
   --color-surface-2: #17121f;
@@ -159,6 +159,34 @@ body {
 ::selection {
   background: var(--color-lime);
   color: var(--color-bg);
+}
+
+/* one branded focus ring for every link/button site-wide, instead of the
+   unstyled browser default — keyboard users get the same lime the hover
+   states already use */
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--color-lime);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* SmoothCursor hides the native cursor site-wide on fine-pointer devices,
+   but the browser's own UA stylesheet sets cursor:pointer directly on
+   interactive elements — a rule that specific wins over the inherited
+   none, so the OS arrow was reappearing on every link/button hover. Match
+   SmoothCursor's own capability gate so touch/coarse pointers are
+   untouched. */
+@media (hover: hover) and (pointer: fine) {
+  a,
+  button,
+  [role='button'],
+  input,
+  select,
+  textarea,
+  label {
+    cursor: none;
+  }
 }
 
 /* every small mono/label bit site-wide (eyebrows, indices, badges) —
