@@ -15,7 +15,7 @@ export default function FinalCTA() {
           variants={revealUp}
           className="relative mx-auto -mb-16 w-full md:-mb-24 md:max-w-[65%]"
         >
-        <MagicBentoCard className="relative overflow-hidden rounded-[2rem] border border-lime/25 bg-bg px-6 py-[3.2rem] shadow-[0_0_0_1px_rgba(227,255,12,0.04),0_0_80px_-20px_rgba(227,255,12,0.25)] md:px-12 md:py-[4.8rem]">
+        <MagicBentoCard className="relative overflow-hidden rounded-[2rem] border border-lime/25 bg-bg p-8 shadow-[0_0_0_1px_rgba(227,255,12,0.04),0_0_80px_-20px_rgba(227,255,12,0.25)] md:p-12">
           <div
             aria-hidden="true"
             className="pointer-events-none absolute inset-0"
@@ -35,18 +35,19 @@ export default function FinalCTA() {
             >
               [ vamos trabalhar juntos ]
             </motion.span>
-            <h2 className="mx-auto max-w-2xl text-4xl font-semibold tracking-tight md:text-6xl">
+            <h2 className="mx-auto max-w-2xl text-3xl font-semibold tracking-tight md:text-5xl">
               <GradualSpacing
                 as="span"
                 text="O mercado não espera sua ideia ficar perfeita."
-                className="justify-center"
+                className="w-full justify-center"
+                highlight={{ word: 'perfeita.', delay: 0.5 }}
               />
             </h2>
             <TextReveal
               as="p"
-              per="word"
+              per="line"
               preset="fade-in-blur"
-              className="mx-auto mt-5 max-w-[52ch] text-graphite"
+              className="mx-auto mt-5 max-w-[52ch] text-base text-graphite"
             >
               Do primeiro pixel ao lançamento — e depois dele. Conte o que
               você precisa construir e a gente responde com o caminho, o

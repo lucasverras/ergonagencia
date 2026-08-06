@@ -41,7 +41,7 @@ export default function Footer() {
             <img src={logo} alt="Ergon" className="h-9 w-auto md:h-11" />
             <TextReveal
               as="p"
-              per="word"
+              per="line"
               preset="fade"
               className="mt-6 max-w-sm text-sm text-graphite md:text-base"
             >

@@ -93,7 +93,12 @@ export default function WhatWeBuild() {
         </motion.span>
 
         <h2 className="mt-4 text-3xl leading-[1.05] font-semibold tracking-tight text-balance md:text-5xl">
-          <GradualSpacing as="span" text="Da intenção ao produto." className="justify-center" />
+          <GradualSpacing
+            as="span"
+            text="Da intenção ao produto."
+            className="w-full justify-center"
+            highlight={{ word: 'produto.', delay: 0.35 }}
+          />
         </h2>
 
         <motion.div

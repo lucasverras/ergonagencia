@@ -202,7 +202,7 @@ export default function Hero() {
       >
         <TextReveal
           as="p"
-          per="word"
+          per="line"
           preset="fade-in-blur"
           delay={0.9}
           className="text-right text-sm text-graphite sm:text-base"

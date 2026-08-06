@@ -62,7 +62,7 @@ export default function ProductStep({
           <h3 className="text-2xl font-semibold tracking-tight text-ink md:text-3xl">
             <GradualSpacing as="span" text={step.title} duration={0.35} delayMultiple={0.025} />
           </h3>
-          <TextReveal as="p" per="word" preset="fade" className="mt-1.5 text-sm text-graphite">
+          <TextReveal as="p" per="line" preset="fade" className="mt-1.5 text-sm text-graphite">
             {step.blurb}
           </TextReveal>
           <p className="mt-3 font-mono text-[10px] tracking-[0.2em] text-lime uppercase">

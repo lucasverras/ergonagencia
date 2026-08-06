@@ -170,20 +170,21 @@ export default function Portfolio() {
               Portfólio
             </motion.span>
 
-            <h2 className="mx-auto max-w-2xl text-2xl leading-[1.05] font-semibold tracking-tight md:text-4xl">
+            <h2 className="mx-auto max-w-2xl text-3xl leading-[1.05] font-semibold tracking-tight md:text-5xl">
               <GradualSpacing
                 as="span"
                 text="O que já colocamos no ar"
                 className="w-full justify-center"
                 duration={0.35}
+                highlight={{ word: 'no ar', variant: 'circle', delay: 0.45 }}
               />
             </h2>
 
             <TextReveal
               as="p"
-              per="word"
+              per="line"
               preset="fade-in-blur"
-              className="mx-auto mt-3 max-w-md text-sm text-graphite"
+              className="mx-auto mt-3 max-w-md text-base text-graphite"
             >
               Projetos, marcas e experiências digitais construídas pela Ergon.
             </TextReveal>

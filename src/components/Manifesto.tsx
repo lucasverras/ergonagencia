@@ -21,11 +21,12 @@ export default function Manifesto() {
               text="É operação."
               className="w-full"
               delayMultiple={0.03}
+              highlight={{ word: 'operação.', color: 'bg', delay: 0.35 }}
             />
           </p>
           <TextReveal
             as="p"
-            per="word"
+            per="line"
             preset="fade-in-blur"
             className="mt-10 text-base leading-relaxed font-medium md:text-lg"
           >
@@ -34,7 +35,7 @@ export default function Manifesto() {
           </TextReveal>
           <TextReveal
             as="p"
-            per="word"
+            per="line"
             preset="fade-in-blur"
             delay={0.15}
             className="mt-6 text-base leading-relaxed font-semibold md:text-lg"

@@ -54,13 +54,17 @@ export default function Process() {
             Como pensamos
           </motion.span>
           <h2 className="text-3xl leading-[1.05] font-semibold tracking-tight md:text-5xl">
-            <GradualSpacing as="span" text="Clareza antes da interface." />
+            <GradualSpacing
+              as="span"
+              text="Clareza antes da interface."
+              highlight={{ word: 'Clareza', delay: 0.3 }}
+            />
           </h2>
           <TextReveal
             as="p"
-            per="word"
+            per="line"
             preset="fade-in-blur"
-            className="mt-6 text-base font-medium text-ink md:text-lg"
+            className="mt-6 text-base font-medium text-ink"
           >
             A gente não recebe briefing. A gente constrói um.
           </TextReveal>

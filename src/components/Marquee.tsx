@@ -55,7 +55,7 @@ export default function Marquee() {
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-bg via-bg/10 to-bg" />
 
       <div className="grid-shell grid-cols relative z-10">
-        <div className="xl:[grid-column:1/9]">
+        <div className="col-span-full xl:[grid-column:1/9]">
           <motion.span
             initial="hidden"
             whileInView="show"
@@ -65,13 +65,14 @@ export default function Marquee() {
           >
             [ resultados ]
           </motion.span>
-          <h2 className="mt-4 max-w-2xl text-2xl leading-[1.1] font-semibold tracking-tight md:text-4xl">
+          <h2 className="mt-4 max-w-2xl text-3xl leading-[1.1] font-semibold tracking-tight md:text-5xl">
             <GradualSpacing as="span" text="Projetos feitos para funcionar e" className="w-full" />
             <GradualSpacing
               as="span"
               text="gerar resultados."
               className="mt-1 w-full text-lime"
               delayMultiple={0.025}
+              highlight={{ word: 'resultados.', variant: 'circle', delay: 0.35 }}
             />
           </h2>
         </div>

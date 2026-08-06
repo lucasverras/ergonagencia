@@ -23,6 +23,7 @@ dist-ssr
 # generated image drafts) — not used by the app; the assets actually
 # consumed by the site live under public/fonts and public/images
 /fontes/
+/compatison/
 /*.mov
 /Generated image*.png
 /d9f4dfab-*.png
@@ -31,3 +32,4 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+.vercel

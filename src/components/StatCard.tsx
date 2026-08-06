@@ -52,7 +52,7 @@ export default function StatCard({ stat }: { stat: StatCardData }) {
 
         <TextReveal
           as="p"
-          per="word"
+          per="line"
           preset="fade"
           className="relative z-10 mt-3 text-xs text-graphite md:text-sm"
         >
