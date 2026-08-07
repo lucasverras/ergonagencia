@@ -1,4 +1,5 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState, type ReactNode } from 'react'
+import { Link } from 'react-router-dom'
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
 import logo from '../assets/logo.svg'
 
@@ -6,7 +7,37 @@ const links = [
   { label: 'Produtos', href: '#produtos' },
   { label: 'Processo', href: '#processo' },
   { label: 'Portfólio', href: '#portfolio' },
+  { label: 'Fly', href: '/fly' },
 ]
+
+// route links (starting with "/") need client-side navigation via
+// react-router's Link; in-page anchors (starting with "#") stay as plain
+// <a> so they keep scrolling within the current page — same classes either
+// way so the two render identically
+function NavLink({
+  href,
+  className,
+  onClick,
+  children,
+}: {
+  href: string
+  className?: string
+  onClick?: () => void
+  children: ReactNode
+}) {
+  if (href.startsWith('/')) {
+    return (
+      <Link to={href} className={className} onClick={onClick}>
+        {children}
+      </Link>
+    )
+  }
+  return (
+    <a href={href} className={className} onClick={onClick}>
+      {children}
+    </a>
+  )
+}
 
 // two bars that rotate into an X — same currentColor language as
 // BrandIcons.tsx rather than a Unicode glyph
@@ -114,14 +145,14 @@ export default function Navbar() {
           >
             {links.map((l) => (
               <li key={l.href}>
-                <a
+                <NavLink
                   href={l.href}
                   className={`text-graphite transition-colors hover:text-ink ${
                     scrolled ? 'text-xs' : 'text-sm'
                   }`}
                 >
                   {l.label}
-                </a>
+                </NavLink>
               </li>
             ))}
           </ul>
@@ -173,13 +204,13 @@ export default function Navbar() {
               <ul className="divide-y divide-line">
                 {links.map((l) => (
                   <li key={l.href}>
-                    <a
+                    <NavLink
                       href={l.href}
                       onClick={() => setMenuOpen(false)}
                       className="flex items-center px-5 py-4 text-base text-graphite transition-colors hover:text-ink"
                     >
                       {l.label}
-                    </a>
+                    </NavLink>
                   </li>
                 ))}
               </ul>

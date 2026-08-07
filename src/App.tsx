@@ -1,17 +1,11 @@
+import { Route, Routes } from 'react-router-dom'
 import { MotionConfig } from 'framer-motion'
 import { SmoothCursor } from './components/ui/smooth-cursor'
 import GridDebugOverlay from './components/GridDebugOverlay'
 import Navbar from './components/Navbar'
-import Hero from './components/Hero'
-import Belief from './components/Belief'
-import WhatWeBuild from './components/WhatWeBuild'
-import Marquee from './components/Marquee'
-import Portfolio from './components/Portfolio'
-import Process from './components/Process'
-import BeforeAfter from './components/BeforeAfter'
-import Manifesto from './components/Manifesto'
-import FinalCTA from './components/FinalCTA'
 import Footer from './components/Footer'
+import Home from './pages/Home'
+import FlyPage from './fly/FlyPage'
 
 function App() {
   return (
@@ -24,17 +18,10 @@ function App() {
         <GridDebugOverlay />
         <SmoothCursor />
         <Navbar />
-        <main>
-          <Hero />
-          <Belief />
-          <WhatWeBuild />
-          <Marquee />
-          <Process />
-          <BeforeAfter />
-          <Portfolio />
-          <Manifesto />
-          <FinalCTA />
-        </main>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/fly" element={<FlyPage />} />
+        </Routes>
         <Footer />
       </div>
     </MotionConfig>

@@ -1,0 +1,11 @@
+/* Tokens exclusivos da seção /fly, capturados em docs/fly/DESIGN-SYSTEM.md.
+   Escopados em .fly-page para nunca vazar para o resto do site — cores que
+   já existem no design system institucional (bg, lime, ink, graphite, line)
+   são reaproveitadas diretamente via as classes utilitárias existentes,
+   não duplicadas aqui. */
+.fly-page {
+  --fly-surface: #24212c;
+  --fly-surface-2: #0d0915;
+  --fly-whatsapp: #25d366;
+  --fly-glow-lime: rgba(227, 255, 15, 0.3);
+}

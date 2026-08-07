@@ -33,3 +33,10 @@ dist-ssr
 *.sln
 *.sw?
 .vercel
+
+# /fly capture — scraped reference material from the external site being
+# rebuilt as the /fly section, plus the temporary capture script. Neither
+# is part of the app; refs/ and docs/ get committed selectively later once
+# the actual /fly section is built for real.
+/refs/
+/scripts/capture-fly.js
