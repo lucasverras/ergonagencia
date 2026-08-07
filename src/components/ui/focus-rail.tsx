@@ -1,4 +1,5 @@
 import * as React from 'react'
+import { Link } from 'react-router-dom'
 import { motion, AnimatePresence, type PanInfo } from 'framer-motion'
 import { ChevronLeft, ChevronRight, ArrowUpRight } from 'lucide-react'
 import { cn } from '@/lib/utils'
@@ -312,13 +313,25 @@ export function FocusRail({
             </div>
 
             {activeItem.href && (
-              <a
-                href={activeItem.href}
-                className="group flex items-center gap-2 rounded-full bg-lime px-5 py-3 text-sm font-semibold text-bg transition-transform hover:scale-105 active:scale-95"
-              >
-                Conferir
-                <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
-              </a>
+              activeItem.href.startsWith('/') ? (
+                <Link
+                  to={activeItem.href}
+                  className="group flex items-center gap-2 rounded-full bg-lime px-5 py-3 text-sm font-semibold text-bg transition-transform hover:scale-105 active:scale-95"
+                >
+                  Conferir
+                  <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                </Link>
+              ) : (
+                <a
+                  href={activeItem.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group flex items-center gap-2 rounded-full bg-lime px-5 py-3 text-sm font-semibold text-bg transition-transform hover:scale-105 active:scale-95"
+                >
+                  Conferir
+                  <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                </a>
+              )
             )}
           </div>
         </div>

@@ -6,6 +6,7 @@ import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import Home from './pages/Home'
 import FlyPage from './fly/FlyPage'
+import CaseStudy from './pages/CaseStudy'
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/fly" element={<FlyPage />} />
+          <Route path="/portfolio/:slug" element={<CaseStudy />} />
         </Routes>
         <Footer />
       </div>

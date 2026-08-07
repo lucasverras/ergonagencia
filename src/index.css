@@ -95,6 +95,13 @@
   padding-block: var(--section-gap);
 }
 
+/* Agharti is a display-only face (never body copy, per convention) — it
+   reads correctly only in caps, so every element using it renders uppercase
+   regardless of how the source string is cased. */
+.font-display {
+  text-transform: uppercase;
+}
+
 /* column-line based spans — never a custom fractional/pixel template */
 .col-headline {
   grid-column: 1 / -1;

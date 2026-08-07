@@ -19,7 +19,7 @@ const projects: Project[] = [
     description:
       'Experiência digital para apresentar veículos com mais clareza, desejo e confiança.',
     tags: ['Web', 'UX', 'Automotivo'],
-    href: 'https://www.gbccar.com.br',
+    href: '/portfolio/green-bay-car',
     image: '/images/portfolio/gbc.png',
   },
   {
@@ -27,7 +27,7 @@ const projects: Project[] = [
     description:
       'Presença digital da própria marca, conectando serviços, portfólio e conversão.',
     tags: ['Branding', 'Web'],
-    href: 'https://www.ergonagencia.com.br',
+    href: '/portfolio/ergon-fly',
     image: '/images/portfolio/ergon.png',
   },
   {
@@ -35,13 +35,15 @@ const projects: Project[] = [
     description:
       'Identidade e experiência digital para um projeto do universo automotivo.',
     tags: ['Identidade', 'Web'],
+    href: '/portfolio/garagi',
+    image: '/portfolio/garagi/desktop-hero.png',
   },
   {
     name: 'Mosaiclab',
     description:
       'Site institucional corporativo para organizar serviços, setores e autoridade.',
     tags: ['Institucional', 'Web'],
-    href: 'https://www.mosaiclab.com.br',
+    href: '/portfolio/mosaiclab',
     image: '/images/portfolio/mosaiclab.png',
   },
   {
@@ -49,22 +51,22 @@ const projects: Project[] = [
     description:
       'Páginas e experiências digitais para eventos, campanhas e operação comercial.',
     tags: ['Campanha', 'Landing Page'],
-    href: 'https://www.soccerstation.com.br',
+    href: '/portfolio/soccer-station',
     image: '/images/portfolio/soccer-station.png',
   },
   {
-    name: 'Navegando CRM',
+    name: 'Radar Navegando',
     description:
       'Ferramenta interna para organizar leads, clientes e oportunidades comerciais.',
     tags: ['CRM', 'Internal Tool'],
-    href: 'https://navegandocrm.vercel.app/',
+    href: '/portfolio/radar-navegando',
     image: '/images/portfolio/navegando-crm.png',
   },
   {
-    name: 'Navegando Site',
+    name: 'Navegando MKT',
     description: 'Presença digital para conteúdo, audiência e posicionamento.',
     tags: ['Conteúdo', 'Web'],
-    href: 'https://www.navegandomkt.com.br',
+    href: '/portfolio/navegando-mkt',
     image: '/images/portfolio/navegando-site.png',
   },
   {
@@ -72,8 +74,16 @@ const projects: Project[] = [
     description:
       'Cardápio digital mobile para organizar produtos e facilitar a experiência do cliente.',
     tags: ['Mobile', 'Cardápio'],
-    href: 'https://www.francogastrobar.com.br',
+    href: '/portfolio/franco-gastrobar',
     image: '/images/portfolio/cardapio-franco.png',
+  },
+  {
+    name: '3WS Moldes',
+    description:
+      'Presença digital técnica e comercial para compra, venda e consultoria de moldes industriais.',
+    tags: ['Industrial', 'Web'],
+    href: '/portfolio/3ws-moldes',
+    image: '/portfolio/3ws-moldes/desktop-hero.png',
   },
 ]
 

@@ -1,0 +1,92 @@
+import { Navigate, useParams } from 'react-router-dom'
+import { getCaseBySlug, getNextCase } from '@/cases/casesData'
+import { useCaseHead } from '@/cases/useCaseHead'
+import { CaseHero } from '@/components/case/CaseHero'
+import { CaseSection } from '@/components/case/CaseSection'
+import { CaseMedia } from '@/components/case/CaseMedia'
+import { CaseTags } from '@/components/case/CaseTags'
+import { CaseQuote } from '@/components/case/CaseQuote'
+import { CaseNextProject } from '@/components/case/CaseNextProject'
+
+const sectionOrder: { key: keyof ReturnType<typeof sectionsOf>; index: string }[] = [
+  { key: 'projeto', index: '01' },
+  { key: 'desafio', index: '02' },
+  { key: 'solucao', index: '03' },
+  { key: 'experiencia', index: '04' },
+  { key: 'tecnologia', index: '05' },
+  { key: 'resultado', index: '06' },
+]
+
+function sectionsOf(study: NonNullable<ReturnType<typeof getCaseBySlug>>) {
+  return study.sections
+}
+
+export default function CaseStudy() {
+  const { slug } = useParams<{ slug: string }>()
+  const study = slug ? getCaseBySlug(slug) : undefined
+
+  // hook must run unconditionally on every render (rules of hooks) — falls
+  // back to generic portfolio copy when the slug doesn't resolve, right
+  // before the redirect below fires
+  useCaseHead({
+    title: study ? `${study.name} — Case Ergon` : 'Portfólio — Ergon',
+    description: study ? study.summary : 'Cases de portfólio da Ergon.',
+    canonical: `https://www.ergonagencia.com.br/portfolio/${slug ?? ''}`,
+  })
+
+  if (!study) {
+    return <Navigate to="/" replace />
+  }
+
+  const next = getNextCase(study.slug)
+  const sections = study.sections
+
+  return (
+    <main>
+      <CaseHero caseStudy={study} />
+
+      {sectionOrder.map(({ key, index }) => {
+        const content = sections[key]
+        // Garagi's two-track narrative gets its gallery placeholder inside
+        // "A solução"; other cases surface their gallery media in
+        // "A experiência" — both stay inside the shared CaseSection rather
+        // than a bespoke page-level layout.
+        const showGalleryHere =
+          (study.twoTrack && key === 'solucao') || (!study.twoTrack && key === 'experiencia')
+
+        return (
+          <CaseSection key={key} index={index} title={content.title} blocks={content.blocks}>
+            {showGalleryHere && study.galleryMedia.length > 0 && (
+              <div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-2">
+                {study.galleryMedia.map((asset, i) => (
+                  <CaseMedia key={i} asset={asset} />
+                ))}
+              </div>
+            )}
+          </CaseSection>
+        )
+      })}
+
+      {study.closingQuote && (
+        <section className="border-t border-line py-14 md:py-20">
+          <div className="grid-shell">
+            <CaseQuote
+              text={study.closingQuote}
+              size="lg"
+              accent={false}
+              className="mx-auto max-w-3xl text-center"
+            />
+          </div>
+        </section>
+      )}
+
+      <section className="border-t border-line py-10">
+        <div className="grid-shell">
+          <CaseTags groups={study.tagGroups} />
+        </div>
+      </section>
+
+      <CaseNextProject next={next} />
+    </main>
+  )
+}
