@@ -173,7 +173,7 @@ export function FocusRail({
     <div
       ref={containerRef}
       className={cn(
-        'group relative flex h-[500px] max-h-[75vh] w-full flex-col overflow-hidden overflow-x-hidden text-ink outline-none select-none md:h-[590px] lg:h-[660px]',
+        'group relative flex h-[430px] max-h-[68vh] w-full flex-col overflow-hidden overflow-x-hidden text-ink outline-none select-none md:h-[490px] lg:h-[530px]',
         className,
       )}
       onMouseEnter={() => setIsHovering(true)}
@@ -185,7 +185,7 @@ export function FocusRail({
       <div className="relative z-10 flex flex-1 flex-col justify-center px-4 md:px-8">
         {/* DRAGGABLE RAIL CONTAINER */}
         <motion.div
-          className="relative mx-auto flex h-[340px] w-full max-w-6xl items-center justify-center [perspective:1200px] md:h-[450px] lg:h-[520px]"
+          className="relative mx-auto flex h-[240px] w-full max-w-6xl items-center justify-center [perspective:1200px] md:h-[320px] lg:h-[360px]"
           drag="x"
           dragConstraints={{ left: 0, right: 0 }}
           dragElastic={0.2}
@@ -217,7 +217,7 @@ export function FocusRail({
                 className={cn(
                   // landscape, matching a real browser screenshot instead of
                   // a portrait frame that cropped most of each site away
-                  'absolute aspect-[16/10] w-[340px] rounded-2xl border-t border-line bg-surface shadow-2xl transition-shadow duration-300 md:w-[700px] lg:w-[800px]',
+                  'absolute aspect-[16/10] w-[260px] rounded-2xl border-t border-line bg-surface shadow-2xl transition-shadow duration-300 md:w-[560px] lg:w-[600px]',
                   isCenter ? 'z-20 shadow-lime/10' : 'z-10',
                 )}
                 initial={false}
@@ -253,7 +253,7 @@ export function FocusRail({
 
         {/* Info & Controls */}
         <div className="pointer-events-auto mx-auto mt-6 flex w-full max-w-4xl flex-col items-center justify-between gap-4 md:flex-row">
-          <div className="flex h-24 flex-1 flex-col items-center justify-center text-center md:items-start md:text-left">
+          <div className="flex min-h-24 flex-1 flex-col items-center justify-center text-center md:items-start md:text-left">
             <AnimatePresence mode="wait">
               <motion.div
                 key={activeItem.id}

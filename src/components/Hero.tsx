@@ -7,6 +7,7 @@ import {
 } from 'framer-motion'
 import { DarkVeil } from './ui/dark-veil'
 import MagicBentoCard from './ui/MagicBentoCard'
+import CircularText from './ui/CircularText'
 import { GradualSpacing } from './ui/gradual-spacing'
 import { TextReveal } from './ui/text-reveal'
 
@@ -20,7 +21,7 @@ const previews = [
   { name: 'Cardápio Franco', category: 'Digital Menu' },
 ]
 
-const circularLabel = '— ERGON STUDIO · DIGITAL PRODUCT STUDIO '
+const circularLabel = 'VISUAL DESIGN STUDIO - VISUAL DESIGN STUDIO - '
 
 function PortfolioSlideshow() {
   const [active, setActive] = useState(0)
@@ -97,27 +98,19 @@ function PortfolioSlideshow() {
 }
 
 // rotating circular wordmark — a placeholder ring while the icon-only logo
-// mark isn't ready yet (per Lucas: "ainda vamos adicionar"). Swap the lime
-// dot in the center for the real mark once it exists; the ring/text stay.
+// mark isn't ready yet (per Lucas: "ainda vamos adicionar"). Swap the glow
+// ball in the center for the real mark once it exists; the ring/text stay.
+// CircularText's own letter-placement math assumes a 200px box, so it's
+// scaled down via a fixed-size wrapper + CSS transform rather than
+// rewriting that math for a smaller badge.
 function CircularBadge() {
   return (
-    <div className="relative h-28 w-28 sm:h-32 sm:w-32">
-      <svg viewBox="0 0 200 200" className="h-full w-full animate-[radar-spin_24s_linear_infinite]">
-        <defs>
-          <path
-            id="hero-circular-path"
-            d="M 100,100 m -85,0 a 85,85 0 1,1 170,0 a 85,85 0 1,1 -170,0"
-          />
-        </defs>
-        <text
-          fill="var(--color-graphite)"
-          className="font-mono text-[10.5px] tracking-[0.15em] uppercase"
-        >
-          <textPath href="#hero-circular-path">{circularLabel.repeat(2)}</textPath>
-        </text>
-      </svg>
+    <div className="relative flex h-28 w-28 items-center justify-center sm:h-32 sm:w-32">
+      <div className="h-[200px] w-[200px] scale-[0.62] sm:scale-[0.68]">
+        <CircularText text={circularLabel} spinDuration={22} onHover="speedUp" />
+      </div>
       <div className="absolute inset-0 flex items-center justify-center">
-        <span className="h-3 w-3 rounded-full bg-lime shadow-[0_0_16px_2px_rgba(227,255,12,0.5)]" />
+        <span className="h-5 w-5 rounded-full bg-lime shadow-[0_0_28px_8px_rgba(227,255,12,0.65)]" />
       </div>
     </div>
   )
@@ -139,15 +132,17 @@ export default function Hero() {
       id="top"
       className="relative flex min-h-svh flex-col overflow-hidden bg-bg pt-24 md:pt-28"
     >
-      {/* WebGL shader background, scoped to the hero only. Kept subtle
-          (no scanlines/noise, slow speed, low opacity) so it reads as
-          ambient depth behind the headline rather than the protagonist —
+      {/* WebGL shader background, scoped to the hero only — grainier, more
+          scanline-heavy config with faster movement (per the new React
+          Bits DarkVeil preset) than the original subtle/slow ambient look.
           DarkVeil itself no-ops under prefers-reduced-motion. */}
       <div className="pointer-events-none absolute inset-0 z-[1] opacity-70">
         <DarkVeil
           hueShift={0}
-          speed={0.4}
-          warpAmount={0.25}
+          noiseIntensity={0.17}
+          scanlineIntensity={1}
+          speed={3}
+          scanlineFrequency={5}
           resolutionScale={window.innerWidth < 768 ? 0.6 : 1}
         />
       </div>
@@ -178,8 +173,8 @@ export default function Hero() {
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.8, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
-        className="absolute top-24 z-[var(--z-content)] hidden md:block"
-        style={{ right: 'var(--grid-margin)' }}
+        className="absolute top-[220px] z-[var(--z-content)] hidden md:block"
+        style={{ right: 'calc(var(--grid-margin) + 2.5rem)' }}
       >
         <CircularBadge />
       </motion.div>
@@ -190,7 +185,7 @@ export default function Hero() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.8, ease: [0.16, 1, 0.3, 1] }}
         className="absolute bottom-12 z-[var(--z-content)] hidden sm:block"
-        style={{ left: 'calc(var(--grid-margin) + 2.5rem)' }}
+        style={{ left: 'var(--grid-margin)' }}
       >
         <PortfolioSlideshow />
       </motion.div>

@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useCallback, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { revealUp, viewportOnce } from '../lib/reveal'
 import { FocusRail, type FocusRailItem } from './ui/focus-rail'
@@ -111,6 +111,13 @@ export default function Portfolio() {
     imageSrc: railItems[0].imageSrc,
   })
 
+  // stable identity across renders — FocusRail's effect depends on this
+  // callback, so a fresh inline function here would re-fire it (and this
+  // setState) every render, looping forever
+  const handleActiveChange = useCallback((item: FocusRailItem) => {
+    setAmbient((prev) => (prev.id === item.id ? prev : { id: item.id, imageSrc: item.imageSrc }))
+  }, [])
+
   return (
     <section id="portfolio" className="relative section-pad">
       {/* a tall track under a sticky stage pinned near the top of the
@@ -184,7 +191,7 @@ export default function Portfolio() {
               as="p"
               per="line"
               preset="fade-in-blur"
-              className="mx-auto mt-3 max-w-md text-base text-graphite"
+              className="mx-auto mt-3 max-w-xl text-base text-graphite"
             >
               Projetos, marcas e experiências digitais construídas pela Ergon.
             </TextReveal>
@@ -195,7 +202,7 @@ export default function Portfolio() {
               items={railItems}
               loop={false}
               autoPlay={false}
-              onActiveChange={(item) => setAmbient({ id: item.id, imageSrc: item.imageSrc })}
+              onActiveChange={handleActiveChange}
             />
           </div>
         </motion.div>

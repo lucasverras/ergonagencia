@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
 import { revealUp, viewportOnce } from '../lib/reveal'
 import ProcessStep, { type Step } from './ProcessStep'
+import { GradientBars } from './ui/gradient-bars-background'
 import { GradualSpacing } from './ui/gradual-spacing'
 import { TextReveal } from './ui/text-reveal'
 import {
@@ -41,8 +42,24 @@ const visuals = [UnderstandVisual, ClarifyVisual, DesignVisual, BuildVisual]
 
 export default function Process() {
   return (
-    <section id="processo" className="relative">
-      <div className="grid-shell section-pad">
+    <section id="processo" className="relative overflow-hidden">
+      <GradientBars
+        numBars={15}
+        gradientFrom="var(--color-violet)"
+        gradientTo="transparent"
+        animationDuration={3}
+        className="opacity-[0.12]"
+      />
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[60%]"
+        style={{
+          background:
+            'radial-gradient(650px circle at 15% 0%, rgba(139,92,246,0.18), transparent 65%)',
+        }}
+      />
+
+      <div className="grid-shell relative z-10 section-pad">
         <div className="max-w-xl">
           <motion.span
             initial="hidden"

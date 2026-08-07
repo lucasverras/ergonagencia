@@ -1,13 +1,30 @@
 import { motion } from 'framer-motion'
 import { revealUp, viewportOnce } from '../lib/reveal'
 import { ImageComparison } from './ui/image-comparison-slider'
+import { GradientBars } from './ui/gradient-bars-background'
 import { GradualSpacing } from './ui/gradual-spacing'
 import { TextReveal } from './ui/text-reveal'
 
 export default function BeforeAfter() {
   return (
-    <section id="antes-depois" className="relative section-pad">
-      <div className="grid-shell text-center">
+    <section id="antes-depois" className="relative overflow-hidden">
+      <GradientBars
+        numBars={15}
+        gradientFrom="var(--color-violet)"
+        gradientTo="transparent"
+        animationDuration={3.5}
+        className="opacity-[0.12]"
+      />
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[65%]"
+        style={{
+          background:
+            'radial-gradient(700px circle at 85% 0%, rgba(139,92,246,0.18), transparent 65%)',
+        }}
+      />
+
+      <div className="grid-shell relative z-10 section-pad text-center">
         <motion.span
           initial="hidden"
           whileInView="show"

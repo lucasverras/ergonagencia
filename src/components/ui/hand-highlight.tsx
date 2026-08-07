@@ -46,9 +46,8 @@ export function HandHighlight({
             stroke="currentColor"
             strokeWidth={2}
             strokeLinecap="round"
-            vectorEffect="non-scaling-stroke"
             initial={{ pathLength: 0, opacity: 0 }}
-            whileInView={{ pathLength: 1, opacity: 0.9 }}
+            whileInView={{ pathLength: 1, opacity: 0.92 }}
             viewport={viewportOnce}
             transition={{ duration: 0.85, delay, ease: [0.65, 0, 0.35, 1] }}
           />
@@ -67,9 +66,8 @@ export function HandHighlight({
             <motion.path
               d="M4,14 C50,10.5 100,13.5 150,10.5 C170,9 185,11.5 196,10"
               stroke="currentColor"
-              strokeWidth={2}
+              strokeWidth={4}
               strokeLinecap="round"
-              vectorEffect="non-scaling-stroke"
               initial={{ pathLength: 0, opacity: 0 }}
               whileInView={{ pathLength: 1, opacity: 0.95 }}
               viewport={viewportOnce}
@@ -80,11 +78,10 @@ export function HandHighlight({
             <motion.path
               d="M16,18 C55,15.5 100,17.5 145,15"
               stroke="currentColor"
-              strokeWidth={1.3}
+              strokeWidth={3}
               strokeLinecap="round"
-              vectorEffect="non-scaling-stroke"
               initial={{ pathLength: 0, opacity: 0 }}
-              whileInView={{ pathLength: 1, opacity: 0.75 }}
+              whileInView={{ pathLength: 1, opacity: 0.8 }}
               viewport={viewportOnce}
               transition={{ duration: 0.4, delay: delay + 0.35, ease: [0.65, 0, 0.35, 1] }}
             />

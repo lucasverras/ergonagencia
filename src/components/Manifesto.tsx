@@ -14,14 +14,12 @@ export default function Manifesto() {
           variants={revealUp}
           className="col-prose"
         >
-          <p className="text-4xl leading-[1.05] font-semibold tracking-tight md:text-7xl">
-            <GradualSpacing as="span" text="Digital não é vitrine." className="w-full" />
+          <p className="text-4xl leading-[1.05] font-semibold tracking-tight md:text-5xl">
             <GradualSpacing
               as="span"
-              text="É operação."
+              text="Ideias ganham valor quando começam a funcionar."
               className="w-full"
-              delayMultiple={0.03}
-              highlight={{ word: 'operação.', color: 'bg', delay: 0.35 }}
+              highlight={{ word: 'funcionar.', color: 'bg', delay: 0.5 }}
             />
           </p>
           <TextReveal
@@ -30,17 +28,9 @@ export default function Manifesto() {
             preset="fade-in-blur"
             className="mt-10 text-base leading-relaxed font-medium md:text-lg"
           >
-            Criamos produtos digitais para empresas que precisam vender melhor,
-            organizar processos, reduzir improvisos e lançar novas experiências.
-          </TextReveal>
-          <TextReveal
-            as="p"
-            per="line"
-            preset="fade-in-blur"
-            delay={0.15}
-            className="mt-6 text-base leading-relaxed font-semibold md:text-lg"
-          >
-            A ideia não é apenas aparecer. É funcionar melhor.
+            Criamos produtos digitais para transformar boas ideias em
+            experiências, sistemas e ferramentas que realmente fazem diferença
+            no negócio.
           </TextReveal>
         </motion.div>
       </div>
