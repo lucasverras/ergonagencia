@@ -130,93 +130,79 @@ export default function Portfolio() {
 
   return (
     <section id="portfolio" className="relative section-pad">
-      {/* a tall track under a sticky stage pinned near the top of the
-          viewport — normal scroll carries the whole thing (section title,
-          card title, image, description, button) fully into view and holds
-          it there *before* the wheel-lock takes over, so browsing through
-          projects never traps the page mid-scroll with anything cut off
-          below the fold. Anchored to a fixed top offset rather than
-          viewport-center: centering would "catch" the sticky content as
-          soon as it crosses the screen's middle, which — now that Process
-          above it is short — happens while Process's tail is still visible,
-          overlapping it. Anchoring near the top only engages once Process
-          has actually scrolled out of the way. */}
-      <div className="relative" style={{ height: '200vh' }}>
-        <motion.div
-          initial="hidden"
-          whileInView="show"
-          viewport={viewportOnce}
-          variants={revealUp}
-          className="sticky top-24"
+      <motion.div
+        initial="hidden"
+        whileInView="show"
+        viewport={viewportOnce}
+        variants={revealUp}
+      >
+        {/* ambient glow for the whole stage — deliberately larger than the
+            rail's own box and behind everything (heading included), faded
+            out with a radial mask instead of a hard rectangular edge */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute -inset-x-10 -inset-y-32 z-0 overflow-hidden md:-inset-x-24 md:-inset-y-48"
+          style={{
+            maskImage:
+              'radial-gradient(ellipse 55% 65% at 50% 55%, black 0%, transparent 70%)',
+            WebkitMaskImage:
+              'radial-gradient(ellipse 55% 65% at 50% 55%, black 0%, transparent 70%)',
+          }}
         >
-          {/* ambient glow for the whole stage — deliberately larger than the
-              rail's own box and behind everything (heading included), faded
-              out with a radial mask instead of a hard rectangular edge */}
-          <div
-            aria-hidden="true"
-            className="pointer-events-none absolute -inset-x-10 -inset-y-32 z-0 overflow-hidden md:-inset-x-24 md:-inset-y-48"
-            style={{
-              maskImage:
-                'radial-gradient(ellipse 55% 65% at 50% 55%, black 0%, transparent 70%)',
-              WebkitMaskImage:
-                'radial-gradient(ellipse 55% 65% at 50% 55%, black 0%, transparent 70%)',
-            }}
-          >
-            <AnimatePresence mode="popLayout">
-              <motion.img
-                key={ambient.id}
-                src={ambient.imageSrc}
-                alt=""
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 0.55 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.8, ease: 'easeOut' }}
-                className="absolute inset-0 h-full w-full object-cover blur-3xl saturate-200"
-              />
-            </AnimatePresence>
-          </div>
-
-          <div className="relative z-10 grid-shell text-center">
-            <motion.span
-              initial="hidden"
-              whileInView="show"
-              viewport={viewportOnce}
-              variants={revealUp}
-              className="mb-3 block text-xs tracking-[0.25em] text-graphite-dim uppercase"
-            >
-              Portfólio
-            </motion.span>
-
-            <h2 className="mx-auto max-w-2xl text-3xl leading-[1.05] font-semibold tracking-tight md:text-5xl">
-              <GradualSpacing
-                as="span"
-                text="O que já colocamos no ar"
-                className="w-full justify-center"
-                duration={0.35}
-                highlight={{ word: 'no ar', variant: 'circle', delay: 0.45 }}
-              />
-            </h2>
-
-            <TextReveal
-              as="p"
-              per="line"
-              preset="fade-in-blur"
-              className="mx-auto mt-3 max-w-xl text-base text-graphite"
-            >
-              Projetos, marcas e experiências digitais construídas pela Ergon.
-            </TextReveal>
-          </div>
-
-          <div className="relative z-10 mt-6 md:mt-8">
-            <FocusRail
-              items={railItems}
-              loop={false}
-              autoPlay={false}
-              onActiveChange={handleActiveChange}
+          <AnimatePresence mode="popLayout">
+            <motion.img
+              key={ambient.id}
+              src={ambient.imageSrc}
+              alt=""
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 0.55 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.8, ease: 'easeOut' }}
+              className="absolute inset-0 h-full w-full object-cover blur-3xl saturate-200"
             />
-          </div>
-        </motion.div>
-      </div>
+          </AnimatePresence>
+        </div>
+
+        <div className="relative z-10 grid-shell text-center">
+          <motion.span
+            initial="hidden"
+            whileInView="show"
+            viewport={viewportOnce}
+            variants={revealUp}
+            className="mb-3 block text-xs tracking-[0.25em] text-graphite-dim uppercase"
+          >
+            Portfólio
+          </motion.span>
+
+          <h2 className="mx-auto max-w-2xl text-3xl leading-[1.05] font-semibold tracking-tight md:text-5xl">
+            <GradualSpacing
+              as="span"
+              text="O que já colocamos no ar"
+              className="w-full justify-center"
+              duration={0.35}
+              highlight={{ word: 'no ar', variant: 'circle', delay: 0.45 }}
+            />
+          </h2>
+
+          <TextReveal
+            as="p"
+            per="line"
+            preset="fade-in-blur"
+            className="mx-auto mt-3 max-w-xl text-base text-graphite"
+          >
+            Projetos, marcas e experiências digitais construídas pela Ergon.
+          </TextReveal>
+        </div>
+
+        <div className="relative z-10 mt-6 md:mt-8">
+          <FocusRail
+            items={railItems}
+            loop={false}
+            autoPlay={false}
+            onActiveChange={handleActiveChange}
+          />
+        </div>
+      </motion.div>
     </section>
   )
 }

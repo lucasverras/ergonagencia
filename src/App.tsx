@@ -1,4 +1,5 @@
-import { Route, Routes } from 'react-router-dom'
+import { useEffect } from 'react'
+import { Route, Routes, useLocation } from 'react-router-dom'
 import { MotionConfig } from 'framer-motion'
 import { SmoothCursor } from './components/ui/smooth-cursor'
 import GridDebugOverlay from './components/GridDebugOverlay'
@@ -7,6 +8,32 @@ import Footer from './components/Footer'
 import Home from './pages/Home'
 import FlyPage from './fly/FlyPage'
 import CaseStudy from './pages/CaseStudy'
+
+// react-router doesn't touch scroll position on its own. A route change
+// with no hash goes to the top of the new page, like a normal navigation
+// would; a route change ending in a hash (e.g. the case pages' "← Portfólio"
+// link to "/#portfolio") jumps to that section once it's actually mounted —
+// a plain <a href="#portfolio"> only scrolls within the current document,
+// so it can't do this on its own after a route change.
+function ScrollToHash() {
+  const { pathname, hash } = useLocation()
+
+  useEffect(() => {
+    if (!hash) {
+      window.scrollTo(0, 0)
+      return
+    }
+    const id = hash.slice(1)
+    // one frame isn't always enough — the target route's own layout
+    // (images, fonts, reveal-on-scroll wrappers) can still be settling
+    const raf = requestAnimationFrame(() => {
+      document.getElementById(id)?.scrollIntoView({ block: 'start' })
+    })
+    return () => cancelAnimationFrame(raf)
+  }, [pathname, hash])
+
+  return null
+}
 
 function App() {
   return (
@@ -19,6 +46,7 @@ function App() {
         <GridDebugOverlay />
         <SmoothCursor />
         <Navbar />
+        <ScrollToHash />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/fly" element={<FlyPage />} />

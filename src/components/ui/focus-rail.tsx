@@ -68,7 +68,6 @@ export function FocusRail({
 }: FocusRailProps) {
   const [active, setActive] = React.useState(initialIndex)
   const [isHovering, setIsHovering] = React.useState(false)
-  const lastWheelTime = React.useRef<number>(0)
   const containerRef = React.useRef<HTMLDivElement>(null)
 
   const count = items.length
@@ -89,55 +88,6 @@ export function FocusRail({
     if (!loop && active === count - 1) return
     setActive((p) => p + 1)
   }, [loop, active, count])
-
-  // --- MOUSE WHEEL / TRACKPAD LOGIC ---
-  // Captures the scroll entirely while there's another project to page to —
-  // otherwise the page scrolls away mid-browse while the rail is also
-  // trying to advance, and the two fight each other. Only once a real edge
-  // is hit (first/last item, non-looping) does the wheel event fall through
-  // so the page can keep scrolling past the section normally.
-  //
-  // This has to be a native, non-passive listener attached via a ref:
-  // React registers its synthetic onWheel/onTouchMove at the root as a
-  // passive listener, so calling preventDefault() from the JSX prop is
-  // silently ignored and the page scrolls anyway.
-  React.useEffect(() => {
-    const el = containerRef.current
-    if (!el) return
-
-    const handleWheel = (e: WheelEvent) => {
-      const isHorizontal = Math.abs(e.deltaX) > Math.abs(e.deltaY)
-      const delta = isHorizontal ? e.deltaX : e.deltaY
-      const goingForward = delta > 0
-      const canAdvance = loop || (goingForward ? active < count - 1 : active > 0)
-      if (!canAdvance) return // at the edge — release the scroll to the page
-
-      // Swallow every tick while locked, no matter how small — a real
-      // trackpad streams mostly sub-20px deltas, and letting those through
-      // (even while only a couple of big ticks get captured) is exactly
-      // what let the page scroll away underneath the rail.
-      e.preventDefault()
-
-      // Magnitude threshold only gates when a tick actually counts as a
-      // page-turn, not whether the scroll gets captured.
-      if (Math.abs(delta) <= 20) return
-
-      const now = Date.now()
-      // Debounce: prevent rapid firing from inertia scrolling (400ms lockout)
-      // — still swallowed above so no partial scroll leaks through mid-lockout
-      if (now - lastWheelTime.current < 400) return
-
-      if (goingForward) {
-        handleNext()
-      } else {
-        handlePrev()
-      }
-      lastWheelTime.current = now
-    }
-
-    el.addEventListener('wheel', handleWheel, { passive: false })
-    return () => el.removeEventListener('wheel', handleWheel)
-  }, [handleNext, handlePrev, loop, active, count])
 
   // Autoplay logic
   React.useEffect(() => {
