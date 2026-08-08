@@ -168,6 +168,35 @@ body {
   color: var(--color-bg);
 }
 
+/* branded scrollbar — thin lime thumb on the site's own surface color
+   instead of the browser default, so the one UI chrome element outside
+   our control still reads as this brand. Firefox gets the same colors via
+   scrollbar-color; WebKit/Chromium get the fuller thumb treatment below. */
+html {
+  scrollbar-color: var(--color-lime) var(--color-surface);
+  scrollbar-width: thin;
+}
+
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-surface);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-lime);
+  border-radius: 999px;
+  border: 3px solid var(--color-surface);
+  background-clip: padding-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: color-mix(in srgb, var(--color-lime) 85%, white);
+  background-clip: padding-box;
+}
+
 /* one branded focus ring for every link/button site-wide, instead of the
    unstyled browser default — keyboard users get the same lime the hover
    states already use */
