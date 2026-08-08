@@ -1,6 +1,7 @@
 import { Navigate, useParams } from 'react-router-dom'
 import { getCaseBySlug, getNextCase } from '@/cases/casesData'
-import { useCaseHead } from '@/cases/useCaseHead'
+import { useSEO } from '@/lib/seo'
+import { SITE_URL, breadcrumbSchema, webPageSchema, serviceIdsForTags } from '@/lib/schema'
 import { CaseHero } from '@/components/case/CaseHero'
 import { CaseSection } from '@/components/case/CaseSection'
 import { CaseMedia } from '@/components/case/CaseMedia'
@@ -28,10 +29,34 @@ export default function CaseStudy() {
   // hook must run unconditionally on every render (rules of hooks) — falls
   // back to generic portfolio copy when the slug doesn't resolve, right
   // before the redirect below fires
-  useCaseHead({
-    title: study ? `${study.name} — Case Ergon` : 'Portfólio — Ergon',
-    description: study ? study.summary : 'Cases de portfólio da Ergon.',
-    canonical: `https://www.ergonagencia.com.br/portfolio/${slug ?? ''}`,
+  const canonical = `${SITE_URL}/portfolio/${slug ?? ''}`
+  const title = study ? `${study.name} — Case Ergon Agência` : 'Portfólio — Ergon Agência'
+  const description = study ? study.summary : 'Cases de portfólio da Ergon.'
+  const serviceIds = study ? serviceIdsForTags(study.tagGroups.flatMap((g) => g.tags)) : []
+  const ogImage = study?.heroMedia.kind === 'real' ? `${SITE_URL}${study.heroMedia.src}` : undefined
+
+  useSEO({
+    title,
+    description,
+    canonical,
+    ogImage,
+    jsonLd: study
+      ? [
+          webPageSchema({
+            id: `${canonical}/#webpage`,
+            url: canonical,
+            name: title,
+            description,
+            primaryImage: ogImage,
+            about: serviceIds,
+          }),
+          breadcrumbSchema([
+            { name: 'Ergon', url: `${SITE_URL}/` },
+            { name: 'Portfólio', url: `${SITE_URL}/#portfolio` },
+            { name: study.name, url: canonical },
+          ]),
+        ]
+      : [],
   })
 
   if (!study) {

@@ -8,6 +8,8 @@ import Footer from './components/Footer'
 import Home from './pages/Home'
 import FlyPage from './fly/FlyPage'
 import CaseStudy from './pages/CaseStudy'
+import { useGlobalSchema } from './lib/seo'
+import { organizationSchema, websiteSchema, servicesSchema, offerCatalogSchema } from './lib/schema'
 
 // react-router doesn't touch scroll position on its own. A route change
 // with no hash goes to the top of the new page, like a normal navigation
@@ -36,6 +38,11 @@ function ScrollToHash() {
 }
 
 function App() {
+  // Organization/WebSite/Service/OfferCatalog describe the entity as a
+  // whole, not any one route — injected once here so every page shares the
+  // same @ids instead of each route re-describing "who is Ergon" on its own.
+  useGlobalSchema([organizationSchema(), websiteSchema(), ...servicesSchema(), offerCatalogSchema()])
+
   return (
     // reducedMotion="user" is a global safety net on top of the manual
     // useReducedMotion() checks already in individual components —

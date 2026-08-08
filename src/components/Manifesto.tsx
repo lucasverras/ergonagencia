@@ -14,14 +14,14 @@ export default function Manifesto() {
           variants={revealUp}
           className="col-prose"
         >
-          <p className="text-4xl leading-[1.05] font-semibold tracking-tight md:text-5xl">
+          <h2 className="text-4xl leading-[1.05] font-semibold tracking-tight md:text-5xl">
             <GradualSpacing
               as="span"
               text="Ideias ganham valor quando começam a funcionar."
               className="w-full"
               highlight={{ word: 'funcionar.', color: 'bg', delay: 0.5 }}
             />
-          </p>
+          </h2>
           <TextReveal
             as="p"
             per="line"

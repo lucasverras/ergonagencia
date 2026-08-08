@@ -7,35 +7,36 @@ import FlyEquipment from '../components/fly/FlyEquipment'
 import FlyTestimonials from '../components/fly/FlyTestimonials'
 import FlyFaq from '../components/fly/FlyFaq'
 import FlyCTA from '../components/fly/FlyCTA'
-import { useFlyHead } from './useFlyHead'
+import { useSEO } from '../lib/seo'
+import { SITE_URL, SERVICE_IDS, breadcrumbSchema, webPageSchema } from '../lib/schema'
 
-const CANONICAL = 'https://www.ergonagencia.com.br/fly'
-
-const localBusinessJsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'LocalBusiness',
-  name: 'Ergon Agência — Fly',
-  description:
-    'Filmagem com drone profissional em São Paulo. Imagens aéreas e vídeos em 4K para imobiliárias, restaurantes, eventos e empresas.',
-  url: CANONICAL,
-  telephone: '+5511967206875',
-  email: 'contato@ergonagencia.com.br',
-  address: {
-    '@type': 'PostalAddress',
-    addressLocality: 'São Paulo',
-    addressRegion: 'SP',
-    addressCountry: 'BR',
-  },
-  areaServed: 'São Paulo e todo o Brasil',
-}
+const CANONICAL = `${SITE_URL}/fly`
+const TITLE = 'Filmagem com Drone em São Paulo | Imagens Aéreas 4K — Ergon Fly'
+const DESCRIPTION =
+  'Filmagem com drone profissional em São Paulo: imagens aéreas 4K, piloto certificado ANAC, entrega em até 3 dias úteis.'
 
 export default function FlyPage() {
-  useFlyHead({
-    title: 'Filmagem com Drone em São Paulo | Imagens Aéreas 4K — Ergon Fly',
-    description:
-      'Filmagem com drone profissional em São Paulo: imagens aéreas 4K, piloto certificado ANAC, entrega em até 3 dias úteis.',
+  useSEO({
+    title: TITLE,
+    description: DESCRIPTION,
     canonical: CANONICAL,
-    jsonLd: [localBusinessJsonLd],
+    jsonLd: [
+      // the drone vertical is one Service line of the same Organization,
+      // not a second disconnected "Ergon Agência — Fly" entity — real
+      // area/service info is now attached to that shared Organization's
+      // contactPoint (src/lib/schema.ts) instead of being redeclared here
+      webPageSchema({
+        id: `${CANONICAL}/#webpage`,
+        url: CANONICAL,
+        name: TITLE,
+        description: DESCRIPTION,
+        about: [SERVICE_IDS.drone],
+      }),
+      breadcrumbSchema([
+        { name: 'Ergon', url: `${SITE_URL}/` },
+        { name: 'Fly', url: CANONICAL },
+      ]),
+    ],
   })
 
   return (

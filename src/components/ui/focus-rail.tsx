@@ -224,9 +224,13 @@ export function FocusRail({
                     {activeItem.meta}
                   </span>
                 )}
-                <h2 className="text-3xl font-semibold tracking-tight text-ink md:text-4xl">
+                {/* h3, not h2: this rail's only real usage is nested inside
+                    Portfolio's own h2 ("O que já colocamos no ar") — each
+                    project name is a sub-item of that section, not a
+                    sibling section heading */}
+                <h3 className="text-3xl font-semibold tracking-tight text-ink md:text-4xl">
                   {activeItem.title}
-                </h2>
+                </h3>
                 {activeItem.description && (
                   <p className="max-w-md text-graphite">{activeItem.description}</p>
                 )}

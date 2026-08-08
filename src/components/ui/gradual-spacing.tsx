@@ -63,15 +63,20 @@ export function GradualSpacing({
     return word.split('').map((char, ci) => (
       <motion.span
         key={ci}
+        aria-hidden="true"
+        data-ch={char}
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.6 }}
         variants={framerProps}
         transition={{ duration, delay: (startIndex + ci) * delayMultiple }}
-        className="pointer-events-none [-webkit-user-select:none] select-none drop-shadow-sm"
-      >
-        {char}
-      </motion.span>
+        // the visible glyph comes from CSS content (attr(data-ch)) rather
+        // than a real text node — the accessible/selectable copy below is
+        // the only place this letter's text actually exists in the DOM, so
+        // a crawler reading raw textContent (not just the a11y tree that
+        // aria-hidden hides this from) doesn't see the heading duplicated
+        className="pointer-events-none [-webkit-user-select:none] select-none drop-shadow-sm before:content-[attr(data-ch)]"
+      />
     ))
   }
 
