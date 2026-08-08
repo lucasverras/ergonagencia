@@ -10,7 +10,7 @@ import { CaseMedia } from './CaseMedia'
 
 export function CaseHero({ caseStudy }: { caseStudy: CaseStudy }) {
   return (
-    <header className="relative overflow-hidden pt-32 pb-14 md:pt-40 md:pb-20">
+    <header className="relative overflow-hidden pt-10 pb-14 md:pt-40 md:pb-20">
       <GradientBars
         numBars={15}
         gradientFrom="var(--color-violet)"

@@ -124,7 +124,12 @@ export function FocusRail({
     <div
       ref={containerRef}
       className={cn(
-        'group relative flex h-[430px] max-h-[68vh] w-full flex-col overflow-hidden overflow-x-hidden text-ink outline-none select-none md:h-[490px] lg:h-[530px]',
+        // fixed height only from md: up, where it bounds the 3D carousel's
+        // perspective math — on mobile the info block + tags + CTA can run
+        // longer than that budget, and a fixed height + overflow-hidden
+        // was clipping the CTA button off the bottom instead of letting
+        // the box grow to fit
+        'group relative flex h-auto w-full flex-col overflow-x-hidden text-ink outline-none select-none md:h-[490px] md:overflow-hidden lg:h-[530px]',
         className,
       )}
       onMouseEnter={() => setIsHovering(true)}
