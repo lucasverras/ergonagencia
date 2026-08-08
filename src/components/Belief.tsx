@@ -28,19 +28,6 @@ export default function Belief() {
                 highlight={{ word: 'possível.', variant: 'circle', delay: 0.4 }}
               />
             </h2>
-            <motion.a
-              href="#processo"
-              initial="hidden"
-              whileInView="show"
-              viewport={viewportOnce}
-              variants={revealUp}
-              className="group mt-8 inline-flex items-center gap-2 text-sm text-graphite transition-colors hover:text-ink"
-            >
-              Conheça o estúdio
-              <span className="transition-transform group-hover:translate-x-1">
-                →
-              </span>
-            </motion.a>
           </div>
 
           <TextReveal

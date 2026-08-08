@@ -68,7 +68,7 @@ export function GradualSpacing({
         viewport={{ once: true, amount: 0.6 }}
         variants={framerProps}
         transition={{ duration, delay: (startIndex + ci) * delayMultiple }}
-        className="drop-shadow-sm"
+        className="pointer-events-none [-webkit-user-select:none] select-none drop-shadow-sm"
       >
         {char}
       </motion.span>
@@ -109,5 +109,22 @@ export function GradualSpacing({
     wi = groupEnd
   }
 
-  return <Tag className={cn('inline-flex flex-wrap', className)}>{nodes}</Tag>
+  // The per-letter spans are flex items (direct children of the inline-flex
+  // word/word-group wrappers above), and browsers serialize each flex item
+  // onto its own line when converting a selection to plaintext — so
+  // dragging over an animated heading and copying it produces one letter
+  // per line. Two fixes in one: the decorative, animated letters are
+  // `aria-hidden` (screen readers would otherwise hear them spelled out)
+  // and `pointer-events-none`, wrapped in `display: contents` so they add
+  // no box of their own and the flex-wrap layout above is unaffected. A
+  // second, invisible span holding the plain, un-split text sits on top via
+  // `absolute inset-0` — that's what actually gets selected/copied/read.
+  return (
+    <Tag className={cn('relative inline-flex flex-wrap', className)}>
+      <span aria-hidden="true" className="contents">
+        {nodes}
+      </span>
+      <span className="absolute inset-0 opacity-0 select-text">{text}</span>
+    </Tag>
+  )
 }

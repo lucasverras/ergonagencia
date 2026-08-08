@@ -128,12 +128,18 @@ export default function Navbar() {
             scrolled ? 'h-16 px-3' : 'grid-shell h-24 py-5 md:h-28'
           }`}
         >
+          {/* mobile-only spacer matching the hamburger button's own w-10
+              footprint — with justify-between and two equal-width end
+              pieces, the logo between them lands genuinely centered
+              instead of drifting left once the CTA button is gone */}
+          <div className="w-10 md:hidden" aria-hidden="true" />
+
           <a href="#top" className="flex items-center">
             <img
               src={logo}
               alt="Ergon"
               className={`w-auto transition-all duration-[450ms] ease-[cubic-bezier(0.22,1,0.36,1)] ${
-                scrolled ? 'h-7' : 'h-9 md:h-12'
+                scrolled ? 'h-7' : 'h-8 md:h-12'
               }`}
             />
           </a>
@@ -163,7 +169,7 @@ export default function Navbar() {
               whileHover={{ scale: 1.04 }}
               whileTap={{ scale: 0.95 }}
               transition={{ type: 'spring', stiffness: 400, damping: 25 }}
-              className={`group flex items-center gap-2 rounded-full bg-lime font-medium text-bg shadow-[0_0_0_0_rgba(227,255,12,0)] transition-all duration-[450ms] ease-[cubic-bezier(0.22,1,0.36,1)] hover:shadow-[0_0_24px_2px_rgba(227,255,12,0.35)] ${
+              className={`group hidden items-center gap-2 rounded-full bg-lime font-medium text-bg shadow-[0_0_0_0_rgba(227,255,12,0)] transition-all duration-[450ms] ease-[cubic-bezier(0.22,1,0.36,1)] hover:shadow-[0_0_24px_2px_rgba(227,255,12,0.35)] md:flex ${
                 scrolled ? 'px-5 py-2.5 text-xs' : 'px-6 py-3 text-sm'
               }`}
             >

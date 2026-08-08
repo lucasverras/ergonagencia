@@ -51,10 +51,10 @@ export default function Footer() {
           </div>
 
           <a
-            href="mailto:contato@ergon.studio"
+            href="mailto:agenciaergon0@gmail.com"
             className="group inline-flex items-center gap-3 text-2xl font-semibold tracking-tight text-ink transition-colors hover:text-lime md:text-4xl"
           >
-            contato@ergon.studio
+            agenciaergon0@gmail.com
             <span className="text-lime transition-transform group-hover:translate-x-1 group-hover:-translate-y-1">
               ↗
             </span>

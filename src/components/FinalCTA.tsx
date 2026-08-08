@@ -55,7 +55,7 @@ export default function FinalCTA() {
             </TextReveal>
             <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
               <motion.a
-                href="mailto:contato@ergon.studio"
+                href="mailto:agenciaergon0@gmail.com"
                 whileHover={{ scale: 1.04 }}
                 whileTap={{ scale: 0.96 }}
                 transition={{ type: 'spring', stiffness: 400, damping: 25 }}

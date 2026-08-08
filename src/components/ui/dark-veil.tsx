@@ -154,6 +154,13 @@ export function DarkVeil({
       const w = parent.clientWidth
       const h = parent.clientHeight
       renderer.setSize(w * resolutionScale, h * resolutionScale)
+      // ogl's setSize sets the canvas's CSS width/height to whatever it was
+      // given, not just the internal drawing-buffer size — so a
+      // resolutionScale below 1 (the mobile perf knob) was visibly
+      // shrinking the canvas element itself instead of just rendering it
+      // at a lower resolution and letting CSS scale it back up.
+      canvas.style.width = '100%'
+      canvas.style.height = '100%'
       program.uniforms.uResolution.value.set(w, h)
     }
 

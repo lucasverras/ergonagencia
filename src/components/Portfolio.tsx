@@ -129,7 +129,7 @@ export default function Portfolio() {
   }, [])
 
   return (
-    <section id="portfolio" className="relative section-pad">
+    <section id="portfolio" className="relative overflow-hidden section-pad">
       <motion.div
         initial="hidden"
         whileInView="show"

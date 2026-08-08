@@ -62,14 +62,14 @@ export default function BeforeAfter() {
           className="mt-10 md:mt-14"
         >
           <span className="mb-4 block font-mono text-xs tracking-[0.2em] text-graphite-dim uppercase">
-            GBC
+            3WS
           </span>
           <ImageComparison
             media="video"
             beforeImage="/videos/gbc-antes.mp4"
             afterImage="/videos/gbc-depois.mp4"
-            altBefore="Versão anterior do site da GBC"
-            altAfter="Site atual da GBC, desenvolvido pela Ergon"
+            altBefore="Versão anterior do site da 3WS Moldes e Equipamentos"
+            altAfter="Site atual da 3WS Moldes e Equipamentos, desenvolvido pela Ergon"
             beforeLabel="Antes"
             afterLabel="Depois"
             className="mx-auto aspect-[16/10] max-w-4xl"

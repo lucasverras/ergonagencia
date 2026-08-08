@@ -38,7 +38,14 @@ export function HandHighlight({
           viewBox="0 0 220 90"
           preserveAspectRatio="none"
           aria-hidden="true"
-          className={`pointer-events-none absolute -inset-x-2 -top-2 -bottom-5 ${colorClass}`}
+          // em-based offsets (not the fixed px a Tailwind inset scale gives
+          // you) so the mark scales down with the heading's own font-size
+          // instead of reading proportionally oversized on a smaller
+          // mobile heading — this was tuned against a much bigger desktop
+          // heading, so any fixed-px inset in this file the underline
+          // variant below included overwhelms the smaller mobile letters.
+          style={{ left: '-0.17em', right: '-0.17em', top: '-0.17em', bottom: '-0.42em' }}
+          className={`pointer-events-none absolute ${colorClass}`}
           fill="none"
         >
           <motion.path
@@ -57,7 +64,8 @@ export function HandHighlight({
           viewBox="0 0 200 26"
           preserveAspectRatio="none"
           aria-hidden="true"
-          className={`pointer-events-none absolute -inset-x-2 -bottom-3 h-4 w-[calc(100%+1rem)] ${colorClass}`}
+          style={{ left: '-0.17em', bottom: '-0.25em', height: '0.33em', width: 'calc(100% + 0.34em)' }}
+          className={`pointer-events-none absolute ${colorClass}`}
           fill="none"
         >
           <g transform="rotate(-1 100 13)">

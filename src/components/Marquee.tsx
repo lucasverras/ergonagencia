@@ -66,10 +66,10 @@ export default function Marquee() {
             [ resultados ]
           </motion.span>
           <h2 className="mt-4 max-w-2xl text-3xl leading-[1.1] font-semibold tracking-tight md:text-5xl">
-            <GradualSpacing as="span" text="Projetos feitos para funcionar e" className="w-full" />
+            <GradualSpacing as="span" text="Projetos feitos para funcionar" className="w-full" />
             <GradualSpacing
               as="span"
-              text="gerar resultados."
+              text="e gerar resultados."
               className="mt-1 w-full text-lime"
               delayMultiple={0.025}
               highlight={{ word: 'resultados.', variant: 'circle', delay: 0.35 }}

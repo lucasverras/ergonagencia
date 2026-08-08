@@ -168,7 +168,7 @@ export function FocusRail({
                 className={cn(
                   // landscape, matching a real browser screenshot instead of
                   // a portrait frame that cropped most of each site away
-                  'absolute aspect-[16/10] w-[260px] rounded-2xl border-t border-line bg-surface shadow-2xl transition-shadow duration-300 md:w-[560px] lg:w-[600px]',
+                  'absolute aspect-[16/10] w-[300px] rounded-2xl border-t border-line bg-surface shadow-2xl transition-shadow duration-300 md:w-[560px] lg:w-[600px]',
                   isCenter ? 'z-20 shadow-lime/10' : 'z-10',
                 )}
                 initial={false}
@@ -242,7 +242,10 @@ export function FocusRail({
           </div>
 
           <div className="flex items-center gap-4">
-            <div className="flex items-center gap-1 rounded-full bg-surface/80 p-1 ring-1 ring-line backdrop-blur-md">
+            {/* prev/next + counter — hidden on mobile, where it was crowding
+                the single CTA button into overflowing the card's width;
+                swipe/drag already covers navigation at that size */}
+            <div className="hidden items-center gap-1 rounded-full bg-surface/80 p-1 ring-1 ring-line backdrop-blur-md sm:flex">
               <button
                 onClick={handlePrev}
                 className="rounded-full p-3 text-graphite transition hover:bg-white/10 hover:text-ink active:scale-95"
