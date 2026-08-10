@@ -39,14 +39,6 @@ const projects: Project[] = [
     image: '/portfolio/garagi/desktop-hero.png',
   },
   {
-    name: 'Mosaiclab',
-    description:
-      'Site institucional corporativo para organizar serviços, setores e autoridade.',
-    tags: ['Institucional', 'Web'],
-    href: '/portfolio/mosaiclab',
-    image: '/images/portfolio/mosaiclab.png',
-  },
-  {
     name: 'Soccer Station',
     description:
       'Páginas e experiências digitais para eventos, campanhas e operação comercial.',

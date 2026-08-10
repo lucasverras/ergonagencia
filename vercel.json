@@ -18,7 +18,8 @@
     { "source": "/drone-sao-paulo", "destination": "/fly", "statusCode": 308 },
     { "source": "/captacao-aerea", "destination": "/fly#captacao-aerea", "statusCode": 308 },
     { "source": "/video-aereo-drone", "destination": "/fly#video-aereo-drone", "statusCode": 308 },
-    { "source": "/guia-filmagem-com-drone", "destination": "/fly#faq", "statusCode": 308 }
+    { "source": "/guia-filmagem-com-drone", "destination": "/fly#faq", "statusCode": 308 },
+    { "source": "/portfolio/mosaiclab", "destination": "/#portfolio", "statusCode": 308 }
   ],
   "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
 }

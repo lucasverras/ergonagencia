@@ -17,7 +17,6 @@ import { TextReveal } from './ui/text-reveal'
 const previews = [
   { name: 'GBC', category: 'Website & Digital Experience' },
   { name: 'Garagi', category: 'Automotive Digital Experience' },
-  { name: 'Mosaiclab', category: 'Corporate Website' },
   { name: 'Cardápio Franco', category: 'Digital Menu' },
 ]
 

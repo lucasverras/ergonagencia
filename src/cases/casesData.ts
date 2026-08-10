@@ -307,80 +307,9 @@ export const cases: CaseStudy[] = [
   },
 
   {
-    slug: 'mosaiclab',
-    name: 'Mosaiclab',
-    kicker: '04 · Pesquisa & Inteligência',
-    category: 'Website · Rebranding · UX/UI · SEO · Content Strategy',
-    summary:
-      'A Mosaiclab passou por uma reformulação extensa de marca. O website se tornou uma das principais peças dessa transformação.',
-    siteUrl: 'https://mosaiclab.com.br/',
-    siteLabel: 'mosaiclab.com.br',
-    tagGroups: [
-      { label: 'Tipo de projeto', tags: ['Website Institucional'] },
-      { label: 'Expertise', tags: ['UX/UI', 'SEO', 'Content Strategy'] },
-    ],
-    heroMedia: { kind: 'real', src: '/portfolio/mosaiclab/desktop-hero.png', alt: 'Home do site da Mosaiclab' },
-    galleryMedia: [
-      { kind: 'real', src: '/portfolio/mosaiclab/desktop-detail.png', alt: 'Página de conteúdo da Mosaiclab' },
-      { kind: 'real', src: '/portfolio/mosaiclab/mobile-hero.png', alt: 'Home da Mosaiclab em um dispositivo móvel' },
-    ],
-    sections: {
-      projeto: {
-        title: 'O projeto',
-        blocks: [
-          p('A Mosaiclab passou por uma reformulação extensa de marca.'),
-          p('Com a mudança de nome, logo e identidade, sua presença digital também precisava evoluir para representar a nova fase da empresa.'),
-          p('O website se tornou **uma das principais peças dessa transformação**, funcionando como ponto de encontro entre posicionamento, conteúdo, serviços e nova identidade visual.'),
-        ],
-      },
-      desafio: {
-        title: 'O desafio',
-        blocks: [
-          p('Pesquisa de mercado e inteligência podem rapidamente se transformar em uma comunicação excessivamente técnica.'),
-          p('O desafio era explicar uma operação complexa sem construir uma experiência igualmente complexa.'),
-          p('Em vez de falar apenas sobre pesquisa e metodologias, o novo website precisava comunicar aquilo que realmente interessa ao cliente: **insights, soluções, decisões e oportunidades**.'),
-          p('Ao mesmo tempo, o projeto precisava se desprender do visual anterior e consolidar a nova identidade da Mosaiclab.'),
-          p('SEO também era uma parte relevante do trabalho, principalmente porque a empresa possui **uma produção ativa de conteúdos, eventos, estudos e matérias**.'),
-        ],
-      },
-      solucao: {
-        title: 'A solução',
-        blocks: [
-          p('Reestruturamos a narrativa do website para tornar a comunicação mais acessível e orientada a valor.'),
-          p('A apresentação dos serviços passou a priorizar perspectivas, insights e aplicações, **reduzindo o peso da linguagem excessivamente técnica**.'),
-          p('A nova arquitetura também deu ao conteúdo editorial um papel estratégico.'),
-          p('O blog e as demais áreas de conteúdo passaram a funcionar como **novas portas de entrada para a marca**, permitindo trabalhar temas relevantes para o mercado e ampliar continuamente a presença orgânica do website.'),
-        ],
-      },
-      experiencia: {
-        title: 'A experiência',
-        blocks: [
-          p('A nova identidade foi levada para o ambiente digital por meio de uma linguagem mais contemporânea, editorial e visual.'),
-          p('Tipografia, cores, movimento, imagens, dados e composição trabalham juntos para criar uma experiência compatível com o novo posicionamento da empresa.'),
-          p('A direção criada para o website também passou a influenciar outros materiais da Mosaiclab, especialmente apresentações, aumentando a consistência entre diferentes pontos de contato da marca.'),
-        ],
-      },
-      tecnologia: {
-        title: 'Tecnologia',
-        blocks: [
-          p('CMS · SEO técnico · Blog · Arquitetura de conteúdo · Design responsivo · Gestão de conteúdo'),
-        ],
-      },
-      resultado: {
-        title: 'O resultado',
-        blocks: [
-          p('A Mosaiclab passou a apresentar sua nova fase de forma mais consistente, explicar serviços complexos com uma linguagem mais acessível e possuir uma estrutura preparada para continuar crescendo por meio de conteúdo.'),
-          p('Website, apresentações e identidade passaram a falar a mesma língua.'),
-          p('O blog amplia as possibilidades de descoberta orgânica e **transforma a produção constante de conhecimento da empresa em um ativo para SEO**.'),
-        ],
-      },
-    },
-  },
-
-  {
     slug: 'soccer-station',
     name: 'Soccer Station',
-    kicker: '05 · Esporte & Entretenimento',
+    kicker: '04 · Esporte & Entretenimento',
     category: 'Website · UX/UI · Ticketing · Development · Mercado Pago',
     summary:
       'A Soccer Station chegou até a Ergon com um site antigo, construído majoritariamente a partir de imagens. O novo projeto precisava explicar melhor as experiências da empresa e transformar o website em uma ferramenta de venda.',
@@ -461,7 +390,7 @@ export const cases: CaseStudy[] = [
   {
     slug: 'radar-navegando',
     name: 'Radar Navegando',
-    kicker: '06 · Sales Intelligence',
+    kicker: '05 · Sales Intelligence',
     category: 'Internal Tool · CRM · AI · Sales Intelligence · Development',
     summary:
       'A Ergon desenvolveu o Radar Navegando, uma plataforma interna de prospecção ativa capaz de encontrar estabelecimentos por região, organizar oportunidades, **qualificar potenciais clientes e apoiar a abordagem comercial com inteligência artificial**.',
@@ -553,7 +482,7 @@ export const cases: CaseStudy[] = [
   {
     slug: 'navegando-mkt',
     name: 'Navegando MKT',
-    kicker: '07 · Marketing de Conteúdo',
+    kicker: '06 · Marketing de Conteúdo',
     category: 'Website · UX/UI · Portfólio · Lead Generation · Brand Presence',
     summary:
       'A Navegando MKT é uma agência especializada em produção de conteúdo e crescimento orgânico para restaurantes. A Ergon transformou sua presença em um ativo de marca: um website capaz de apresentar a empresa, seus trabalhos, sua metodologia e seus resultados.',
@@ -634,7 +563,7 @@ export const cases: CaseStudy[] = [
   {
     slug: 'franco-gastrobar',
     name: 'Franco Gastrobar',
-    kicker: '08 · Gastronomia',
+    kicker: '07 · Gastronomia',
     category: 'Digital Menu · UX/UI · SEO · Admin Panel · Development',
     summary:
       'O Franco Gastrobar chegou até a Ergon com um problema recorrente: cardápios físicos que exigiam manutenção constante. A Ergon transformou o cardápio em **uma experiência digital própria**.',
@@ -719,7 +648,7 @@ export const cases: CaseStudy[] = [
   {
     slug: '3ws-moldes',
     name: '3WS Moldes e Equipamentos',
-    kicker: '09 · Industrial',
+    kicker: '08 · Industrial',
     category: 'Website · UX/UI · SEO · Development · Industrial',
     summary:
       'A 3WS Moldes e Equipamentos atua na **compra, venda, intermediação e consultoria técnica** de moldes para injeção plástica, porta-moldes, bases para estampos e equipamentos industriais.',
