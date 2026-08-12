@@ -1,4 +1,4 @@
-import { Navigate, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import { getCaseBySlug, getNextCase } from '@/cases/casesData'
 import { useSEO } from '@/lib/seo'
 import { SITE_URL, breadcrumbSchema, webPageSchema, serviceIdsForTags } from '@/lib/schema'
@@ -8,6 +8,7 @@ import { CaseMedia } from '@/components/case/CaseMedia'
 import { CaseTags } from '@/components/case/CaseTags'
 import { CaseQuote } from '@/components/case/CaseQuote'
 import { CaseNextProject } from '@/components/case/CaseNextProject'
+import { NotFoundContent } from '@/components/NotFoundContent'
 
 const sectionOrder: { key: keyof ReturnType<typeof sectionsOf>; index: string }[] = [
   { key: 'projeto', index: '01' },
@@ -26,20 +27,21 @@ export default function CaseStudy() {
   const { slug } = useParams<{ slug: string }>()
   const study = slug ? getCaseBySlug(slug) : undefined
 
-  // hook must run unconditionally on every render (rules of hooks) — falls
-  // back to generic portfolio copy when the slug doesn't resolve, right
-  // before the redirect below fires
+  // hook must run unconditionally on every render (rules of hooks) — an
+  // unresolved slug is a real 404 (noindex), not silently redirected to
+  // home, which would otherwise read as a soft-404 to crawlers
   const canonical = `${SITE_URL}/portfolio/${slug ?? ''}`
-  const title = study ? `${study.name} — Case Ergon Agência` : 'Portfólio — Ergon Agência'
-  const description = study ? study.summary : 'Cases de portfólio da Ergon.'
+  const title = study ? `${study.name} — Case Ergon Agência` : 'Página não encontrada — Ergon Agência'
+  const description = study ? study.summary : 'Este case não existe ou foi movido.'
   const serviceIds = study ? serviceIdsForTags(study.tagGroups.flatMap((g) => g.tags)) : []
   const ogImage = study?.heroMedia.kind === 'real' ? `${SITE_URL}${study.heroMedia.src}` : undefined
 
   useSEO({
     title,
     description,
-    canonical,
+    canonical: study ? canonical : `${SITE_URL}/`,
     ogImage,
+    noindex: !study,
     jsonLd: study
       ? [
           webPageSchema({
@@ -60,7 +62,7 @@ export default function CaseStudy() {
   })
 
   if (!study) {
-    return <Navigate to="/" replace />
+    return <NotFoundContent />
   }
 
   const next = getNextCase(study.slug)

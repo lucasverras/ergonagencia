@@ -57,8 +57,10 @@ export default function FinalCTA() {
             </span>
           </motion.a>
           <motion.a
-            // TODO: substituir pelo número de WhatsApp oficial da Ergon
-            href="https://wa.me/SEU_NUMERO_AQUI"
+            // reusing the one real Ergon WhatsApp number on file (also used
+            // on /fly's own CTA) — confirm with Lucas whether general
+            // studio inquiries should route to a different number
+            href="https://wa.me/5511967206875"
             target="_blank"
             rel="noopener noreferrer"
             whileHover={{ scale: 1.04 }}

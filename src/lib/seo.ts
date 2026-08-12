@@ -15,6 +15,8 @@ export interface SEOOptions {
   ogType?: string
   ogImage?: string
   jsonLd?: object[]
+  /** set on pages that must never be indexed (e.g. the 404 page) */
+  noindex?: boolean
 }
 
 function setMeta(attr: 'name' | 'property', key: string, content: string) {
@@ -27,12 +29,21 @@ function setMeta(attr: 'name' | 'property', key: string, content: string) {
   el.setAttribute('content', content)
 }
 
-export function useSEO({ title, description, canonical, ogType = 'website', ogImage, jsonLd = [] }: SEOOptions) {
+export function useSEO({
+  title,
+  description,
+  canonical,
+  ogType = 'website',
+  ogImage,
+  jsonLd = [],
+  noindex = false,
+}: SEOOptions) {
   useEffect(() => {
     const previousTitle = document.title
     document.title = title
 
     setMeta('name', 'description', description)
+    setMeta('name', 'robots', noindex ? 'noindex, nofollow' : 'index, follow')
     setMeta('property', 'og:title', title)
     setMeta('property', 'og:description', description)
     setMeta('property', 'og:url', canonical)
@@ -62,9 +73,12 @@ export function useSEO({ title, description, canonical, ogType = 'website', ogIm
 
     return () => {
       document.title = previousTitle
+      // reset robots back to the indexable default so leaving a noindex
+      // page (e.g. the 404) doesn't leave the next real page non-indexable
+      setMeta('name', 'robots', 'index, follow')
       scripts.forEach((s) => s.remove())
     }
-  }, [title, description, canonical, ogType, ogImage, jsonLd])
+  }, [title, description, canonical, ogType, ogImage, jsonLd, noindex])
 }
 
 // Organization/WebSite/Service/OfferCatalog describe the site itself, not
@@ -72,6 +86,10 @@ export function useSEO({ title, description, canonical, ogType = 'website', ogIm
 // removed, so they stay present across every client-side navigation
 // instead of being added and torn down per page like useSEO's per-page tags.
 export function useGlobalSchema(jsonLd: object[]) {
+  // intentionally mount-only: jsonLd is a fresh array literal at the call
+  // site on every render, so including it would re-inject on every render
+  // instead of exactly once
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     const scripts = jsonLd.map((data) => {
       const script = document.createElement('script')
@@ -84,8 +102,5 @@ export function useGlobalSchema(jsonLd: object[]) {
     // only runs if App itself unmounts (full teardown) — still correct to
     // clean up rather than leak scripts in that case
     return () => scripts.forEach((s) => s.remove())
-    // intentionally mount-only: jsonLd is a fresh array literal on every
-    // render at the call site, so including it here would re-inject on
-    // every render instead of exactly once
   }, [])
 }

@@ -8,7 +8,8 @@ import FlyTestimonials from '../components/fly/FlyTestimonials'
 import FlyFaq from '../components/fly/FlyFaq'
 import FlyCTA from '../components/fly/FlyCTA'
 import { useSEO } from '../lib/seo'
-import { SITE_URL, SERVICE_IDS, breadcrumbSchema, webPageSchema } from '../lib/schema'
+import { SITE_URL, SERVICE_IDS, breadcrumbSchema, webPageSchema, faqPageSchema } from '../lib/schema'
+import { flyFaq } from './flyServices'
 
 const CANONICAL = `${SITE_URL}/fly`
 const TITLE = 'Filmagem com Drone em São Paulo | Imagens Aéreas 4K — Ergon Fly'
@@ -36,6 +37,10 @@ export default function FlyPage() {
         { name: 'Ergon', url: `${SITE_URL}/` },
         { name: 'Fly', url: CANONICAL },
       ]),
+      // real, commercially-relevant questions already visible verbatim in
+      // FlyFaq.tsx's rendered accordion (src/fly/flyServices.ts) — not
+      // invented for this markup
+      faqPageSchema(flyFaq),
     ],
   })
 

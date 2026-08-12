@@ -176,6 +176,23 @@ export function serviceIdsForTags(tags: string[]): string[] {
   return [...keys].map((k) => SERVICE_IDS[k])
 }
 
+// Only ever call this with Q&A that's actually visible on the page in the
+// same words — never with questions invented to chase a rich result.
+export function faqPageSchema(faqs: { question: string; answer: string }[]) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqs.map((f) => ({
+      '@type': 'Question',
+      name: f.question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: f.answer,
+      },
+    })),
+  }
+}
+
 export interface BreadcrumbItem {
   name: string
   url: string

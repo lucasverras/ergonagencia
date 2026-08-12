@@ -32,7 +32,6 @@ A estrutura é consistente, mas o layout não precisa ser uma cópia mecânica e
 | 01 | GBC / Green Bay Car | `/portfolio/green-bay-car` | `https://www.gbccar.com.br/` |
 | 02 | Ergon Fly | `/portfolio/ergon-fly` | `https://www.ergonagencia.com.br/` |
 | 03 | Garagi | `/portfolio/garagi` | `https://garagifunilaria.lovable.app/` |
-| 04 | Mosaiclab | `/portfolio/mosaiclab` | `https://mosaiclab.com.br/` |
 | 05 | Soccer Station | `/portfolio/soccer-station` | `https://soccerstation.com.br/` |
 | 06 | Radar Navegando | `/portfolio/radar-navegando` | Produto interno / usar assets locais |
 | 07 | Navegando MKT | `/portfolio/navegando-mkt` | `https://www.navegandomkt.com.br/` |
@@ -319,68 +318,6 @@ Na prática, o projeto atua nas duas extremidades do negócio:
 ### Frase de destaque sugerida
 
 **“Uma experiência para o cliente. Outra para quem faz a operação acontecer.”**
-
----
-
-# 04 — MOSAICLAB
-
-**Website · Rebranding · UX/UI · SEO · Content Strategy**
-
-## 01. O projeto
-
-A Mosaiclab passou por uma reformulação extensa de marca.
-
-Com a mudança de nome, logo e identidade, sua presença digital também precisava evoluir para representar a nova fase da empresa.
-
-O website se tornou uma das principais peças dessa transformação, funcionando como ponto de encontro entre posicionamento, conteúdo, serviços e nova identidade visual.
-
-## 02. O desafio
-
-Pesquisa de mercado e inteligência podem rapidamente se transformar em uma comunicação excessivamente técnica.
-
-O desafio era explicar uma operação complexa sem construir uma experiência igualmente complexa.
-
-Em vez de falar apenas sobre pesquisa e metodologias, o novo website precisava comunicar aquilo que realmente interessa ao cliente: **insights, soluções, decisões e oportunidades.**
-
-Ao mesmo tempo, o projeto precisava se desprender do visual anterior e consolidar a nova identidade da Mosaiclab.
-
-SEO também era uma parte relevante do trabalho, principalmente porque a empresa possui uma produção ativa de conteúdos, eventos, estudos e matérias.
-
-## 03. A solução
-
-Reestruturamos a narrativa do website para tornar a comunicação mais acessível e orientada a valor.
-
-A apresentação dos serviços passou a priorizar perspectivas, insights e aplicações, reduzindo o peso da linguagem excessivamente técnica.
-
-A nova arquitetura também deu ao conteúdo editorial um papel estratégico.
-
-O blog e as demais áreas de conteúdo passaram a funcionar como novas portas de entrada para a marca, permitindo trabalhar temas relevantes para o mercado e ampliar continuamente a presença orgânica do website.
-
-## 04. A experiência
-
-A nova identidade foi levada para o ambiente digital por meio de uma linguagem mais contemporânea, editorial e visual.
-
-Tipografia, cores, movimento, imagens, dados e composição trabalham juntos para criar uma experiência compatível com o novo posicionamento da empresa.
-
-A direção criada para o website também passou a influenciar outros materiais da Mosaiclab, especialmente apresentações, aumentando a consistência entre diferentes pontos de contato da marca.
-
-## 05. Tecnologia
-
-**CMS · SEO técnico · Blog · Arquitetura de conteúdo · Design responsivo · Gestão de conteúdo**
-
-**PENDENTE:** confirmar stack técnica nominal.
-
-**PENDENTE DE ESCOPO:** confirmar se a Ergon realizou o rebranding completo ou se foi responsável pela aplicação/evolução da nova identidade no digital. O texto final deve atribuir à Ergon apenas aquilo que efetivamente fez.
-
-## 06. O resultado
-
-A Mosaiclab passou a apresentar sua nova fase de forma mais consistente, explicar serviços complexos com uma linguagem mais acessível e possuir uma estrutura preparada para continuar crescendo por meio de conteúdo.
-
-Website, apresentações e identidade passaram a falar a mesma língua.
-
-O blog amplia as possibilidades de descoberta orgânica e transforma a produção constante de conhecimento da empresa em um ativo para SEO.
-
-**PENDENTE:** substituir qualquer afirmação absoluta como “SEO impecável” por indicadores reais quando disponíveis.
 
 ---
 

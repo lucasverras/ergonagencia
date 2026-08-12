@@ -8,6 +8,7 @@ import Footer from './components/Footer'
 import Home from './pages/Home'
 import FlyPage from './fly/FlyPage'
 import CaseStudy from './pages/CaseStudy'
+import NotFound from './pages/NotFound'
 import { useGlobalSchema } from './lib/seo'
 import { organizationSchema, websiteSchema, servicesSchema, offerCatalogSchema } from './lib/schema'
 
@@ -58,6 +59,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/fly" element={<FlyPage />} />
           <Route path="/portfolio/:slug" element={<CaseStudy />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
         <Footer />
       </div>
