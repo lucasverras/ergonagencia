@@ -819,34 +819,6 @@ O portfólio não deve ser apenas uma galeria bonita. Cada projeto precisa prova
 
 ## 13.1 Casos públicos prioritários
 
-### Mosaiclab
-
-**URL:** https://mosaiclab.com.br/
-
-Possíveis competências demonstradas:
-
-- Website institucional.
-- Inteligência de mercado.
-- Organização de conteúdo complexo.
-- Posicionamento.
-- UX.
-- Interface.
-- Design editorial.
-- Desenvolvimento.
-- SEO e estrutura institucional.
-
-Conteúdo necessário para o case:
-
-- Contexto.
-- Problema anterior.
-- Objetivo.
-- Decisões de estrutura.
-- Direção visual.
-- Resultado.
-- Telas.
-- Responsividade.
-- Aprendizados.
-
 ### Franco Gastrobar
 
 **URL:** https://francogastrobar.com.br/
@@ -1029,7 +1001,6 @@ Este inventário serve para auditoria interna. Não significa que todas as marca
 - Poti.
 - Petit Gateau.
 - Franco Gastrobar.
-- Mosaiclab.
 - 3WS Moldes.
 - Soccer Station.
 - Dom Tugas.

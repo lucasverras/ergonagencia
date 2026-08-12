@@ -97,7 +97,6 @@ Implemente os 9 cases:
 1. GBC / Green Bay Car
 2. Ergon Fly
 3. Garagi
-4. Mosaiclab
 5. Soccer Station
 6. Radar Navegando
 7. Navegando MKT
@@ -109,7 +108,6 @@ Rotas sugeridas:
 - `/portfolio/green-bay-car`
 - `/portfolio/ergon-fly`
 - `/portfolio/garagi`
-- `/portfolio/mosaiclab`
 - `/portfolio/soccer-station`
 - `/portfolio/radar-navegando`
 - `/portfolio/navegando-mkt`
@@ -360,9 +358,6 @@ Importante: o case da Garagi possui **duas frentes**:
 2. sistema interno de orçamentos/CRM.
 
 Use o site público para a camada institucional e assets locais/placeholders para o sistema interno quando não houver material acessível.
-
-### Mosaiclab
-`https://mosaiclab.com.br/`
 
 ### Soccer Station
 `https://soccerstation.com.br/`
@@ -685,23 +680,6 @@ ou
 Frase editorial disponível no arquivo de conteúdo:
 
 **“Uma experiência para o cliente. Outra para quem faz a operação acontecer.”**
-
----
-
-## Mosaiclab
-
-Este case deve ter sensação mais editorial.
-
-Valorize:
-
-- nova identidade;
-- organização da narrativa;
-- conteúdo;
-- blog;
-- serviços apresentados por valor/insight;
-- relação entre website e apresentações.
-
-Não atribua à Ergon uma etapa do rebranding que não esteja confirmada no arquivo ou repositório.
 
 ---
 
