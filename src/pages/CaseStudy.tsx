@@ -56,7 +56,6 @@ export default function CaseStudy() {
           }),
           breadcrumbSchema([
             { name: 'Ergon', url: `${SITE_URL}/` },
-            { name: 'Serviços', url: `${SITE_URL}/servicos` },
             { name: 'Portfólio', url: `${SITE_URL}/portfolio` },
             { name: study.name, url: canonical },
           ]),

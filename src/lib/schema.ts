@@ -174,30 +174,6 @@ export function offerCatalogSchema() {
   }
 }
 
-// Maps a case study's own existing tags (casesData.ts) to the Service(s) it
-// demonstrates — the graph connection section 10 of the brief asks for,
-// built entirely from tags that already exist rather than any new taxonomy.
-const TAG_TO_SERVICE: Record<string, ServiceKey> = {
-  'Website Institucional': 'websites',
-  'Digital Menu': 'websites',
-  'Portfolio Website': 'websites',
-  'Internal Tool': 'systems',
-  CRM: 'systems',
-  Ticketing: 'systems',
-  'Sales Intelligence': 'systems',
-  Automation: 'automation',
-  Audiovisual: 'drone',
-}
-
-export function serviceIdsForTags(tags: string[]): string[] {
-  const keys = new Set<ServiceKey>()
-  for (const tag of tags) {
-    const key = TAG_TO_SERVICE[tag]
-    if (key) keys.add(key)
-  }
-  return [...keys].map((k) => SERVICE_IDS[k])
-}
-
 // Only ever call this with Q&A that's actually visible on the page in the
 // same words — never with questions invented to chase a rich result.
 export function faqPageSchema(faqs: { question: string; answer: string }[]) {
