@@ -1,19 +1,22 @@
 import { type ReactNode } from 'react'
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
+import { ArrowUpRight } from 'lucide-react'
 import { revealUp, viewportOnce } from '../lib/reveal'
 import logo from '../assets/logo.svg'
 import { TextReveal } from './ui/text-reveal'
 import { services } from '../services/servicesData'
+import { WHATSAPP_URL } from '../lib/schema'
 
-const links = [
-  { label: 'Serviços', href: '/servicos' },
-  { label: 'Processo', href: '/#processo' },
-  { label: 'Portfólio', href: '/#portfolio' },
+const ergonLinks = [
+  { label: 'Projetos', href: '/portfolio' },
+  { label: 'Método', href: '/#processo' },
+  { label: 'Ergon Fly', href: '/fly' },
+  { label: 'Contato', href: WHATSAPP_URL },
 ]
 
-// same route-vs-anchor distinction as Navbar.tsx's own NavLink — "/..."
-// needs client-side routing, "#..." stays a plain same-page anchor
+// "/..." and hash anchors need client-side routing (Link); a full external
+// URL (the WhatsApp contact link) stays a plain <a> that opens in a new tab
 function FooterLink({
   href,
   className,
@@ -23,17 +26,17 @@ function FooterLink({
   className?: string
   children: ReactNode
 }) {
-  if (href.startsWith('/')) {
+  if (href.startsWith('http')) {
     return (
-      <Link to={href} className={className}>
+      <a href={href} target="_blank" rel="noopener noreferrer" className={className}>
         {children}
-      </Link>
+      </a>
     )
   }
   return (
-    <a href={href} className={className}>
+    <Link to={href} className={className}>
       {children}
-    </a>
+    </Link>
   )
 }
 
@@ -79,29 +82,46 @@ export default function Footer() {
           </div>
 
           <a
-            href="mailto:agenciaergon0@gmail.com"
+            href={WHATSAPP_URL}
+            target="_blank"
+            rel="noopener noreferrer"
             className="group inline-flex items-center gap-3 text-2xl font-semibold tracking-tight text-ink transition-colors hover:text-lime md:text-4xl"
           >
-            agenciaergon0@gmail.com
-            <span className="text-lime transition-transform group-hover:translate-x-1 group-hover:-translate-y-1">
-              ↗
-            </span>
+            Falar sobre um projeto
+            <ArrowUpRight className="h-6 w-6 text-lime transition-transform group-hover:translate-x-1 group-hover:-translate-y-1 md:h-8 md:w-8" />
           </a>
         </div>
 
-        <div className="mt-14 border-t border-line pt-10 md:mt-16">
-          <span className="block text-xs tracking-[0.25em] text-graphite-dim uppercase">Serviços</span>
-          <nav className="mt-4 flex flex-col gap-2 sm:flex-row sm:flex-wrap sm:gap-x-8 sm:gap-y-2">
-            {services.map((s) => (
-              <Link
-                key={s.slug}
-                to={`/servicos/${s.slug}`}
-                className="text-sm text-graphite transition-colors hover:text-ink"
-              >
-                {s.name}
-              </Link>
-            ))}
-          </nav>
+        <div className="mt-14 grid grid-cols-1 gap-10 border-t border-line pt-10 sm:grid-cols-2 md:mt-16">
+          <div>
+            <span className="block text-xs tracking-[0.25em] text-graphite-dim uppercase">Serviços</span>
+            <nav className="mt-4 flex flex-col gap-2.5">
+              {services.map((s) => (
+                <Link
+                  key={s.slug}
+                  to={`/servicos/${s.slug}`}
+                  className="text-sm text-graphite transition-colors hover:text-ink"
+                >
+                  {s.categoryLabel}
+                </Link>
+              ))}
+            </nav>
+          </div>
+
+          <div>
+            <span className="block text-xs tracking-[0.25em] text-graphite-dim uppercase">Ergon</span>
+            <nav className="mt-4 flex flex-col gap-2.5">
+              {ergonLinks.map((l) => (
+                <FooterLink
+                  key={l.label}
+                  href={l.href}
+                  className="text-sm text-graphite transition-colors hover:text-ink"
+                >
+                  {l.label}
+                </FooterLink>
+              ))}
+            </nav>
+          </div>
         </div>
 
         <div className="mt-10 flex flex-col-reverse items-center gap-6 border-t border-line pt-8 md:flex-row md:justify-between">
@@ -109,23 +129,12 @@ export default function Footer() {
             © {new Date().getFullYear()} Ergon Digital Product Studio.
           </p>
 
-          <nav className="flex items-center gap-4">
-            {links.map((l) => (
-              <FooterLink
-                key={l.href}
-                href={l.href}
-                className="-my-3 px-1 py-3 text-xs text-graphite transition-colors hover:text-ink"
-              >
-                {l.label}
-              </FooterLink>
-            ))}
-            <Link
-              to="/#top"
-              className="-my-3 px-1 py-3 text-xs text-graphite transition-colors hover:text-lime"
-            >
-              Voltar ao topo
-            </Link>
-          </nav>
+          <Link
+            to="/#top"
+            className="-my-3 px-1 py-3 text-xs text-graphite transition-colors hover:text-lime"
+          >
+            Voltar ao topo
+          </Link>
         </div>
       </div>
     </motion.footer>

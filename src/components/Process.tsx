@@ -3,42 +3,41 @@ import { revealUp, viewportOnce } from '../lib/reveal'
 import ProcessStep, { type Step } from './ProcessStep'
 import { GradientBars } from './ui/gradient-bars-background'
 import { GradualSpacing } from './ui/gradual-spacing'
-import { TextReveal } from './ui/text-reveal'
-import {
-  UnderstandVisual,
-  ClarifyVisual,
-  DesignVisual,
-  BuildVisual,
-} from './ProcessIcons'
 
+// same four stages named the same way across the whole site (/servicos'
+// DISCOVER_PROCESS) — Home's version just says less per step, since this
+// section only needs to answer "how does a project happen?", not restate
+// the fuller service-page description
 const steps: Step[] = [
   {
     n: '01',
-    title: 'Entender',
-    tag: 'discover',
-    desc: 'Mergulhamos no negócio, no público e no problema que precisa ser resolvido — antes de propor qualquer resposta.',
+    title: 'Discover',
+    tag: 'entender',
+    desc: 'Entendemos o problema.',
+    tags: ['negócio', 'processos', 'oportunidades', 'escopo'],
   },
   {
     n: '02',
-    title: 'Dar clareza',
-    tag: 'define',
-    desc: 'Organizamos prioridades, conteúdos e caminhos. Tiramos a ideia do abstrato e definimos o que realmente precisa ser construído.',
+    title: 'Design',
+    tag: 'desenhar',
+    desc: 'Desenhamos a solução.',
+    tags: ['UX', 'UI', 'protótipo', 'conteúdo'],
   },
   {
     n: '03',
-    title: 'Projetar a experiência',
-    tag: 'design',
-    desc: 'Desenhamos fluxos, interfaces e interações que fazem sentido para quem usa e para quem administra o produto.',
+    title: 'Build',
+    tag: 'construir',
+    desc: 'Colocamos para funcionar.',
+    tags: ['desenvolvimento', 'dados', 'integrações', 'automações'],
   },
   {
     n: '04',
-    title: 'Tornar real',
-    tag: 'build',
-    desc: 'Transformamos a estratégia em um produto funcional, testado e preparado para evoluir depois do lançamento.',
+    title: 'Evolve',
+    tag: 'evoluir',
+    desc: 'Continuamos melhorando.',
+    tags: ['suporte', 'melhorias', 'novas funcionalidades'],
   },
 ]
-
-const visuals = [UnderstandVisual, ClarifyVisual, DesignVisual, BuildVisual]
 
 export default function Process() {
   return (
@@ -68,26 +67,18 @@ export default function Process() {
             variants={revealUp}
             className="mb-6 block text-xs tracking-[0.25em] text-graphite-dim uppercase"
           >
-            Como pensamos
+            Método
           </motion.span>
           <h2 className="text-3xl leading-[1.05] font-semibold tracking-tight md:text-5xl">
             <GradualSpacing
               as="span"
-              text="Clareza antes da interface."
-              highlight={{ word: 'Clareza', delay: 0.3 }}
+              text="Da ideia ao produto."
+              highlight={{ word: 'produto.', delay: 0.3 }}
             />
           </h2>
-          <TextReveal
-            as="p"
-            per="line"
-            preset="fade-in-blur"
-            className="mt-6 text-base font-medium text-ink"
-          >
-            A gente não recebe briefing. A gente constrói um.
-          </TextReveal>
         </div>
 
-        <div className="relative mt-4 grid grid-cols-1 gap-x-12 gap-y-2 sm:grid-cols-2 md:mt-8">
+        <div className="relative mt-8 grid grid-cols-1 gap-x-12 gap-y-2 sm:grid-cols-2 md:mt-12">
           {/* a hairline cross running the full width/height of the grid,
               crossing exactly where the four quadrants meet */}
           <div aria-hidden="true" className="absolute inset-0 hidden sm:block">
@@ -95,8 +86,8 @@ export default function Process() {
             <span className="absolute top-0 bottom-0 left-1/2 w-px origin-center -translate-x-1/2 scale-x-50 bg-gradient-to-b from-white/50 to-graphite-dim/50" />
           </div>
 
-          {steps.map((step, i) => (
-            <ProcessStep key={step.n} step={step} Visual={visuals[i]} />
+          {steps.map((step) => (
+            <ProcessStep key={step.n} step={step} />
           ))}
         </div>
       </div>

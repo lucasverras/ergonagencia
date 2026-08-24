@@ -7,6 +7,12 @@
 
 export const SITE_URL = 'https://www.ergonagencia.com.br'
 
+// Primary contact channel for the whole studio (every "falar sobre um
+// projeto" CTA site-wide) — Ergon Fly keeps its own separate, pre-existing
+// WhatsApp line (FlyCTA.tsx / the drone ContactPoint below).
+export const WHATSAPP_NUMBER = '5511988162883'
+export const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=Quero%20falar%20sobre%20um%20projeto`
+
 export const ORGANIZATION_ID = `${SITE_URL}/#organization`
 export const WEBSITE_ID = `${SITE_URL}/#website`
 
@@ -45,7 +51,9 @@ export function organizationSchema() {
       {
         '@type': 'ContactPoint',
         contactType: 'atendimento geral',
+        telephone: '+5511988162883',
         email: 'agenciaergon0@gmail.com',
+        areaServed: 'BR',
       },
       {
         '@type': 'ContactPoint',

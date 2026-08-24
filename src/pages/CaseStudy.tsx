@@ -49,7 +49,7 @@ export default function CaseStudy() {
           breadcrumbSchema([
             { name: 'Ergon', url: `${SITE_URL}/` },
             { name: 'Serviços', url: `${SITE_URL}/servicos` },
-            { name: 'Portfólio', url: `${SITE_URL}/#portfolio` },
+            { name: 'Portfólio', url: `${SITE_URL}/portfolio` },
             { name: study.name, url: canonical },
           ]),
         ]
@@ -77,14 +77,6 @@ export default function CaseStudy() {
       <CaseHero study={study} />
       <CaseQuickInfo servicos={study.servicos} tecnologias={study.tecnologias} entrega={study.entrega} />
 
-      {hasCta && (
-        <section className="border-t border-line py-10 md:py-12">
-          <div className="grid-shell">
-            <CaseBigCTA label={study.ctaLabel!} href={study.ctaUrl!} />
-          </div>
-        </section>
-      )}
-
       <CaseSection index="01" title="O desafio" blocks={[p(study.challenge)]} />
       <CaseSection index="02" title="O que construímos" blocks={builtBlocks} />
       <CaseSection index="03" title="Principais entregas" blocks={[list(study.deliverables)]} />
@@ -97,14 +89,6 @@ export default function CaseStudy() {
             ))}
           </div>
         </CaseSection>
-      )}
-
-      {hasCta && (
-        <section className="border-t border-line py-10 md:py-14">
-          <div className="grid-shell">
-            <CaseBigCTA eyebrow="Produto" label={study.ctaLabel!} href={study.ctaUrl!} />
-          </div>
-        </section>
       )}
 
       {relatedServices.length > 0 && (
@@ -124,6 +108,28 @@ export default function CaseStudy() {
                 </Link>
               ))}
             </div>
+          </div>
+        </section>
+      )}
+
+      {study.result && (
+        <section className="border-t border-line py-14 md:py-20">
+          <div className="grid-shell">
+            <span className="mb-4 block text-xs tracking-[0.25em] text-graphite-dim uppercase">
+              Resultado
+            </span>
+            <p className="font-display text-[clamp(2.5rem,7vw,5rem)] leading-[1.02] text-lime">
+              {study.result.metric}
+            </p>
+            <p className="mt-2 max-w-md text-base text-graphite md:text-lg">{study.result.desc}</p>
+          </div>
+        </section>
+      )}
+
+      {hasCta && (
+        <section className="border-t border-line py-10 md:py-14">
+          <div className="grid-shell">
+            <CaseBigCTA eyebrow="Produto" label={study.ctaLabel!} href={study.ctaUrl!} />
           </div>
         </section>
       )}

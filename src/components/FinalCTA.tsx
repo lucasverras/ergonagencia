@@ -1,11 +1,13 @@
 import { motion } from 'framer-motion'
+import { ArrowUpRight } from 'lucide-react'
 import { revealUp, viewportOnce } from '../lib/reveal'
 import { GradualSpacing } from './ui/gradual-spacing'
 import { TextReveal } from './ui/text-reveal'
+import { WHATSAPP_URL } from '../lib/schema'
 
 export default function FinalCTA() {
   return (
-    <section id="cta" className="relative overflow-hidden section-pad text-center">
+    <section id="cta" className="relative overflow-hidden py-24 text-center md:py-32">
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[60%]"
@@ -16,61 +18,48 @@ export default function FinalCTA() {
       />
 
       <div className="grid-shell">
-        <motion.span
-          initial="hidden"
-          whileInView="show"
-          viewport={viewportOnce}
-          variants={revealUp}
-          className="mb-8 inline-block rounded-full border border-lime/30 px-4 py-2 font-mono text-xs tracking-[0.25em] text-lime uppercase"
-        >
-          [ vamos trabalhar juntos ]
-        </motion.span>
-        <h2 className="mx-auto max-w-2xl text-3xl font-semibold tracking-tight md:text-5xl">
+        <h2 className="mx-auto max-w-2xl text-3xl leading-[1.1] font-semibold tracking-tight md:text-6xl">
           <GradualSpacing
             as="span"
-            text="O mercado não espera sua ideia ficar perfeita."
+            text="Tem algo na sua operação"
             className="w-full justify-center"
-            highlight={{ word: 'perfeita.', delay: 0.5 }}
+          />
+          <GradualSpacing
+            as="span"
+            text="que poderia funcionar melhor?"
+            className="mt-1 w-full justify-center"
+            delayMultiple={0.025}
+            highlight={{ word: 'melhor?', variant: 'circle', delay: 0.4 }}
           />
         </h2>
         <TextReveal
           as="p"
           per="line"
           preset="fade-in-blur"
-          className="mx-auto mt-5 max-w-[52ch] text-base text-graphite"
+          className="mx-auto mt-5 max-w-md text-base text-graphite md:text-lg"
         >
-          Do primeiro pixel ao lançamento — e depois dele. Conte o que
-          você precisa construir e a gente responde com o caminho, o
-          prazo e o que faz sentido priorizar.
+          Pode ser um site, um sistema, uma automação ou algo que ainda não tem nome.
         </TextReveal>
-        <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
+        <motion.div
+          initial="hidden"
+          whileInView="show"
+          viewport={viewportOnce}
+          variants={revealUp}
+          className="mt-12"
+        >
           <motion.a
-            href="mailto:agenciaergon0@gmail.com"
-            whileHover={{ scale: 1.04 }}
-            whileTap={{ scale: 0.96 }}
-            transition={{ type: 'spring', stiffness: 400, damping: 25 }}
-            className="group flex items-center gap-2 rounded-full bg-lime px-8 py-3.5 text-sm font-medium text-bg shadow-[0_0_0_0_rgba(227,255,12,0)] transition-shadow duration-300 hover:shadow-[0_0_32px_4px_rgba(227,255,12,0.4)]"
-          >
-            Iniciar um projeto
-            <span className="transition-transform group-hover:translate-x-1">
-              →
-            </span>
-          </motion.a>
-          <motion.a
-            // reusing the one real Ergon WhatsApp number on file (also used
-            // on /fly's own CTA) — confirm with Lucas whether general
-            // studio inquiries should route to a different number
-            href="https://wa.me/5511967206875"
+            href={WHATSAPP_URL}
             target="_blank"
             rel="noopener noreferrer"
-            whileHover={{ scale: 1.04 }}
-            whileTap={{ scale: 0.96 }}
+            whileHover={{ scale: 1.03 }}
+            whileTap={{ scale: 0.97 }}
             transition={{ type: 'spring', stiffness: 400, damping: 25 }}
-            className="rounded-full border border-line px-8 py-3.5 text-sm text-ink transition-colors hover:border-violet hover:text-violet"
+            className="group inline-flex items-center gap-3 rounded-full bg-lime px-10 py-5 text-base font-medium text-bg shadow-[0_0_0_0_rgba(227,255,12,0)] transition-shadow duration-300 hover:shadow-[0_0_40px_6px_rgba(227,255,12,0.4)] md:text-lg"
           >
-            WhatsApp
+            Falar sobre um projeto
+            <ArrowUpRight className="h-5 w-5 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
           </motion.a>
-        </div>
+        </motion.div>
       </div>
     </section>
   )

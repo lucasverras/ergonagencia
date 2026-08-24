@@ -4,6 +4,7 @@ import { ArrowUpRight, ChevronLeft } from 'lucide-react'
 import { revealUp, revealContainer, viewportOnce } from '@/lib/reveal'
 import { GradientBars } from '@/components/ui/gradient-bars-background'
 import { GradualSpacing } from '@/components/ui/gradual-spacing'
+import { WHATSAPP_URL } from '@/lib/schema'
 import type { ServiceStudy } from '@/services/servicesData'
 
 export function ServiceHero({ service }: { service: ServiceStudy }) {
@@ -60,14 +61,16 @@ export function ServiceHero({ service }: { service: ServiceStudy }) {
 
           <motion.div variants={revealUp} className="mt-8 flex flex-wrap items-center gap-4">
             <a
-              href="mailto:agenciaergon0@gmail.com"
+              href={WHATSAPP_URL}
+              target="_blank"
+              rel="noopener noreferrer"
               className="group inline-flex items-center gap-2 rounded-full bg-lime px-6 py-3 text-sm font-semibold text-bg transition-transform hover:scale-105 active:scale-95"
             >
               Falar sobre um projeto
               <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
             </a>
             <Link
-              to="/#portfolio"
+              to="/portfolio"
               className="rounded-full border border-line px-6 py-3 text-sm text-ink transition-colors hover:border-lime/40"
             >
               Ver projetos

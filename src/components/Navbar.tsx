@@ -1,13 +1,15 @@
 import { useEffect, useRef, useState, type ReactNode } from 'react'
 import { Link } from 'react-router-dom'
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
+import { ChevronDown } from 'lucide-react'
 import logo from '../assets/logo.svg'
+import { WHATSAPP_URL } from '../lib/schema'
+import { services } from '../services/servicesData'
 
 const links = [
-  { label: 'Serviços', href: '/servicos' },
-  { label: 'Processo', href: '/#processo' },
-  { label: 'Portfólio', href: '/#portfolio' },
-  { label: 'Fly', href: '/fly' },
+  { label: 'Projetos', href: '/portfolio' },
+  { label: 'Método', href: '/#processo' },
+  { label: 'Clientes', href: '/#clientes' },
 ]
 
 // route links (starting with "/") need client-side navigation via
@@ -36,6 +38,62 @@ function NavLink({
     <a href={href} className={className} onClick={onClick}>
       {children}
     </a>
+  )
+}
+
+// small hover dropdown under "Serviços" — the 4 real pillars, not a
+// megamenu. Desktop only; mobile just links straight to /servicos, which
+// already lists the same 4 with fuller descriptions.
+function ServicesDropdown({ scrolled }: { scrolled: boolean }) {
+  const [open, setOpen] = useState(false)
+  const closeTimeout = useRef<ReturnType<typeof setTimeout> | null>(null)
+
+  const show = () => {
+    if (closeTimeout.current) clearTimeout(closeTimeout.current)
+    setOpen(true)
+  }
+  const hide = () => {
+    closeTimeout.current = setTimeout(() => setOpen(false), 120)
+  }
+
+  return (
+    <div className="relative" onMouseEnter={show} onMouseLeave={hide}>
+      <Link
+        to="/servicos"
+        className={`flex items-center gap-1 text-graphite transition-colors hover:text-ink ${
+          scrolled ? 'text-xs' : 'text-sm'
+        }`}
+      >
+        Serviços
+        <ChevronDown className={`h-3 w-3 transition-transform ${open ? 'rotate-180' : ''}`} />
+      </Link>
+
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            initial={{ opacity: 0, y: -6 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -6 }}
+            transition={{ duration: 0.18, ease: [0.16, 1, 0.3, 1] }}
+            className="absolute top-full left-1/2 z-20 mt-3 w-72 -translate-x-1/2 overflow-hidden rounded-2xl border border-line bg-bg/95 shadow-[0_20px_40px_-24px_rgba(0,0,0,0.6)] backdrop-blur-md"
+          >
+            <ul className="divide-y divide-line">
+              {services.map((s) => (
+                <li key={s.slug}>
+                  <Link
+                    to={`/servicos/${s.slug}`}
+                    className="block px-4 py-3 transition-colors hover:bg-surface"
+                  >
+                    <span className="block text-sm font-medium text-ink">{s.categoryLabel}</span>
+                    <span className="mt-0.5 block text-xs text-graphite">{s.homeDescription}</span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
   )
 }
 
@@ -152,6 +210,9 @@ export default function Navbar() {
               scrolled ? 'gap-6' : 'gap-10'
             }`}
           >
+            <li>
+              <ServicesDropdown scrolled={scrolled} />
+            </li>
             {links.map((l) => (
               <li key={l.href}>
                 <NavLink
@@ -168,7 +229,9 @@ export default function Navbar() {
 
           <div className="flex items-center gap-4">
             <motion.a
-              href="#cta"
+              href={WHATSAPP_URL}
+              target="_blank"
+              rel="noopener noreferrer"
               whileHover={{ scale: 1.04 }}
               whileTap={{ scale: 0.95 }}
               transition={{ type: 'spring', stiffness: 400, damping: 25 }}
@@ -176,7 +239,7 @@ export default function Navbar() {
                 scrolled ? 'px-5 py-2.5 text-xs' : 'px-6 py-3 text-sm'
               }`}
             >
-              Começar um projeto
+              Falar sobre um projeto
               <span className="transition-transform group-hover:translate-x-0.5">
                 →
               </span>
@@ -211,6 +274,15 @@ export default function Navbar() {
               className="overflow-hidden rounded-2xl border border-line bg-bg/95 shadow-[0_20px_40px_-24px_rgba(0,0,0,0.6)] backdrop-blur-md"
             >
               <ul className="divide-y divide-line">
+                <li>
+                  <NavLink
+                    href="/servicos"
+                    onClick={() => setMenuOpen(false)}
+                    className="flex items-center px-5 py-4 text-base text-graphite transition-colors hover:text-ink"
+                  >
+                    Serviços
+                  </NavLink>
+                </li>
                 {links.map((l) => (
                   <li key={l.href}>
                     <NavLink
@@ -222,6 +294,17 @@ export default function Navbar() {
                     </NavLink>
                   </li>
                 ))}
+                <li>
+                  <a
+                    href={WHATSAPP_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => setMenuOpen(false)}
+                    className="flex items-center px-5 py-4 text-base text-lime"
+                  >
+                    Falar sobre um projeto
+                  </a>
+                </li>
               </ul>
             </nav>
           </motion.div>

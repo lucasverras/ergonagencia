@@ -28,7 +28,7 @@ export function CaseHero({ study }: { study: CaseStudy }) {
         <motion.div initial="hidden" whileInView="show" viewport={viewportOnce} variants={revealContainer()}>
           <motion.div variants={revealUp}>
             <Link
-              to="/#portfolio"
+              to="/portfolio"
               className="group mb-8 inline-flex items-center gap-2 text-xs tracking-[0.2em] text-graphite-dim uppercase transition-colors hover:text-ink"
             >
               <ChevronLeft className="h-3.5 w-3.5 transition-transform group-hover:-translate-x-1" />

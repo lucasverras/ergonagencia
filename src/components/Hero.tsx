@@ -1,15 +1,19 @@
 import { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 import {
   useReducedMotion,
   motion,
   AnimatePresence,
   type Variants,
 } from 'framer-motion'
+import { ArrowUpRight } from 'lucide-react'
 import { DarkVeil } from './ui/dark-veil'
 import MagicBentoCard from './ui/MagicBentoCard'
 import CircularText from './ui/CircularText'
 import { GradualSpacing } from './ui/gradual-spacing'
 import { TextReveal } from './ui/text-reveal'
+import { revealUp } from '../lib/reveal'
+import { WHATSAPP_URL } from '../lib/schema'
 
 // small preview loop for the hero slideshow — kept local and short (not the
 // full case-study data from Portfolio.tsx) since this is a glance, not the
@@ -37,8 +41,8 @@ function PortfolioSlideshow() {
   const project = previews[active]
 
   return (
-    <a
-      href="#portfolio"
+    <Link
+      to="/portfolio"
       className="block h-40 w-60 sm:h-44 sm:w-72"
     >
     <MagicBentoCard className="group relative h-full w-full overflow-hidden rounded-2xl border border-line bg-surface/70 backdrop-blur-md transition-colors hover:border-lime/30">
@@ -92,7 +96,7 @@ function PortfolioSlideshow() {
         </AnimatePresence>
       </div>
     </MagicBentoCard>
-    </a>
+    </Link>
   )
 }
 
@@ -156,15 +160,50 @@ export default function Hero() {
         variants={container}
         className="grid-shell grid-cols relative z-[var(--z-content)] pt-10 sm:pt-16"
       >
-        {/* headline: smaller and wider than before — each fixed line now
-            comfortably fits more text, so it reads as long confident lines
-            rather than a stacked wall of giant type. The dynamic word still
-            gets its own line (unconstrained width, whitespace-nowrap) so
-            "em operação" never wraps or reflows the line above it. */}
-        <h1 className="col-headline font-display text-[clamp(4.05rem,8.8vw,9.3rem)] leading-[1.02] tracking-[0.02em] uppercase md:text-[clamp(3rem,6.5vw,6.875rem)]">
-          <GradualSpacing as="span" text="Ergon Digital" className="w-full text-lime" />
-          <GradualSpacing as="span" text="Product Studio" className="mt-1 w-full" delayMultiple={0.03} />
+        {/* positioning statement, not the brand wordmark — a first-time
+            visitor needs to understand what Ergon does before anything
+            else on the page, so the headline states it directly */}
+        <h1 className="col-headline font-display text-[clamp(2.75rem,6.2vw,5rem)] leading-[1.04] tracking-[0.01em] uppercase md:text-[clamp(2.25rem,4.4vw,3.75rem)]">
+          <GradualSpacing as="span" text="Produtos digitais para" className="w-full" />
+          <GradualSpacing
+            as="span"
+            text="empresas que querem"
+            className="mt-1 w-full"
+            delayMultiple={0.03}
+          />
+          <GradualSpacing
+            as="span"
+            text="vender melhor e operar melhor."
+            className="mt-1 w-full text-lime"
+            delayMultiple={0.025}
+            highlight={{ word: 'melhor.', variant: 'circle', delay: 0.5 }}
+          />
         </h1>
+
+        <motion.div variants={revealUp} className="col-headline mt-6 max-w-lg">
+          <TextReveal as="p" per="line" preset="fade-in-blur" className="text-base text-graphite md:text-lg">
+            Criamos sites, sistemas, plataformas e automações para resolver
+            problemas reais de negócio.
+          </TextReveal>
+        </motion.div>
+
+        <motion.div variants={revealUp} className="col-headline mt-8 flex flex-wrap items-center gap-4">
+          <a
+            href={WHATSAPP_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group inline-flex items-center gap-2 rounded-full bg-lime px-6 py-3 text-sm font-semibold text-bg transition-transform hover:scale-105 active:scale-95"
+          >
+            Falar sobre um projeto
+            <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+          </a>
+          <Link
+            to="/portfolio"
+            className="rounded-full border border-line px-6 py-3 text-sm text-ink transition-colors hover:border-lime/40"
+          >
+            Ver projetos
+          </Link>
+        </motion.div>
       </motion.div>
 
       {/* rotating circular wordmark, top-right corner */}
@@ -172,7 +211,7 @@ export default function Hero() {
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.8, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
-        className="absolute top-[220px] z-[var(--z-content)] hidden md:block"
+        className="absolute top-[420px] z-[var(--z-content)] hidden md:block"
         style={{ right: 'calc(var(--grid-margin) + 2.5rem)' }}
       >
         <CircularBadge />
@@ -188,25 +227,6 @@ export default function Hero() {
       >
         <PortfolioSlideshow />
       </motion.div>
-
-      {/* support copy, bottom-right corner — in the CTA's old spot */}
-      <div
-        className="absolute bottom-12 z-[var(--z-content)] max-w-[85%] sm:max-w-xs"
-        style={{ right: 'calc(var(--grid-margin) + 2.5rem)' }}
-      >
-        <TextReveal
-          as="p"
-          per="line"
-          preset="fade-in-blur"
-          delay={0.9}
-          className="text-right text-sm text-graphite sm:text-base"
-        >
-          Somos um digital product studio dedicado a tirar ideias do papel. Da
-          estratégia de UX à interface final, desenhamos e construímos
-          produtos digitais pensados para o ritmo de transformação que a
-          tecnologia impõe&nbsp;hoje.
-        </TextReveal>
-      </div>
 
       <motion.div
         initial={{ opacity: 0 }}

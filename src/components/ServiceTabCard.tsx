@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
-import { Plus, Globe, LayoutDashboard, Workflow, Rocket, type LucideIcon } from 'lucide-react'
+import { ArrowRight, Globe, LayoutDashboard, Workflow, Rocket, type LucideIcon } from 'lucide-react'
 import { revealUp, viewportOnce } from '../lib/reveal'
 import MagicBentoCard from './ui/MagicBentoCard'
 import type { ServiceKey } from '@/lib/schema'
@@ -16,7 +16,6 @@ const ICONS: Partial<Record<ServiceKey, LucideIcon>> = {
 }
 
 export function ServiceTabCard({ service, index }: { service: ServiceStudy; index: number }) {
-  const tags = service.whatWeCreate.slice(0, 3).map((item) => item.title)
   const Icon = ICONS[service.serviceKey]
 
   return (
@@ -40,12 +39,15 @@ export function ServiceTabCard({ service, index }: { service: ServiceStudy; inde
             )}
           </div>
 
-          <h3 className="mt-8 text-2xl leading-[1.12] font-semibold tracking-tight text-ink transition-colors group-hover:text-lime md:text-[1.75rem]">
-            {service.categoryLabel}
-          </h3>
+          <div className="mt-8">
+            <h3 className="text-2xl leading-[1.12] font-semibold tracking-tight text-ink transition-colors group-hover:text-lime md:text-[1.75rem]">
+              {service.categoryLabel}
+            </h3>
+            <p className="mt-2 text-sm text-graphite">{service.homeDescription}</p>
+          </div>
 
           <div className="mt-6 flex flex-wrap gap-2">
-            {tags.map((tag) => (
+            {service.homeExamples.map((tag) => (
               <span
                 key={tag}
                 className="rounded-full border border-line px-3 py-1 text-[11px] text-graphite-dim"
@@ -55,8 +57,9 @@ export function ServiceTabCard({ service, index }: { service: ServiceStudy; inde
             ))}
           </div>
 
-          <span className="mt-8 flex h-9 w-9 items-center justify-center rounded-full border border-line text-graphite transition-all duration-300 group-hover:rotate-45 group-hover:border-lime/50 group-hover:text-lime">
-            <Plus className="h-4 w-4" />
+          <span className="mt-8 inline-flex items-center gap-1.5 text-xs font-medium tracking-[0.1em] text-ink uppercase transition-colors group-hover:text-lime">
+            Conhecer
+            <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
           </span>
         </MagicBentoCard>
       </Link>

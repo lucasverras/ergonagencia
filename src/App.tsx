@@ -7,6 +7,7 @@ import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import Home from './pages/Home'
 import FlyPage from './fly/FlyPage'
+import Portfolio from './pages/Portfolio'
 import CaseStudy from './pages/CaseStudy'
 import ServicesHub from './pages/ServicesHub'
 import ServiceDetail from './pages/ServiceDetail'
@@ -60,6 +61,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/fly" element={<FlyPage />} />
+          <Route path="/portfolio" element={<Portfolio />} />
           <Route path="/portfolio/:slug" element={<CaseStudy />} />
           <Route path="/servicos" element={<ServicesHub />} />
           <Route path="/servicos/:slug" element={<ServiceDetail />} />

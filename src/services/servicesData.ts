@@ -12,9 +12,9 @@ import type { ServiceKey } from '@/lib/schema'
 // route rather than being duplicated here.
 //
 // English category labels (Sites & Experiences, Digital Platforms,
-// Intelligent Operations, Applications & Product Launch) are a deliberate
-// brand choice — the studio positioning, not a translation exercise —
-// while H1s, meta, and body copy stay in Portuguese for comprehension/SEO.
+// Intelligent Operations, Product Launch) are a deliberate brand choice —
+// the studio positioning, not a translation exercise — while H1s, meta,
+// and body copy stay in Portuguese for comprehension/SEO.
 export interface ProcessStepDef {
   n: string
   title: string
@@ -38,6 +38,11 @@ export interface ServiceStudy {
   eyebrow: string
   name: string
   heroBlurb: string
+  /** one-line summary + short concrete nouns, for the Home services card —
+   * distinct from heroBlurb/whatWeCreate, which are written for the fuller
+   * /servicos/:slug page */
+  homeDescription: string
+  homeExamples: string[]
   problemHeadline: string
   problemBody: string
   whatWeCreate: WhatWeCreateItem[]
@@ -68,6 +73,8 @@ export const services: ServiceStudy[] = [
     name: 'Sites e experiências digitais',
     heroBlurb:
       'Não fazemos apenas uma página bonita. Criamos uma experiência digital que ajuda a empresa a ser entendida, percebida e escolhida.',
+    homeDescription: 'Sites e experiências digitais para apresentar melhor uma empresa, produto ou serviço.',
+    homeExamples: ['Website', 'Landing Page', 'Catálogo', 'Site B2B', 'Restaurante', 'Lançamento'],
     problemHeadline: 'Um site bonito que não converte é só uma imagem cara.',
     problemBody: 'Cada página existe pra fazer alguém agir — entender, confiar e entrar em contato.',
     whatWeCreate: [
@@ -100,6 +107,8 @@ export const services: ServiceStudy[] = [
     name: 'Plataformas e sistemas sob medida',
     heroBlurb:
       'Quando planilhas, WhatsApp e ferramentas diferentes começam a controlar a operação, provavelmente existe espaço para uma plataforma própria.',
+    homeDescription: 'Sistemas e ferramentas próprias para organizar operações específicas.',
+    homeExamples: ['CRM', 'Dashboard', 'Estoque', 'Orçamentos', 'Agendamento', 'Portal'],
     problemHeadline: 'Se sua empresa depende de cinco planilhas e três grupos de WhatsApp para funcionar,',
     problemBody: 'provavelmente já existe um sistema esperando para ser criado.',
     whatWeCreate: [
@@ -125,6 +134,8 @@ export const services: ServiceStudy[] = [
     name: 'Automação e operações inteligentes',
     heroBlurb:
       'Se uma tarefa acontece várias vezes da mesma maneira, provavelmente não deveria continuar sendo feita manualmente.',
+    homeDescription: 'Automações e integrações para reduzir tarefas manuais e conectar operações.',
+    homeExamples: ['Social Selling', 'WhatsApp', 'Direct', 'Integrações', 'IA', 'n8n'],
     problemHeadline: 'Você não precisa de mais uma ferramenta.',
     problemBody: 'Precisa parar de repetir tarefas que um sistema já poderia fazer sozinho.',
     whatWeCreate: [
@@ -145,11 +156,13 @@ export const services: ServiceStudy[] = [
   {
     slug: 'produtos-digitais',
     serviceKey: 'digitalProducts',
-    categoryLabel: 'Applications & Product Launch',
+    categoryLabel: 'Product Launch',
     eyebrow: 'Serviço / Ergon',
     name: 'Produtos digitais, do conceito ao lançamento',
     heroBlurb:
       'Não construímos tecnologia por construir. Pensamos, desenhamos e colocamos produtos digitais pra funcionar — da ideia até uma versão que alguém realmente consegue usar.',
+    homeDescription: 'Da ideia até uma primeira versão funcional de um novo produto digital.',
+    homeExamples: ['MVP', 'App', 'SaaS', 'Plataforma', 'Portal', 'Produto Digital'],
     problemHeadline: 'Software só faz sentido quando começa a economizar tempo.',
     problemBody: 'Criamos ferramentas que entram na operação, não apresentações que ficam no Drive.',
     whatWeCreate: [

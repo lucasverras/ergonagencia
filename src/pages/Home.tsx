@@ -1,11 +1,10 @@
 import Hero from '../components/Hero'
-import Belief from '../components/Belief'
 import WhatWeBuild from '../components/WhatWeBuild'
-import Marquee from '../components/Marquee'
-import Portfolio from '../components/Portfolio'
+import WhatItBecomes from '../components/WhatItBecomes'
+import SelectedProjects from '../components/SelectedProjects'
+import ClientsMarquee from '../components/ClientsMarquee'
 import Process from '../components/Process'
-import BeforeAfter from '../components/BeforeAfter'
-import Manifesto from '../components/Manifesto'
+import ErgonFlyTeaser from '../components/ErgonFlyTeaser'
 import FinalCTA from '../components/FinalCTA'
 import { useSEO } from '../lib/seo'
 import { SITE_URL, ORGANIZATION_ID, webPageSchema } from '../lib/schema'
@@ -14,18 +13,18 @@ const CANONICAL = `${SITE_URL}/`
 
 export default function Home() {
   useSEO({
-    title: 'Ergon Digital Product Studio — Automação, Sistemas e Produtos Digitais',
+    title: 'Ergon Digital Product Studio — Sites, Sistemas e Automações',
     description:
-      'A Ergon desenvolve automações, sistemas internos, produtos digitais e websites para empresas que precisam transformar processos manuais em ferramentas que funcionam — do primeiro fluxo ao produto no ar.',
+      'A Ergon é um digital product studio: entendemos problemas de negócio e construímos sites, sistemas internos, plataformas e automações para resolvê-los.',
     canonical: CANONICAL,
     ogImage: `${SITE_URL}/favicon.png`,
     jsonLd: [
       webPageSchema({
         id: `${SITE_URL}/#webpage`,
         url: CANONICAL,
-        name: 'Ergon Digital Product Studio — Automação, Sistemas e Produtos Digitais',
+        name: 'Ergon Digital Product Studio — Sites, Sistemas e Automações',
         description:
-          'A Ergon desenvolve automações, sistemas internos, produtos digitais e websites para empresas que precisam transformar processos manuais em ferramentas que funcionam.',
+          'A Ergon é um digital product studio: entendemos problemas de negócio e construímos sites, sistemas internos, plataformas e automações para resolvê-los.',
         about: [ORGANIZATION_ID],
       }),
     ],
@@ -34,13 +33,12 @@ export default function Home() {
   return (
     <main>
       <Hero />
-      <Belief />
       <WhatWeBuild />
-      <Marquee />
+      <WhatItBecomes />
+      <SelectedProjects />
+      <ClientsMarquee />
       <Process />
-      <BeforeAfter />
-      <Portfolio />
-      <Manifesto />
+      <ErgonFlyTeaser />
       <FinalCTA />
     </main>
   )

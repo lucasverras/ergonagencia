@@ -25,6 +25,10 @@ export type CaseBuilt =
   | { kind: 'single'; text: string }
   | { kind: 'dual'; intro?: string; website: string; internal: string }
 
+/** only set when there's a real, defensible number or outcome behind it —
+ * never populated just to fill the section */
+export type CaseResult = { metric: string; desc: string }
+
 export type CaseStudy = {
   slug: string
   name: string
@@ -36,6 +40,7 @@ export type CaseStudy = {
   /** omit both when there's no public destination (internal-only tools) */
   ctaLabel?: string
   ctaUrl?: string
+  result?: CaseResult
   challenge: string
   built: CaseBuilt
   deliverables: string[]
@@ -52,6 +57,7 @@ export const cases: CaseStudy[] = [
     servicos: ['Painel / Dashboard', 'Automação de redes sociais', 'Social selling', 'Integração com IA'],
     tecnologias: ['Vercel', 'Integração com Instagram/Meta', 'IA para respostas assistidas'],
     entrega: 'Painel próprio, de uso privado do creator — sem URL pública.',
+    result: { metric: '+40%', desc: 'de seguidores em apenas 30 dias' },
     challenge:
       'Acompanhar o desempenho do conteúdo, os comentários e as oportunidades de contato significava abrir várias telas diferentes — sem um lugar único pra entender o que estava funcionando e o que precisava de resposta.',
     built: {
@@ -81,6 +87,7 @@ export const cases: CaseStudy[] = [
     servicos: ['Website institucional', 'Sistema interno', 'CRM', 'UX/UI'],
     tecnologias: ['Lovable'],
     entrega: 'Website institucional publicado + sistema interno de orçamentos e CRM comercial (uso interno, sem URL pública).',
+    result: { metric: 'Retenção ↑ Conversão ↑', desc: 'mais retenção de clientes e mais conversões na operação' },
     ctaLabel: 'CONHECER A GARAGI ↗',
     ctaUrl: 'https://garagifunilaria.lovable.app/',
     challenge:
@@ -118,6 +125,7 @@ export const cases: CaseStudy[] = [
     servicos: ['Website institucional', 'Integração de estoque', 'SEO técnico'],
     tecnologias: ['Next.js', 'React', 'Tailwind CSS', 'Framer Motion', 'Vercel', 'Webmotors API'],
     entrega: 'Site institucional publicado, com sincronização automática do estoque via API da Webmotors.',
+    result: { metric: '+300%', desc: 'de visitas ao site' },
     ctaLabel: 'CONHECER A GREEN BAY CAR ↗',
     ctaUrl: 'https://www.gbccar.com.br/',
     challenge:

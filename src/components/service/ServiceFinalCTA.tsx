@@ -2,6 +2,7 @@ import { motion } from 'framer-motion'
 import { ArrowUpRight } from 'lucide-react'
 import { revealUp, viewportOnce } from '@/lib/reveal'
 import { GradualSpacing } from '@/components/ui/gradual-spacing'
+import { WHATSAPP_URL } from '@/lib/schema'
 
 export function ServiceFinalCTA({ headline }: { headline: string }) {
   return (
@@ -25,7 +26,9 @@ export function ServiceFinalCTA({ headline }: { headline: string }) {
           className="mt-8 flex justify-center"
         >
           <a
-            href="mailto:agenciaergon0@gmail.com"
+            href={WHATSAPP_URL}
+            target="_blank"
+            rel="noopener noreferrer"
             className="group flex items-center gap-2 rounded-full bg-lime px-8 py-3.5 text-sm font-medium text-bg shadow-[0_0_0_0_rgba(227,255,12,0)] transition-shadow duration-300 hover:shadow-[0_0_32px_4px_rgba(227,255,12,0.4)]"
           >
             Falar com a Ergon
