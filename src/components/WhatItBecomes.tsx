@@ -1,18 +1,29 @@
 import { motion } from 'framer-motion'
+import {
+  Globe,
+  Users,
+  Settings,
+  LayoutDashboard,
+  Workflow,
+  Calendar,
+  UtensilsCrossed,
+  MessageCircle,
+  type LucideIcon,
+} from 'lucide-react'
 import { revealUp, revealContainer, viewportOnce } from '../lib/reveal'
 import { GradualSpacing } from './ui/gradual-spacing'
 
 // concrete, literal outcomes — not a feature list. Every line is something
 // a visitor can immediately picture inside their own operation.
-const examples = [
-  { title: 'Website', desc: 'Uma nova presença digital.' },
-  { title: 'CRM', desc: 'Clientes, oportunidades e histórico organizados.' },
-  { title: 'Sistema interno', desc: 'Um processo manual transformado em ferramenta própria.' },
-  { title: 'Painel', desc: 'Informações importantes em uma única visão.' },
-  { title: 'Automação', desc: 'Processos acontecendo sem alguém executar cada etapa.' },
-  { title: 'Agendamento', desc: 'O cliente agenda. Sua equipe administra.' },
-  { title: 'Cardápio digital', desc: 'Um cardápio próprio, visual e atualizável.' },
-  { title: 'Social selling', desc: 'Comentários e DMs transformados em oportunidades.' },
+const examples: { title: string; desc: string; Icon: LucideIcon }[] = [
+  { title: 'Website', desc: 'Uma nova presença digital.', Icon: Globe },
+  { title: 'CRM', desc: 'Clientes, oportunidades e histórico organizados.', Icon: Users },
+  { title: 'Sistema interno', desc: 'Um processo manual transformado em ferramenta própria.', Icon: Settings },
+  { title: 'Painel', desc: 'Informações importantes em uma única visão.', Icon: LayoutDashboard },
+  { title: 'Automação', desc: 'Processos acontecendo sem alguém executar cada etapa.', Icon: Workflow },
+  { title: 'Agendamento', desc: 'O cliente agenda. Sua equipe administra.', Icon: Calendar },
+  { title: 'Cardápio digital', desc: 'Um cardápio próprio, visual e atualizável.', Icon: UtensilsCrossed },
+  { title: 'Social selling', desc: 'Comentários e DMs transformados em oportunidades.', Icon: MessageCircle },
 ]
 
 export default function WhatItBecomes() {
@@ -41,7 +52,8 @@ export default function WhatItBecomes() {
         >
           {examples.map((item) => (
             <motion.div key={item.title} variants={revealUp} className="border-t border-line pt-4">
-              <span className="block text-base font-medium text-ink">{item.title}</span>
+              <item.Icon className="h-5 w-5 text-lime" strokeWidth={1.75} />
+              <span className="mt-3 block text-base font-medium text-ink">{item.title}</span>
               <span className="mt-1 block text-sm text-graphite">{item.desc}</span>
             </motion.div>
           ))}

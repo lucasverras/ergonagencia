@@ -18,7 +18,7 @@ export default function FinalCTA() {
       />
 
       <div className="grid-shell">
-        <h2 className="mx-auto max-w-2xl text-3xl leading-[1.1] font-semibold tracking-tight md:text-6xl">
+        <h2 className="mx-auto max-w-4xl text-3xl leading-[1.1] font-semibold tracking-tight md:max-w-6xl md:text-6xl">
           <GradualSpacing
             as="span"
             text="Tem algo na sua operação"
