@@ -8,8 +8,8 @@ import { services } from '../services/servicesData'
 
 const links = [
   { label: 'Serviços', href: '/servicos' },
-  { label: 'Processo', href: '#processo' },
-  { label: 'Portfólio', href: '#portfolio' },
+  { label: 'Processo', href: '/#processo' },
+  { label: 'Portfólio', href: '/#portfolio' },
 ]
 
 // same route-vs-anchor distinction as Navbar.tsx's own NavLink — "/..."
@@ -119,12 +119,12 @@ export default function Footer() {
                 {l.label}
               </FooterLink>
             ))}
-            <a
-              href="#top"
+            <Link
+              to="/#top"
               className="-my-3 px-1 py-3 text-xs text-graphite transition-colors hover:text-lime"
             >
               Voltar ao topo
-            </a>
+            </Link>
           </nav>
         </div>
       </div>

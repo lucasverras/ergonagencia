@@ -5,8 +5,8 @@ import logo from '../assets/logo.svg'
 
 const links = [
   { label: 'Serviços', href: '/servicos' },
-  { label: 'Processo', href: '#processo' },
-  { label: 'Portfólio', href: '#portfolio' },
+  { label: 'Processo', href: '/#processo' },
+  { label: 'Portfólio', href: '/#portfolio' },
   { label: 'Fly', href: '/fly' },
 ]
 
@@ -137,7 +137,7 @@ export default function Navbar() {
               instead of drifting left once the CTA button is gone */}
           <div className="w-10 md:hidden" aria-hidden="true" />
 
-          <a href="#top" className="flex items-center">
+          <Link to="/#top" className="flex items-center">
             <img
               src={logo}
               alt="Ergon"
@@ -145,7 +145,7 @@ export default function Navbar() {
                 scrolled ? 'h-7' : 'h-8 md:h-12'
               }`}
             />
-          </a>
+          </Link>
 
           <ul
             className={`hidden items-center md:flex transition-all duration-[450ms] ease-[cubic-bezier(0.22,1,0.36,1)] ${
