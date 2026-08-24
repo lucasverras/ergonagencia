@@ -31,7 +31,9 @@ export default function CaseStudy() {
   // unresolved slug is a real 404 (noindex), not silently redirected to
   // home, which would otherwise read as a soft-404 to crawlers
   const canonical = `${SITE_URL}/portfolio/${slug ?? ''}`
-  const title = study ? `${study.name} — Case Ergon Agência` : 'Página não encontrada — Ergon Agência'
+  const title = study
+    ? `${study.name} — Case Ergon Digital Product Studio`
+    : 'Página não encontrada — Ergon Digital Product Studio'
   const description = study ? study.summary : 'Este case não existe ou foi movido.'
   const serviceIds = study ? serviceIdsForTags(study.tagGroups.flatMap((g) => g.tags)) : []
   const ogImage = study?.heroMedia.kind === 'real' ? `${SITE_URL}${study.heroMedia.src}` : undefined

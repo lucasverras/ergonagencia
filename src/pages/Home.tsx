@@ -14,7 +14,7 @@ const CANONICAL = `${SITE_URL}/`
 
 export default function Home() {
   useSEO({
-    title: 'Ergon Agência — Automação, Sistemas e Produtos Digitais',
+    title: 'Ergon Digital Product Studio — Automação, Sistemas e Produtos Digitais',
     description:
       'A Ergon desenvolve automações, sistemas internos, produtos digitais e websites para empresas que precisam transformar processos manuais em ferramentas que funcionam — do primeiro fluxo ao produto no ar.',
     canonical: CANONICAL,
@@ -23,7 +23,7 @@ export default function Home() {
       webPageSchema({
         id: `${SITE_URL}/#webpage`,
         url: CANONICAL,
-        name: 'Ergon Agência — Automação, Sistemas e Produtos Digitais',
+        name: 'Ergon Digital Product Studio — Automação, Sistemas e Produtos Digitais',
         description:
           'A Ergon desenvolve automações, sistemas internos, produtos digitais e websites para empresas que precisam transformar processos manuais em ferramentas que funcionam.',
         about: [ORGANIZATION_ID],
