@@ -1,13 +1,41 @@
+import { type ReactNode } from 'react'
+import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { revealUp, viewportOnce } from '../lib/reveal'
 import logo from '../assets/logo.svg'
 import { TextReveal } from './ui/text-reveal'
+import { services } from '../services/servicesData'
 
 const links = [
-  { label: 'Produtos', href: '#produtos' },
+  { label: 'Serviços', href: '/servicos' },
   { label: 'Processo', href: '#processo' },
   { label: 'Portfólio', href: '#portfolio' },
 ]
+
+// same route-vs-anchor distinction as Navbar.tsx's own NavLink — "/..."
+// needs client-side routing, "#..." stays a plain same-page anchor
+function FooterLink({
+  href,
+  className,
+  children,
+}: {
+  href: string
+  className?: string
+  children: ReactNode
+}) {
+  if (href.startsWith('/')) {
+    return (
+      <Link to={href} className={className}>
+        {children}
+      </Link>
+    )
+  }
+  return (
+    <a href={href} className={className}>
+      {children}
+    </a>
+  )
+}
 
 export default function Footer() {
   return (
@@ -61,20 +89,35 @@ export default function Footer() {
           </a>
         </div>
 
-        <div className="mt-16 flex flex-col-reverse items-center gap-6 border-t border-line pt-8 md:flex-row md:justify-between">
+        <div className="mt-14 border-t border-line pt-10 md:mt-16">
+          <span className="block text-xs tracking-[0.25em] text-graphite-dim uppercase">Serviços</span>
+          <nav className="mt-4 flex flex-col gap-2 sm:flex-row sm:flex-wrap sm:gap-x-8 sm:gap-y-2">
+            {services.map((s) => (
+              <Link
+                key={s.slug}
+                to={`/servicos/${s.slug}`}
+                className="text-sm text-graphite transition-colors hover:text-ink"
+              >
+                {s.name}
+              </Link>
+            ))}
+          </nav>
+        </div>
+
+        <div className="mt-10 flex flex-col-reverse items-center gap-6 border-t border-line pt-8 md:flex-row md:justify-between">
           <p className="text-xs text-graphite-dim">
             © {new Date().getFullYear()} Ergon Digital Product Studio.
           </p>
 
           <nav className="flex items-center gap-4">
             {links.map((l) => (
-              <a
+              <FooterLink
                 key={l.href}
                 href={l.href}
                 className="-my-3 px-1 py-3 text-xs text-graphite transition-colors hover:text-ink"
               >
                 {l.label}
-              </a>
+              </FooterLink>
             ))}
             <a
               href="#top"

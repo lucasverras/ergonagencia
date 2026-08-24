@@ -4,7 +4,7 @@ import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
 import logo from '../assets/logo.svg'
 
 const links = [
-  { label: 'Produtos', href: '#produtos' },
+  { label: 'Serviços', href: '/servicos' },
   { label: 'Processo', href: '#processo' },
   { label: 'Portfólio', href: '#portfolio' },
   { label: 'Fly', href: '/fly' },

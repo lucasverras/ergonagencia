@@ -1,5 +1,6 @@
-import { useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { getCaseBySlug, getNextCase } from '@/cases/casesData'
+import { servicesForCase } from '@/services/servicesData'
 import { useSEO } from '@/lib/seo'
 import { SITE_URL, breadcrumbSchema, webPageSchema, serviceIdsForTags } from '@/lib/schema'
 import { CaseHero } from '@/components/case/CaseHero'
@@ -69,6 +70,7 @@ export default function CaseStudy() {
 
   const next = getNextCase(study.slug)
   const sections = study.sections
+  const relatedServices = servicesForCase(study.slug)
 
   return (
     <main>
@@ -105,6 +107,27 @@ export default function CaseStudy() {
               accent={false}
               className="mx-auto max-w-3xl text-center"
             />
+          </div>
+        </section>
+      )}
+
+      {relatedServices.length > 0 && (
+        <section className="border-t border-line py-10">
+          <div className="grid-shell">
+            <span className="mb-3 block text-xs tracking-[0.25em] text-graphite-dim uppercase">
+              Serviços utilizados neste projeto
+            </span>
+            <div className="flex flex-wrap gap-2">
+              {relatedServices.map((s) => (
+                <Link
+                  key={s.slug}
+                  to={`/servicos/${s.slug}`}
+                  className="rounded-full border border-line px-3 py-1 text-xs text-graphite-dim transition-colors hover:border-lime/40 hover:text-lime"
+                >
+                  {s.name}
+                </Link>
+              ))}
+            </div>
           </div>
         </section>
       )}

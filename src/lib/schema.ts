@@ -12,11 +12,14 @@ export const WEBSITE_ID = `${SITE_URL}/#website`
 
 // Real service clusters as they actually exist across the site today —
 // mirrors WhatWeBuild.tsx's four cards (Lançar/Operar/Automatizar/Evoluir)
-// and the drone vertical (/fly) — not an invented taxonomy.
+// and the drone vertical (/fly) — not an invented taxonomy. Each now has
+// its own real page under /servicos (see src/services/servicesData.ts),
+// except drone, which keeps living at its own established /fly route.
 export const SERVICE_IDS = {
   automation: `${SITE_URL}/#service-automacao`,
   systems: `${SITE_URL}/#service-sistemas`,
   websites: `${SITE_URL}/#service-websites`,
+  digitalProducts: `${SITE_URL}/#service-produtos-digitais`,
   drone: `${SITE_URL}/#service-drone`,
 } as const
 
@@ -77,7 +80,7 @@ export function websiteSchema() {
   }
 }
 
-interface ServiceDef {
+export interface ServiceDef {
   key: ServiceKey
   name: string
   description: string
@@ -89,22 +92,25 @@ interface ServiceDef {
 // Grounded in real, existing content: WhatWeBuild.tsx's four product steps
 // (Lançar/Operar/Automatizar/Evoluir) collapse into three clusters — sites,
 // systems, automation — plus the drone vertical, which is its own route.
-const SERVICES: ServiceDef[] = [
+// Exported so /servicos (ServicesHub.tsx) can list the drone entry without
+// duplicating its copy — the other four have their own richer page data in
+// src/services/servicesData.ts instead.
+export const SERVICES: ServiceDef[] = [
   {
     key: 'automation',
     name: 'Automação e Integração de Sistemas',
     description:
       'Automação de atendimento, follow-up, qualificação de leads, agenda e cobrança — conectando ferramentas que hoje dependem de trabalho manual.',
     serviceType: 'Automação de processos',
-    url: `${SITE_URL}/#produtos`,
+    url: `${SITE_URL}/servicos/automacoes`,
   },
   {
     key: 'systems',
-    name: 'Sistemas e Produtos Digitais',
+    name: 'Sistemas Internos e Painéis',
     description:
       'Painéis administrativos, mini CRMs, sistemas de reservas e catálogos construídos sobre o processo que já existe na empresa, sem depender de plugins genéricos.',
     serviceType: 'Desenvolvimento de sistemas personalizados',
-    url: `${SITE_URL}/#produtos`,
+    url: `${SITE_URL}/servicos/plataformas`,
   },
   {
     key: 'websites',
@@ -112,7 +118,15 @@ const SERVICES: ServiceDef[] = [
     description:
       'Sites institucionais, landing pages e primeiras versões de produto, com a estrutura de conteúdo e SEO definida antes de qualquer tela ser desenhada.',
     serviceType: 'Desenvolvimento web',
-    url: `${SITE_URL}/#produtos`,
+    url: `${SITE_URL}/servicos/sites`,
+  },
+  {
+    key: 'digitalProducts',
+    name: 'Produtos Digitais',
+    description:
+      'MVPs, plataformas e ferramentas digitais sob medida — da validação ao lançamento, e a evolução do que já está em produção.',
+    serviceType: 'Desenvolvimento de produtos digitais',
+    url: `${SITE_URL}/servicos/produtos-digitais`,
   },
   {
     key: 'drone',

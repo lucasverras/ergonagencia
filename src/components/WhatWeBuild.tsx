@@ -31,6 +31,7 @@ const steps: ProductStepData[] = [
       'Sites, landing pages e primeiras versões de produto no ar — com a estrutura definida antes de qualquer tela ser desenhada.',
     badge: 'REACT · NEXT.JS',
     image: '/images/produtos/lancar.png',
+    href: '/servicos/sites',
   },
   {
     n: '02',
@@ -40,6 +41,7 @@ const steps: ProductStepData[] = [
       'Painéis administrativos, mini CRMs, reservas e catálogos — construídos em cima do processo que já existe na empresa.',
     badge: 'PAINEL PRÓPRIO · SEM PLUGIN',
     image: '/images/produtos/operar.png',
+    href: '/servicos/plataformas',
   },
   {
     n: '03',
@@ -49,6 +51,7 @@ const steps: ProductStepData[] = [
       'Conectamos os pontos onde alguém ainda copia e cola: atendimento, follow-up, qualificação de lead, agenda e cobrança rodando sozinhos.',
     badge: 'N8N · WHATSAPP · INSTAGRAM',
     image: '/images/produtos/automatizar.png',
+    href: '/servicos/automacoes',
   },
   {
     n: '04',
@@ -58,6 +61,7 @@ const steps: ProductStepData[] = [
       'Redesign, UX, performance e novas funcionalidades sobre o que já existe — avaliando o que dá para salvar antes de reconstruir.',
     badge: 'SOBRE A BASE ATUAL',
     image: '/images/produtos/evoluir.png',
+    href: '/servicos/produtos-digitais',
   },
 ]
 
