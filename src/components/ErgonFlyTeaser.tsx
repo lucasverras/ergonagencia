@@ -4,9 +4,9 @@ import { ArrowUpRight, Drone } from 'lucide-react'
 import { revealUp, revealContainer, viewportOnce } from '../lib/reveal'
 
 // a complementary capability, not a fifth pillar — deliberately smaller
-// and quieter than the four services cards above it. Abstract background
-// (no stock-feeling photo) with a single drone mark breaking past the
-// card's own edge, rather than a literal aerial photograph.
+// and quieter than the four services cards above it. Real drone photo,
+// but low-opacity and gradient-faded rather than a loud full-strength
+// stock shot — the drone itself sits in the left portion of the crop.
 export default function ErgonFlyTeaser() {
   return (
     <section className="border-t border-line py-14 md:py-20">
@@ -21,14 +21,26 @@ export default function ErgonFlyTeaser() {
           >
             <div className="relative overflow-hidden rounded-3xl">
               <div className="relative aspect-[21/9] sm:aspect-[3/1]">
+                <img
+                  src="/images/fly-drone.jpg"
+                  alt=""
+                  aria-hidden="true"
+                  loading="lazy"
+                  className="absolute inset-0 h-full w-full object-cover opacity-30"
+                  style={{ objectPosition: '25% 40%' }}
+                />
+                {/* left-to-right sweep: drone stays visible on the left,
+                    fades to the card's own background on the right */}
                 <div
                   aria-hidden="true"
-                  className="absolute inset-0 opacity-[0.25]"
-                  style={{
-                    backgroundImage:
-                      'linear-gradient(rgba(255,255,255,0.4) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.4) 1px, transparent 1px)',
-                    backgroundSize: '32px 32px',
-                  }}
+                  className="absolute inset-0 bg-gradient-to-r from-transparent via-surface/70 to-surface"
+                />
+                {/* bottom fade for text contrast — the copy sits bottom-left,
+                    exactly where the sweep above leaves the photo most
+                    visible, so this keeps it readable regardless */}
+                <div
+                  aria-hidden="true"
+                  className="absolute inset-0 bg-gradient-to-t from-surface via-surface/40 to-transparent"
                 />
                 <div
                   aria-hidden="true"
@@ -43,7 +55,7 @@ export default function ErgonFlyTeaser() {
                   className="absolute inset-0"
                   style={{
                     background:
-                      'radial-gradient(420px circle at 15% 90%, rgba(227,255,12,0.12), transparent 70%)',
+                      'radial-gradient(420px circle at 15% 90%, rgba(227,255,12,0.14), transparent 70%)',
                   }}
                 />
               </div>

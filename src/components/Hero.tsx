@@ -16,9 +16,9 @@ import { TextReveal } from './ui/text-reveal'
 // full case-study data from Portfolio.tsx) since this is a glance, not the
 // portfolio section itself
 const previews = [
-  { name: 'GBC', category: 'Website & Digital Experience' },
-  { name: 'Garagi', category: 'Automotive Digital Experience' },
-  { name: 'Cardápio Franco', category: 'Digital Menu' },
+  { name: 'GBC', category: 'Website & Digital Experience', image: '/portfolio/green-bay-car/desktop-hero.png' },
+  { name: 'Garagi', category: 'Automotive Digital Experience', image: '/portfolio/garagi/desktop-hero.png' },
+  { name: 'Cardápio Franco', category: 'Digital Menu', image: '/images/portfolio/cardapio-franco.png' },
 ]
 
 const circularLabel = 'VISUAL DESIGN STUDIO - VISUAL DESIGN STUDIO - '
@@ -43,30 +43,32 @@ function PortfolioSlideshow() {
       className="block h-40 w-60 sm:h-44 sm:w-72"
     >
     <MagicBentoCard className="group relative h-full w-full overflow-hidden rounded-2xl border border-line bg-surface/70 backdrop-blur-md transition-colors hover:border-lime/30">
+      <AnimatePresence mode="wait">
+        <motion.img
+          key={project.name}
+          src={project.image}
+          alt=""
+          initial={reduced ? undefined : { opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={reduced ? undefined : { opacity: 0 }}
+          transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+          className="absolute inset-0 h-full w-full object-cover object-top"
+        />
+      </AnimatePresence>
+
       <div
         aria-hidden="true"
-        className="absolute inset-0 opacity-[0.15]"
+        className="absolute inset-0 bg-gradient-to-t from-bg via-bg/40 to-bg/10"
+      />
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 opacity-[0.12]"
         style={{
           backgroundImage:
             'linear-gradient(rgba(255,255,255,0.4) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.4) 1px, transparent 1px)',
           backgroundSize: '24px 24px',
         }}
       />
-
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={project.name}
-          initial={reduced ? undefined : { opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={reduced ? undefined : { opacity: 0 }}
-          transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-          className="absolute inset-0 flex items-center justify-center"
-        >
-          <span className="text-4xl font-semibold tracking-tighter text-white/[0.08] sm:text-5xl">
-            {project.name.slice(0, 2).toUpperCase()}
-          </span>
-        </motion.div>
-      </AnimatePresence>
 
       <div className="absolute inset-x-0 top-0 flex items-center justify-between p-3 font-mono text-[10px] tracking-widest text-graphite-dim uppercase">
         <span>({String(active + 1).padStart(2, '0')}) Portfólio</span>
