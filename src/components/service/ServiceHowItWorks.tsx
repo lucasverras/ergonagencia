@@ -26,9 +26,11 @@ export function ServiceHowItWorks({ steps = DISCOVER_PROCESS }: { steps?: Proces
           <GradualSpacing as="span" text="Da ideia ao produto." highlight={{ word: 'produto.', delay: 0.35 }} />
         </h2>
 
-        <div className="mt-8 divide-y divide-line md:mt-10">
+        <div className="mt-8 grid grid-cols-1 gap-x-8 gap-y-8 sm:grid-cols-2 md:mt-10 lg:grid-cols-4 lg:divide-x lg:divide-line">
           {steps.map((step) => (
-            <ProcessStep key={step.n} step={step} />
+            <div key={step.n} className="lg:pl-8 lg:first:pl-0">
+              <ProcessStep step={step} compact />
+            </div>
           ))}
         </div>
       </div>

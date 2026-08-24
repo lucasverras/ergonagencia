@@ -13,9 +13,14 @@ export interface Step {
 export default function ProcessStep({
   step,
   Visual,
+  compact = false,
 }: {
   step: Step
   Visual?: ComponentType
+  /** side-by-side grid card instead of a full-width row — smaller type,
+   * no reserved space for a Visual, description isn't width-clamped
+   * since the grid column already constrains it */
+  compact?: boolean
 }) {
   const ref = useRef<HTMLDivElement>(null)
   // retriggerable (not "once") — this is what lets one step read as
@@ -30,7 +35,7 @@ export default function ProcessStep({
       whileInView="show"
       viewport={viewportOnce}
       variants={revealUp}
-      className="flex items-center justify-between gap-6 py-6"
+      className={compact ? 'h-full' : 'flex items-center justify-between gap-6 py-6'}
     >
       <div>
         <div className="flex flex-wrap items-baseline gap-x-4 gap-y-2">
@@ -42,15 +47,19 @@ export default function ProcessStep({
             {step.n}
           </span>
           <h3
-            className={`text-xl leading-tight font-semibold tracking-tight transition-all duration-500 md:text-2xl ${
+            className={`leading-tight font-semibold tracking-tight transition-all duration-500 ${
               active ? 'translate-x-0 text-ink' : 'text-graphite'
-            }`}
+            } ${compact ? 'text-lg' : 'text-xl md:text-2xl'}`}
           >
             {step.title}
           </h3>
           <span className="font-mono text-xs text-lime uppercase">[ {step.tag} ]</span>
         </div>
-        <p className="mt-3 max-w-xs pl-[1.6rem] text-sm text-graphite">{step.desc}</p>
+        <p
+          className={`mt-3 pl-[1.6rem] text-graphite ${compact ? 'text-xs' : 'max-w-xs text-sm'}`}
+        >
+          {step.desc}
+        </p>
         {step.tags && step.tags.length > 0 && (
           <div className="mt-4 flex flex-wrap gap-2 pl-[1.6rem]">
             {step.tags.map((tag) => (
@@ -65,7 +74,7 @@ export default function ProcessStep({
         )}
       </div>
 
-      {Visual && (
+      {Visual && !compact && (
         <div
           className={`hidden shrink-0 scale-75 text-graphite transition-opacity duration-500 md:block ${
             active ? 'opacity-100' : 'opacity-40'
