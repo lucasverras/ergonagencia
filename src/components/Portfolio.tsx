@@ -13,69 +13,55 @@ interface Project {
   image?: string
 }
 
+// A selective set, not the full case list — Vamo Nessa and Garagi lead
+// because they prove systems/dashboards, not just websites, which is the
+// capability the portfolio's meant to demonstrate first.
 const projects: Project[] = [
   {
-    name: 'GBC',
+    name: 'Vamo Nessa SP',
     description:
-      'Experiência digital para apresentar veículos com mais clareza, desejo e confiança.',
-    tags: ['Web', 'UX', 'Automotivo'],
-    href: '/portfolio/green-bay-car',
-    image: '/images/portfolio/gbc.png',
-  },
-  {
-    name: 'Ergon',
-    description:
-      'Presença digital da própria marca, conectando serviços, portfólio e conversão.',
-    tags: ['Branding', 'Web'],
-    href: '/portfolio/ergon-fly',
-    image: '/images/portfolio/ergon.png',
+      'Uma plataforma própria para transformar performance nas redes em uma operação baseada em dados.',
+    tags: ['Sistema', 'Dashboard', 'Automação'],
+    href: '/portfolio/vamo-nessa-sp',
+    image: '/portfolio/vamo-nessa-sp/hero.png',
   },
   {
     name: 'Garagi',
     description:
-      'Identidade e experiência digital para um projeto do universo automotivo.',
-    tags: ['Identidade', 'Web'],
+      'Website institucional e sistema interno de orçamentos — duas ferramentas para o mesmo negócio.',
+    tags: ['CRM', 'Sistema Interno', 'Website'],
     href: '/portfolio/garagi',
     image: '/portfolio/garagi/desktop-hero.png',
   },
   {
-    name: 'Soccer Station',
+    name: 'Green Bay Car',
     description:
-      'Páginas e experiências digitais para eventos, campanhas e operação comercial.',
-    tags: ['Campanha', 'Landing Page'],
-    href: '/portfolio/soccer-station',
-    image: '/images/portfolio/soccer-station.png',
-  },
-  {
-    name: 'Radar Navegando',
-    description:
-      'Ferramenta interna para organizar leads, clientes e oportunidades comerciais.',
-    tags: ['CRM', 'Internal Tool'],
-    href: '/portfolio/radar-navegando',
-    image: '/images/portfolio/navegando-crm.png',
-  },
-  {
-    name: 'Navegando MKT',
-    description: 'Presença digital para conteúdo, audiência e posicionamento.',
-    tags: ['Conteúdo', 'Web'],
-    href: '/portfolio/navegando-mkt',
-    image: '/images/portfolio/navegando-site.png',
-  },
-  {
-    name: 'Cardápio Franco',
-    description:
-      'Cardápio digital mobile para organizar produtos e facilitar a experiência do cliente.',
-    tags: ['Mobile', 'Cardápio'],
-    href: '/portfolio/franco-gastrobar',
-    image: '/images/portfolio/cardapio-franco.png',
+      'Site conectado ao estoque real da loja — cada veículo com sua própria página, indexável pelo Google.',
+    tags: ['Website', 'Integração', 'SEO'],
+    href: '/portfolio/green-bay-car',
+    image: '/portfolio/green-bay-car/desktop-hero.png',
   },
   {
     name: '3WS Moldes',
     description:
       'Presença digital técnica e comercial para compra, venda e consultoria de moldes industriais.',
-    tags: ['Industrial', 'Web'],
+    tags: ['Industrial', 'Website', 'SEO'],
     href: '/portfolio/3ws-moldes',
     image: '/portfolio/3ws-moldes/desktop-hero.png',
+  },
+  {
+    name: 'Franco Gastrobar',
+    description: 'Cardápio digital em formato de site — para dentro e fora do restaurante.',
+    tags: ['Cardápio Digital', 'UX/UI'],
+    href: '/portfolio/franco-gastrobar',
+    image: '/images/portfolio/cardapio-franco.png',
+  },
+  {
+    name: 'Navegando MKT',
+    description: 'Presença digital para transformar audiência em portfólio, metodologia e leads.',
+    tags: ['Website', 'Portfólio', 'Leads'],
+    href: '/portfolio/navegando-mkt',
+    image: '/portfolio/navegando-mkt/desktop-hero.png',
   },
 ]
 
@@ -169,10 +155,17 @@ export default function Portfolio() {
           <h2 className="mx-auto max-w-2xl text-3xl leading-[1.05] font-semibold tracking-tight md:text-5xl">
             <GradualSpacing
               as="span"
-              text="O que já colocamos no ar"
+              text="Produtos que já colocamos"
               className="w-full justify-center"
               duration={0.35}
-              highlight={{ word: 'no ar', variant: 'circle', delay: 0.45 }}
+            />
+            <GradualSpacing
+              as="span"
+              text="para funcionar."
+              className="w-full justify-center"
+              duration={0.35}
+              delayMultiple={0.025}
+              highlight={{ word: 'funcionar.', variant: 'circle', delay: 0.45 }}
             />
           </h2>
 
@@ -182,7 +175,7 @@ export default function Portfolio() {
             preset="fade-in-blur"
             className="mx-auto mt-3 max-w-xl text-base text-graphite"
           >
-            Projetos, marcas e experiências digitais construídas pela Ergon.
+            Uma seleção do que já construímos — sites, sistemas e produtos digitais em operação.
           </TextReveal>
         </div>
 

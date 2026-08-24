@@ -1,14 +1,12 @@
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
-import { ArrowUpRight, ChevronLeft } from 'lucide-react'
+import { ChevronLeft } from 'lucide-react'
 import { revealUp, revealContainer, viewportOnce } from '@/lib/reveal'
-import { renderRichText } from '@/lib/richText'
 import { GradientBars } from '@/components/ui/gradient-bars-background'
 import type { CaseStudy } from '@/cases/casesData'
-import { CaseTags } from './CaseTags'
 import { CaseMedia } from './CaseMedia'
 
-export function CaseHero({ caseStudy }: { caseStudy: CaseStudy }) {
+export function CaseHero({ study }: { study: CaseStudy }) {
   return (
     <header className="relative overflow-hidden pt-32 pb-14 md:pt-40 md:pb-20">
       <GradientBars
@@ -47,47 +45,19 @@ export function CaseHero({ caseStudy }: { caseStudy: CaseStudy }) {
               animate={{ opacity: [0.4, 1, 0.4] }}
               transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
             />
-            {caseStudy.kicker}
+            Case / Ergon
           </motion.span>
 
           <motion.h1
             variants={revealUp}
             className="font-display text-[clamp(3.5rem,9vw,8.5rem)] leading-[0.98] text-ink"
           >
-            {caseStudy.name}
+            {study.name}
           </motion.h1>
 
           <motion.p variants={revealUp} className="mt-6 max-w-2xl text-base text-graphite md:text-lg">
-            {renderRichText(caseStudy.summary)}
+            {study.headline}
           </motion.p>
-
-          <motion.div variants={revealUp} className="mt-8 flex flex-wrap items-center gap-4">
-            <CaseTags groups={caseStudy.tagGroups} />
-          </motion.div>
-
-          {caseStudy.siteUrl && (
-            <motion.div variants={revealUp} className="mt-8">
-              {caseStudy.siteUrl.startsWith('/') ? (
-                <Link
-                  to={caseStudy.siteUrl}
-                  className="group inline-flex items-center gap-2 rounded-full bg-lime px-5 py-3 text-sm font-semibold text-bg transition-transform hover:scale-105 active:scale-95"
-                >
-                  Ver Ergon Fly
-                  <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
-                </Link>
-              ) : (
-                <a
-                  href={caseStudy.siteUrl}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="group inline-flex items-center gap-2 rounded-full bg-lime px-5 py-3 text-sm font-semibold text-bg transition-transform hover:scale-105 active:scale-95"
-                >
-                  Visitar projeto
-                  <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
-                </a>
-              )}
-            </motion.div>
-          )}
         </motion.div>
 
         <motion.div
@@ -97,7 +67,7 @@ export function CaseHero({ caseStudy }: { caseStudy: CaseStudy }) {
           variants={revealUp}
           className="mt-14"
         >
-          <CaseMedia asset={caseStudy.heroMedia} eager aspect="aspect-[16/9]" />
+          <CaseMedia asset={study.heroMedia} eager aspect="aspect-[16/9]" />
         </motion.div>
       </div>
     </header>

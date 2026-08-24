@@ -111,8 +111,8 @@ export const services: ServiceStudy[] = [
       { title: 'Agendamento', desc: 'Disponibilidade, reservas, clientes e gestão em um mesmo fluxo.' },
       { title: 'Área do cliente', desc: 'Um lugar próprio pra quem já compra acompanhar o que importa.' },
     ],
-    visualExample: { kind: 'case', caseSlug: 'garagi', caption: 'Sistema interno de orçamentos da Garagi.' },
-    relatedCaseSlugs: ['garagi', 'soccer-station', 'radar-navegando'],
+    visualExample: { kind: 'case', caseSlug: 'vamo-nessa-sp', caption: 'Painel Vamo Nessa SP, criado pela Ergon.' },
+    relatedCaseSlugs: ['garagi', 'vamo-nessa-sp', 'soccer-station', 'radar-navegando'],
     finalCtaHeadline: 'Sua operação ainda roda em planilha e grupo de WhatsApp?',
     metaTitle: 'Plataformas e Sistemas Internos | Ergon',
     metaDescription:
@@ -137,7 +137,7 @@ export const services: ServiceStudy[] = [
       { title: 'Relatórios e notificações automáticas' },
     ],
     visualExample: { kind: 'flow', steps: ['Comentário', 'Resposta', 'Direct', 'Conversa', 'Lead'] },
-    relatedCaseSlugs: ['radar-navegando'],
+    relatedCaseSlugs: ['radar-navegando', 'vamo-nessa-sp'],
     finalCtaHeadline: 'Tem uma operação que ainda depende demais de trabalho manual?',
     metaTitle: 'Automação para Empresas | Ergon',
     metaDescription:
@@ -160,8 +160,8 @@ export const services: ServiceStudy[] = [
       { title: 'Novos canais de atendimento' },
       { title: 'Evolução de produtos existentes' },
     ],
-    visualExample: { kind: 'case', caseSlug: 'radar-navegando', caption: 'Radar Navegando, plataforma interna de prospecção.' },
-    relatedCaseSlugs: ['radar-navegando', 'soccer-station'],
+    visualExample: { kind: 'case', caseSlug: 'vamo-nessa-sp', caption: 'Vamo Nessa SP — produto interno criado do zero pela Ergon.' },
+    relatedCaseSlugs: ['radar-navegando', 'soccer-station', 'vamo-nessa-sp'],
     finalCtaHeadline: 'Tem uma ideia que já devia estar em produção?',
     metaTitle: 'Desenvolvimento de Produtos Digitais | Ergon',
     metaDescription:

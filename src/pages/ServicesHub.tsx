@@ -39,7 +39,7 @@ const BUILDABLE_EXAMPLES = [
   'Social Selling',
 ]
 
-const FEATURED_CASE_SLUGS = ['garagi', 'soccer-station', '3ws-moldes', 'radar-navegando']
+const FEATURED_CASE_SLUGS = ['vamo-nessa-sp', 'garagi', 'green-bay-car', '3ws-moldes']
 
 export default function ServicesHub() {
   useSEO({

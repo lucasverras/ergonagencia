@@ -29,35 +29,39 @@
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://www.ergonagencia.com.br/portfolio/green-bay-car</loc>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.ergonagencia.com.br/portfolio/ergon-fly</loc>
-    <priority>0.8</priority>
+    <loc>https://www.ergonagencia.com.br/portfolio/vamo-nessa-sp</loc>
+    <priority>0.78</priority>
   </url>
   <url>
     <loc>https://www.ergonagencia.com.br/portfolio/garagi</loc>
-    <priority>0.8</priority>
+    <priority>0.78</priority>
   </url>
   <url>
-    <loc>https://www.ergonagencia.com.br/portfolio/soccer-station</loc>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.ergonagencia.com.br/portfolio/radar-navegando</loc>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.ergonagencia.com.br/portfolio/navegando-mkt</loc>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.ergonagencia.com.br/portfolio/franco-gastrobar</loc>
-    <priority>0.8</priority>
+    <loc>https://www.ergonagencia.com.br/portfolio/green-bay-car</loc>
+    <priority>0.75</priority>
   </url>
   <url>
     <loc>https://www.ergonagencia.com.br/portfolio/3ws-moldes</loc>
-    <priority>0.8</priority>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://www.ergonagencia.com.br/portfolio/franco-gastrobar</loc>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://www.ergonagencia.com.br/portfolio/navegando-mkt</loc>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://www.ergonagencia.com.br/portfolio/ergon-fly</loc>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://www.ergonagencia.com.br/portfolio/soccer-station</loc>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://www.ergonagencia.com.br/portfolio/radar-navegando</loc>
+    <priority>0.5</priority>
   </url>
 </urlset>

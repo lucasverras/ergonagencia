@@ -1,8 +1,11 @@
+import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
+import { ArrowRight } from 'lucide-react'
 import { revealUp, viewportOnce } from '../lib/reveal'
-import ProductStep, { type ProductStepData } from './ProductStep'
+import { ServiceTabCard } from './ServiceTabCard'
 import { GradualSpacing } from './ui/gradual-spacing'
 import { GradientBars } from './ui/gradient-bars-background'
+import { services } from '../services/servicesData'
 import {
   FigmaMark,
   ClaudeMark,
@@ -22,58 +25,6 @@ const stack = [
   { Icon: IllustratorMark, name: 'Illustrator' },
 ]
 
-const steps: ProductStepData[] = [
-  {
-    n: '01',
-    tag: 'sites e páginas',
-    title: 'Lançar',
-    blurb:
-      'Sites, landing pages e primeiras versões de produto no ar — com a estrutura definida antes de qualquer tela ser desenhada.',
-    badge: 'REACT · NEXT.JS',
-    image: '/images/produtos/lancar.png',
-    href: '/servicos/sites',
-  },
-  {
-    n: '02',
-    tag: 'sistemas internos',
-    title: 'Operar',
-    blurb:
-      'Painéis administrativos, mini CRMs, reservas e catálogos — construídos em cima do processo que já existe na empresa.',
-    badge: 'PAINEL PRÓPRIO · SEM PLUGIN',
-    image: '/images/produtos/operar.png',
-    href: '/servicos/plataformas',
-  },
-  {
-    n: '03',
-    tag: 'redes e atendimento',
-    title: 'Automatizar',
-    blurb:
-      'Conectamos os pontos onde alguém ainda copia e cola: atendimento, follow-up, qualificação de lead, agenda e cobrança rodando sozinhos.',
-    badge: 'N8N · WHATSAPP · INSTAGRAM',
-    image: '/images/produtos/automatizar.png',
-    href: '/servicos/automacoes',
-  },
-  {
-    n: '04',
-    tag: 'produto existente',
-    title: 'Evoluir',
-    blurb:
-      'Redesign, UX, performance e novas funcionalidades sobre o que já existe — avaliando o que dá para salvar antes de reconstruir.',
-    badge: 'SOBRE A BASE ATUAL',
-    image: '/images/produtos/evoluir.png',
-    href: '/servicos/produtos-digitais',
-  },
-]
-
-// asymmetric bento layout, matching the reference: two small boxes up top,
-// one tall box on the right spanning both rows, one wide box on the bottom
-const boxSpans = [
-  'sm:col-span-1 sm:row-span-1',
-  'sm:col-span-1 sm:row-span-1',
-  'sm:col-span-1 sm:row-span-2',
-  'sm:col-span-2 sm:row-span-1',
-]
-
 export default function WhatWeBuild() {
   return (
     <section id="produtos" className="relative">
@@ -85,32 +36,50 @@ export default function WhatWeBuild() {
         className="opacity-[0.12]"
       />
 
-      <div className="grid-shell relative z-10 pt-16 pb-[var(--section-gap)] text-center">
-        <motion.span
-          initial="hidden"
-          whileInView="show"
-          viewport={viewportOnce}
-          variants={revealUp}
-          className="block font-mono text-xs tracking-[0.25em] text-graphite-dim uppercase"
-        >
-          [ o que construímos ]
-        </motion.span>
+      <div className="grid-shell relative z-10 pt-16 pb-[var(--section-gap)]">
+        <div className="flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-end">
+          <div>
+            <motion.span
+              initial="hidden"
+              whileInView="show"
+              viewport={viewportOnce}
+              variants={revealUp}
+              className="block font-mono text-xs tracking-[0.25em] text-graphite-dim uppercase"
+            >
+              [ o que construímos ]
+            </motion.span>
 
-        <h2 className="mt-4 text-3xl leading-[1.05] font-semibold tracking-tight text-balance md:text-5xl">
-          <GradualSpacing
-            as="span"
-            text="Da intenção ao produto."
-            className="w-full justify-center"
-            highlight={{ word: 'produto.', delay: 0.35 }}
-          />
-        </h2>
+            <h2 className="mt-4 max-w-xl text-3xl leading-[1.05] font-semibold tracking-tight text-balance md:text-5xl">
+              <GradualSpacing
+                as="span"
+                text="Da intenção ao produto."
+                highlight={{ word: 'produto.', delay: 0.35 }}
+              />
+            </h2>
+          </div>
+
+          <motion.div
+            initial="hidden"
+            whileInView="show"
+            viewport={viewportOnce}
+            variants={revealUp}
+          >
+            <Link
+              to="/servicos"
+              className="group inline-flex items-center gap-2 rounded-full border border-line px-5 py-2.5 text-xs tracking-[0.15em] text-graphite uppercase transition-colors hover:border-lime/40 hover:text-lime"
+            >
+              Ver serviços
+              <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
+            </Link>
+          </motion.div>
+        </div>
 
         <motion.div
           initial="hidden"
           whileInView="show"
           viewport={viewportOnce}
           variants={revealUp}
-          className="mt-8 flex justify-center"
+          className="mt-8 flex justify-start"
         >
           <div className="flex items-center gap-3 rounded-full border border-line bg-surface/80 py-2 pr-5 pl-2 shadow-2xl shadow-black/40 backdrop-blur-sm">
             <div className="flex -space-x-2.5">
@@ -130,9 +99,9 @@ export default function WhatWeBuild() {
           </div>
         </motion.div>
 
-        <div className="mx-auto mt-14 grid max-w-6xl grid-cols-1 gap-5 text-left sm:grid-cols-3 sm:auto-rows-[260px]">
-          {steps.map((step, i) => (
-            <ProductStep key={step.n} step={step} className={boxSpans[i]} />
+        <div className="mt-14 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          {services.map((service, i) => (
+            <ServiceTabCard key={service.slug} service={service} index={i} />
           ))}
         </div>
       </div>

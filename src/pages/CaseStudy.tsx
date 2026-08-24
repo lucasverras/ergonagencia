@@ -1,28 +1,19 @@
 import { Link, useParams } from 'react-router-dom'
-import { getCaseBySlug, getNextCase } from '@/cases/casesData'
+import { getCaseBySlug, getNextCase, type CaseContentBlock } from '@/cases/casesData'
 import { servicesForCase } from '@/services/servicesData'
 import { useSEO } from '@/lib/seo'
-import { SITE_URL, breadcrumbSchema, webPageSchema, serviceIdsForTags } from '@/lib/schema'
+import { SITE_URL, SERVICE_IDS, breadcrumbSchema, webPageSchema } from '@/lib/schema'
 import { CaseHero } from '@/components/case/CaseHero'
+import { CaseQuickInfo } from '@/components/case/CaseQuickInfo'
+import { CaseBigCTA } from '@/components/case/CaseBigCTA'
 import { CaseSection } from '@/components/case/CaseSection'
 import { CaseMedia } from '@/components/case/CaseMedia'
-import { CaseTags } from '@/components/case/CaseTags'
-import { CaseQuote } from '@/components/case/CaseQuote'
 import { CaseNextProject } from '@/components/case/CaseNextProject'
 import { NotFoundContent } from '@/components/NotFoundContent'
 
-const sectionOrder: { key: keyof ReturnType<typeof sectionsOf>; index: string }[] = [
-  { key: 'projeto', index: '01' },
-  { key: 'desafio', index: '02' },
-  { key: 'solucao', index: '03' },
-  { key: 'experiencia', index: '04' },
-  { key: 'tecnologia', index: '05' },
-  { key: 'resultado', index: '06' },
-]
-
-function sectionsOf(study: NonNullable<ReturnType<typeof getCaseBySlug>>) {
-  return study.sections
-}
+const p = (text: string): CaseContentBlock => ({ kind: 'p', text })
+const h = (text: string): CaseContentBlock => ({ kind: 'heading', text })
+const list = (items: string[]): CaseContentBlock => ({ kind: 'list', items })
 
 export default function CaseStudy() {
   const { slug } = useParams<{ slug: string }>()
@@ -35,8 +26,8 @@ export default function CaseStudy() {
   const title = study
     ? `${study.name} — Case Ergon Digital Product Studio`
     : 'Página não encontrada — Ergon Digital Product Studio'
-  const description = study ? study.summary : 'Este case não existe ou foi movido.'
-  const serviceIds = study ? serviceIdsForTags(study.tagGroups.flatMap((g) => g.tags)) : []
+  const description = study ? study.headline : 'Este case não existe ou foi movido.'
+  const relatedServices = study ? servicesForCase(study.slug) : []
   const ogImage = study?.heroMedia.kind === 'real' ? `${SITE_URL}${study.heroMedia.src}` : undefined
 
   useSEO({
@@ -53,10 +44,11 @@ export default function CaseStudy() {
             name: title,
             description,
             primaryImage: ogImage,
-            about: serviceIds,
+            about: relatedServices.map((s) => SERVICE_IDS[s.serviceKey]),
           }),
           breadcrumbSchema([
             { name: 'Ergon', url: `${SITE_URL}/` },
+            { name: 'Serviços', url: `${SITE_URL}/servicos` },
             { name: 'Portfólio', url: `${SITE_URL}/#portfolio` },
             { name: study.name, url: canonical },
           ]),
@@ -69,44 +61,48 @@ export default function CaseStudy() {
   }
 
   const next = getNextCase(study.slug)
-  const sections = study.sections
-  const relatedServices = servicesForCase(study.slug)
+  const hasCta = Boolean(study.ctaLabel && study.ctaUrl)
+
+  const builtBlocks: CaseContentBlock[] =
+    study.built.kind === 'dual'
+      ? [
+          ...(study.built.intro ? [h(study.built.intro)] : []),
+          p(`Website — ${study.built.website}`),
+          p(`Sistema interno — ${study.built.internal}`),
+        ]
+      : [p(study.built.text)]
 
   return (
     <main>
-      <CaseHero caseStudy={study} />
+      <CaseHero study={study} />
+      <CaseQuickInfo servicos={study.servicos} tecnologias={study.tecnologias} entrega={study.entrega} />
 
-      {sectionOrder.map(({ key, index }) => {
-        const content = sections[key]
-        // Garagi's two-track narrative gets its gallery placeholder inside
-        // "A solução"; other cases surface their gallery media in
-        // "A experiência" — both stay inside the shared CaseSection rather
-        // than a bespoke page-level layout.
-        const showGalleryHere =
-          (study.twoTrack && key === 'solucao') || (!study.twoTrack && key === 'experiencia')
-
-        return (
-          <CaseSection key={key} index={index} title={content.title} blocks={content.blocks}>
-            {showGalleryHere && study.galleryMedia.length > 0 && (
-              <div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-2">
-                {study.galleryMedia.map((asset, i) => (
-                  <CaseMedia key={i} asset={asset} />
-                ))}
-              </div>
-            )}
-          </CaseSection>
-        )
-      })}
-
-      {study.closingQuote && (
-        <section className="border-t border-line py-14 md:py-20">
+      {hasCta && (
+        <section className="border-t border-line py-10 md:py-12">
           <div className="grid-shell">
-            <CaseQuote
-              text={study.closingQuote}
-              size="lg"
-              accent={false}
-              className="mx-auto max-w-3xl text-center"
-            />
+            <CaseBigCTA label={study.ctaLabel!} href={study.ctaUrl!} />
+          </div>
+        </section>
+      )}
+
+      <CaseSection index="01" title="O desafio" blocks={[p(study.challenge)]} />
+      <CaseSection index="02" title="O que construímos" blocks={builtBlocks} />
+      <CaseSection index="03" title="Principais entregas" blocks={[list(study.deliverables)]} />
+
+      {study.gallery.length > 0 && (
+        <CaseSection index="04" title="Visual" blocks={[]}>
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+            {study.gallery.map((asset, i) => (
+              <CaseMedia key={i} asset={asset} />
+            ))}
+          </div>
+        </CaseSection>
+      )}
+
+      {hasCta && (
+        <section className="border-t border-line py-10 md:py-14">
+          <div className="grid-shell">
+            <CaseBigCTA eyebrow="Produto" label={study.ctaLabel!} href={study.ctaUrl!} />
           </div>
         </section>
       )}
@@ -131,12 +127,6 @@ export default function CaseStudy() {
           </div>
         </section>
       )}
-
-      <section className="border-t border-line py-10">
-        <div className="grid-shell">
-          <CaseTags groups={study.tagGroups} />
-        </div>
-      </section>
 
       <CaseNextProject next={next} />
     </main>
