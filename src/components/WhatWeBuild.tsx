@@ -6,24 +6,6 @@ import { ServiceTabCard } from './ServiceTabCard'
 import { GradualSpacing } from './ui/gradual-spacing'
 import { GradientBars } from './ui/gradient-bars-background'
 import { services } from '../services/servicesData'
-import {
-  FigmaMark,
-  ClaudeMark,
-  LovableMark,
-  FramerMark,
-  PhotoshopMark,
-  IllustratorMark,
-} from './BrandIcons'
-
-// tools we actually work with day to day
-const stack = [
-  { Icon: FigmaMark, name: 'Figma' },
-  { Icon: ClaudeMark, name: 'Claude' },
-  { Icon: LovableMark, name: 'Lovable' },
-  { Icon: FramerMark, name: 'Framer' },
-  { Icon: PhotoshopMark, name: 'Photoshop' },
-  { Icon: IllustratorMark, name: 'Illustrator' },
-]
 
 export default function WhatWeBuild() {
   return (
@@ -74,32 +56,7 @@ export default function WhatWeBuild() {
           </motion.div>
         </div>
 
-        <motion.div
-          initial="hidden"
-          whileInView="show"
-          viewport={viewportOnce}
-          variants={revealUp}
-          className="mt-8 flex justify-start"
-        >
-          <div className="flex items-center gap-3 rounded-full border border-line bg-surface/80 py-2 pr-5 pl-2 shadow-2xl shadow-black/40 backdrop-blur-sm">
-            <div className="flex -space-x-2.5">
-              {stack.map((tool) => (
-                <span
-                  key={tool.name}
-                  title={tool.name}
-                  className="flex h-8 w-8 items-center justify-center rounded-full border border-line bg-surface-2 text-graphite ring-2 ring-bg"
-                >
-                  <tool.Icon />
-                </span>
-              ))}
-            </div>
-            <span className="text-xs text-graphite md:text-sm">
-              Ferramentas e integrações que já dominamos
-            </span>
-          </div>
-        </motion.div>
-
-        <div className="mt-14 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {services.map((service, i) => (
             <ServiceTabCard key={service.slug} service={service} index={i} />
           ))}

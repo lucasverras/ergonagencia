@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
-import { ChevronLeft } from 'lucide-react'
+import { ChevronLeft, ArrowUpRight } from 'lucide-react'
 import { revealUp, revealContainer, viewportOnce } from '@/lib/reveal'
 import { GradientBars } from '@/components/ui/gradient-bars-background'
 import type { CaseStudy } from '@/cases/casesData'
@@ -58,6 +58,30 @@ export function CaseHero({ study }: { study: CaseStudy }) {
           <motion.p variants={revealUp} className="mt-6 max-w-2xl text-base text-graphite md:text-lg">
             {study.headline}
           </motion.p>
+
+          {study.ctaUrl && study.ctaLabel && (
+            <motion.div variants={revealUp} className="mt-6">
+              {study.ctaUrl.startsWith('/') ? (
+                <Link
+                  to={study.ctaUrl}
+                  className="group inline-flex items-center gap-1.5 text-sm font-medium text-ink transition-colors hover:text-lime"
+                >
+                  Ver projeto
+                  <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                </Link>
+              ) : (
+                <a
+                  href={study.ctaUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group inline-flex items-center gap-1.5 text-sm font-medium text-ink transition-colors hover:text-lime"
+                >
+                  Ver projeto
+                  <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                </a>
+              )}
+            </motion.div>
+          )}
         </motion.div>
 
         <motion.div

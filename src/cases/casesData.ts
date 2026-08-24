@@ -12,15 +12,6 @@ export type CaseMediaAsset = {
   note?: string
 }
 
-// Block vocabulary consumed by CaseSection — CaseStudy.tsx assembles these
-// on the fly from the compact fields below (challenge/built/deliverables)
-// rather than storing pre-built blocks per case.
-export type CaseParagraphBlock = { kind: 'p'; text: string }
-export type CaseQuoteBlock = { kind: 'quote'; text: string }
-export type CaseHeadingBlock = { kind: 'heading'; text: string }
-export type CaseListBlock = { kind: 'list'; items: string[] }
-export type CaseContentBlock = CaseParagraphBlock | CaseQuoteBlock | CaseHeadingBlock | CaseListBlock
-
 export type CaseBuilt =
   | { kind: 'single'; text: string }
   | { kind: 'dual'; intro?: string; website: string; internal: string }

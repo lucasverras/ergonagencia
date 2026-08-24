@@ -1,19 +1,27 @@
 import { Link, useParams } from 'react-router-dom'
-import { getCaseBySlug, getNextCase, type CaseContentBlock } from '@/cases/casesData'
+import { motion } from 'framer-motion'
+import { Check } from 'lucide-react'
+import { getCaseBySlug, getNextCase } from '@/cases/casesData'
 import { servicesForCase } from '@/services/servicesData'
 import { useSEO } from '@/lib/seo'
 import { SITE_URL, SERVICE_IDS, breadcrumbSchema, webPageSchema } from '@/lib/schema'
+import { revealUp, revealContainer, viewportOnce } from '@/lib/reveal'
 import { CaseHero } from '@/components/case/CaseHero'
 import { CaseQuickInfo } from '@/components/case/CaseQuickInfo'
-import { CaseBigCTA } from '@/components/case/CaseBigCTA'
-import { CaseSection } from '@/components/case/CaseSection'
 import { CaseMedia } from '@/components/case/CaseMedia'
 import { CaseNextProject } from '@/components/case/CaseNextProject'
 import { NotFoundContent } from '@/components/NotFoundContent'
 
-const p = (text: string): CaseContentBlock => ({ kind: 'p', text })
-const h = (text: string): CaseContentBlock => ({ kind: 'heading', text })
-const list = (items: string[]): CaseContentBlock => ({ kind: 'list', items })
+function SectionLabel({ children }: { children: string }) {
+  return (
+    <motion.span
+      variants={revealUp}
+      className="block text-xs tracking-[0.25em] text-graphite-dim uppercase"
+    >
+      {children}
+    </motion.span>
+  )
+}
 
 export default function CaseStudy() {
   const { slug } = useParams<{ slug: string }>()
@@ -61,35 +69,94 @@ export default function CaseStudy() {
   }
 
   const next = getNextCase(study.slug)
-  const hasCta = Boolean(study.ctaLabel && study.ctaUrl)
-
-  const builtBlocks: CaseContentBlock[] =
-    study.built.kind === 'dual'
-      ? [
-          ...(study.built.intro ? [h(study.built.intro)] : []),
-          p(`Website — ${study.built.website}`),
-          p(`Sistema interno — ${study.built.internal}`),
-        ]
-      : [p(study.built.text)]
 
   return (
     <main>
       <CaseHero study={study} />
       <CaseQuickInfo servicos={study.servicos} tecnologias={study.tecnologias} entrega={study.entrega} />
 
-      <CaseSection index="01" title="O desafio" blocks={[p(study.challenge)]} />
-      <CaseSection index="02" title="O que construímos" blocks={builtBlocks} />
-      <CaseSection index="03" title="Principais entregas" blocks={[list(study.deliverables)]} />
-
-      {study.gallery.length > 0 && (
-        <CaseSection index="04" title="Visual" blocks={[]}>
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-            {study.gallery.map((asset, i) => (
-              <CaseMedia key={i} asset={asset} />
-            ))}
+      {/* desafio + construímos side by side — two short paragraphs don't
+          need two separate full-width sections */}
+      <motion.section
+        initial="hidden"
+        whileInView="show"
+        viewport={viewportOnce}
+        variants={revealContainer(0.1)}
+        className="border-t border-line py-14 md:py-20"
+      >
+        <div className="grid-shell">
+          <div className="grid grid-cols-1 gap-10 md:grid-cols-2 md:gap-16">
+            <div>
+              <SectionLabel>O desafio</SectionLabel>
+              <motion.p variants={revealUp} className="mt-4 text-lg leading-relaxed text-graphite md:text-xl">
+                {study.challenge}
+              </motion.p>
+            </div>
+            <div>
+              <SectionLabel>O que construímos</SectionLabel>
+              {study.built.kind === 'dual' ? (
+                <div className="mt-4 space-y-4">
+                  {study.built.intro && (
+                    <motion.p variants={revealUp} className="font-medium text-ink">
+                      {study.built.intro}
+                    </motion.p>
+                  )}
+                  <motion.p variants={revealUp} className="text-lg leading-relaxed text-graphite md:text-xl">
+                    <span className="text-ink">Website —</span> {study.built.website}
+                  </motion.p>
+                  <motion.p variants={revealUp} className="text-lg leading-relaxed text-graphite md:text-xl">
+                    <span className="text-ink">Sistema interno —</span> {study.built.internal}
+                  </motion.p>
+                </div>
+              ) : (
+                <motion.p variants={revealUp} className="mt-4 text-lg leading-relaxed text-graphite md:text-xl">
+                  {study.built.text}
+                </motion.p>
+              )}
+            </div>
           </div>
-        </CaseSection>
-      )}
+        </div>
+      </motion.section>
+
+      {/* entregas + visual side by side too — a short checklist and the
+          screenshots share the same row instead of stacking as their own
+          full-width sections */}
+      <motion.section
+        initial="hidden"
+        whileInView="show"
+        viewport={viewportOnce}
+        variants={revealContainer(0.1)}
+        className="border-t border-line py-14 md:py-20"
+      >
+        <div className="grid-shell">
+          <div className="grid grid-cols-1 gap-10 md:grid-cols-2 md:gap-16">
+            <div>
+              <SectionLabel>Principais entregas</SectionLabel>
+              <ul className="mt-4 space-y-3">
+                {study.deliverables.map((item) => (
+                  <motion.li key={item} variants={revealUp} className="flex items-start gap-3">
+                    <Check className="mt-1 h-4 w-4 shrink-0 text-lime" strokeWidth={2.5} />
+                    <span className="text-base text-graphite md:text-lg">{item}</span>
+                  </motion.li>
+                ))}
+              </ul>
+            </div>
+
+            {study.gallery.length > 0 && (
+              <div>
+                <SectionLabel>Visual</SectionLabel>
+                <div className="mt-4 grid grid-cols-1 gap-4">
+                  {study.gallery.map((asset, i) => (
+                    <motion.div key={i} variants={revealUp}>
+                      <CaseMedia asset={asset} />
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+      </motion.section>
 
       {relatedServices.length > 0 && (
         <section className="border-t border-line py-10">
@@ -122,14 +189,6 @@ export default function CaseStudy() {
               {study.result.metric}
             </p>
             <p className="mt-2 max-w-md text-base text-graphite md:text-lg">{study.result.desc}</p>
-          </div>
-        </section>
-      )}
-
-      {hasCta && (
-        <section className="border-t border-line py-10 md:py-14">
-          <div className="grid-shell">
-            <CaseBigCTA eyebrow="Produto" label={study.ctaLabel!} href={study.ctaUrl!} />
           </div>
         </section>
       )}
