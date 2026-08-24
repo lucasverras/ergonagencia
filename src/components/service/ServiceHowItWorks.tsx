@@ -23,7 +23,7 @@ export function ServiceHowItWorks({ steps = DISCOVER_PROCESS }: { steps?: Proces
           Como fazemos
         </motion.span>
         <h2 className="max-w-lg text-2xl leading-[1.15] font-semibold tracking-tight md:text-4xl">
-          <GradualSpacing as="span" text="Da ideia ao produto." highlight={{ word: 'produto.', delay: 0.35 }} />
+          <GradualSpacing as="span" text="Da ideia ao produto." highlight={{ word: 'produto.', variant: 'circle', delay: 0.35 }} />
         </h2>
 
         <div className="mt-8 grid grid-cols-1 gap-x-8 gap-y-8 sm:grid-cols-2 md:mt-10 lg:grid-cols-4 lg:divide-x lg:divide-line">

@@ -73,7 +73,7 @@ export default function Process() {
             <GradualSpacing
               as="span"
               text="Da ideia ao produto."
-              highlight={{ word: 'produto.', delay: 0.3 }}
+              highlight={{ word: 'produto.', variant: 'circle', delay: 0.3 }}
             />
           </h2>
         </div>

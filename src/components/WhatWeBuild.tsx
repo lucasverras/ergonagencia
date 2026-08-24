@@ -35,7 +35,7 @@ export default function WhatWeBuild() {
               <GradualSpacing
                 as="span"
                 text="Da intenção ao produto."
-                highlight={{ word: 'produto.', delay: 0.35 }}
+                highlight={{ word: 'produto.', variant: 'circle', delay: 0.35 }}
               />
             </h2>
           </div>

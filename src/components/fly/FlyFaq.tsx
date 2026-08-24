@@ -18,7 +18,7 @@ export default function FlyFaq() {
           variants={revealUp}
           className="text-2xl leading-[1.1] font-semibold tracking-tight md:text-4xl"
         >
-          <GradualSpacing as="span" text="Perguntas frequentes" highlight={{ word: 'frequentes', delay: 0.35 }} />
+          <GradualSpacing as="span" text="Perguntas frequentes" highlight={{ word: 'frequentes', variant: 'circle', delay: 0.35 }} />
         </motion.h2>
 
         <div className="mt-10 md:mt-14">

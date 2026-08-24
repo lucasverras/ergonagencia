@@ -13,7 +13,7 @@ import ServicesHub from './pages/ServicesHub'
 import ServiceDetail from './pages/ServiceDetail'
 import NotFound from './pages/NotFound'
 import { useGlobalSchema } from './lib/seo'
-import { organizationSchema, websiteSchema, servicesSchema, offerCatalogSchema } from './lib/schema'
+import { organizationSchema, websiteSchema, servicesSchema, offerCatalogSchema, siteNavigationSchema } from './lib/schema'
 
 // react-router doesn't touch scroll position on its own. A route change
 // with no hash goes to the top of the new page, like a normal navigation
@@ -45,7 +45,7 @@ function App() {
   // Organization/WebSite/Service/OfferCatalog describe the entity as a
   // whole, not any one route — injected once here so every page shares the
   // same @ids instead of each route re-describing "who is Ergon" on its own.
-  useGlobalSchema([organizationSchema(), websiteSchema(), ...servicesSchema(), offerCatalogSchema()])
+  useGlobalSchema([organizationSchema(), websiteSchema(), ...servicesSchema(), offerCatalogSchema(), siteNavigationSchema()])
 
   return (
     // reducedMotion="user" is a global safety net on top of the manual

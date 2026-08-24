@@ -100,11 +100,9 @@ export const cases: CaseStudy[] = [
     gallery: [
       { kind: 'real', src: '/portfolio/garagi/desktop-detail.png', alt: 'Página de serviços do site institucional da Garagi' },
       { kind: 'real', src: '/portfolio/garagi/mobile-hero.png', alt: 'Home da Garagi em um dispositivo móvel' },
-      {
-        kind: 'placeholder',
-        alt: 'Sistema interno de orçamentos da Garagi (uso interno, sem URL pública)',
-        note: 'Sistema interno de orçamentos/CRM sem URL pública — placeholder no lugar de uma captura real.',
-      },
+      { kind: 'real', src: '/portfolio/garagi/crm-dashboard.jpg', alt: 'Painel administrativo do CRM interno da Garagi' },
+      { kind: 'real', src: '/portfolio/garagi/crm-orcamentos.jpg', alt: 'Lista de orçamentos no sistema interno da Garagi' },
+      { kind: 'real', src: '/portfolio/garagi/crm-novo-orcamento.jpg', alt: 'Formulário de novo orçamento no CRM da Garagi' },
     ],
   },
 
@@ -131,12 +129,12 @@ export const cases: CaseStudy[] = [
       'Agendamento direto via WhatsApp',
       'Localização e horário de atendimento',
     ],
-    heroMedia: { kind: 'real', src: '/portfolio/green-bay-car-estetica/hero.jpg', alt: 'Estúdio da GBC Estética Automotiva' },
+    heroMedia: { kind: 'real', src: '/portfolio/green-bay-car-estetica/hero.png', alt: 'Home do site da GBC Estética — CUIDADO TÉCNICO. PADRÃO DE ESTUDIO.' },
     gallery: [
-      { kind: 'real', src: '/portfolio/green-bay-car-estetica/servico.jpg', alt: 'Serviço de lavagem técnica na GBC Estética' },
-      { kind: 'real', src: '/portfolio/green-bay-car-estetica/resultado.jpg', alt: 'Resultado de polimento na GBC Estética' },
-      { kind: 'real', src: '/portfolio/green-bay-car-estetica/showroom.jpg', alt: 'Estúdio de estética automotiva da GBC' },
-      { kind: 'real', src: '/portfolio/green-bay-car-estetica/detalhe.jpg', alt: 'Detalhe de acabamento na GBC Estética' },
+      { kind: 'real', src: '/portfolio/green-bay-car-estetica/servicos-intro.png', alt: 'Seção "Muito além da lavagem" — diferenciais técnicos da GBC Estética' },
+      { kind: 'real', src: '/portfolio/green-bay-car-estetica/servicos-grid.png', alt: 'Grade de serviços: Lavagem & Cuidado Externo, Cuidado Interno, Correção & Polimento, Restauração' },
+      { kind: 'real', src: '/portfolio/green-bay-car-estetica/lavagem-externa.png', alt: 'Catálogo de serviços de lavagem e cuidado externo com preços' },
+      { kind: 'real', src: '/portfolio/green-bay-car-estetica/antes-depois.png', alt: 'Comparação antes e depois de correção de pintura técnica na GBC Estética' },
     ],
   },
 

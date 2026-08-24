@@ -18,7 +18,7 @@ export function ServiceWhatWeCreate({ items }: { items: WhatWeCreateItem[] }) {
           O que criamos
         </motion.span>
         <h2 className="max-w-lg text-2xl leading-[1.15] font-semibold tracking-tight md:text-4xl">
-          <GradualSpacing as="span" text="Dentro desse serviço." highlight={{ word: 'serviço.', delay: 0.35 }} />
+          <GradualSpacing as="span" text="Dentro desse serviço." highlight={{ word: 'serviço.', variant: 'circle', delay: 0.35 }} />
         </h2>
 
         <motion.ul

@@ -5,16 +5,14 @@ import { GradualSpacing } from './ui/gradual-spacing'
 import { TextReveal } from './ui/text-reveal'
 
 // Real clients only — every entry has its own case at /portfolio/:slug.
-// No Soccer Station (fully removed from the site), no Ergon Fly (that's
-// Ergon's own sub-brand, not a client), no invented names to pad the count.
-// Logos are real files pulled from each client's own site — garagi and
-// vamo-nessa-sp have none yet (Garagi's onboarding wasn't authorized;
-// Vamo Nessa SP has no public site/logo of its own), so those render as
-// blank slots rather than falling back to a text name.
-const clients = [
-  { name: 'Vamo Nessa SP', slug: 'vamo-nessa-sp', logo: null },
-  { name: 'Garagi', slug: 'garagi', logo: null },
+// blendScreen: true → mix-blend-mode:screen strips the dark bg from logos
+// that weren't exported with transparency (e.g. GBC Estética).
+// text: string → renders a plain text handle instead of an image (Vamo Nessa SP).
+const clients: { name: string; slug: string; logo?: string | null; blendScreen?: boolean; text?: string }[] = [
+  { name: 'Vamo Nessa SP', slug: 'vamo-nessa-sp', text: '@vamonessasp' },
+  { name: 'Garagi', slug: 'garagi', logo: '/logos/garagi.png' },
   { name: 'Green Bay Car', slug: 'green-bay-car', logo: '/logos/green-bay-car.png' },
+  { name: 'GBC Estética', slug: 'green-bay-car-estetica', logo: '/logos/gbc-estetica.png', blendScreen: true },
   { name: '3WS Moldes', slug: '3ws-moldes', logo: '/logos/3ws-moldes.png' },
   { name: 'Franco Gastrobar', slug: 'franco-gastrobar', logo: '/logos/franco-gastrobar.png' },
   { name: 'Navegando MKT', slug: 'navegando-mkt', logo: '/logos/navegando-mkt.png' },
@@ -87,26 +85,32 @@ export default function ClientsMarquee() {
             style={reduced ? undefined : { animation: 'marquee 42s linear infinite' }}
           >
             {loop.map((client, i) =>
-              client.logo ? (
+              client.text ? (
                 <Link
                   key={`${client.slug}-${i}`}
                   to={`/portfolio/${client.slug}`}
                   title={client.name}
-                  className="flex h-10 shrink-0 items-center md:h-14"
+                  className="shrink-0 font-mono text-sm tracking-widest text-graphite opacity-40 transition-all duration-300 hover:opacity-100 hover:text-ink md:text-base"
+                >
+                  {client.text}
+                </Link>
+              ) : client.logo ? (
+                <Link
+                  key={`${client.slug}-${i}`}
+                  to={`/portfolio/${client.slug}`}
+                  title={client.name}
+                  className="flex h-10 w-32 shrink-0 items-center justify-center md:h-12 md:w-40"
                 >
                   <img
                     src={client.logo}
                     alt={client.name}
-                    className="h-full w-auto object-contain opacity-40 grayscale transition-all duration-300 hover:opacity-100 hover:grayscale-0"
+                    className={[
+                      'max-h-full max-w-full object-contain opacity-40 transition-all duration-300 hover:opacity-100',
+                      client.blendScreen ? 'mix-blend-screen' : 'grayscale hover:grayscale-0',
+                    ].join(' ')}
                   />
                 </Link>
-              ) : (
-                <span
-                  key={`${client.slug}-${i}`}
-                  aria-hidden="true"
-                  className="h-10 w-28 shrink-0 rounded-md border border-dashed border-line/60 md:h-14 md:w-36"
-                />
-              ),
+              ) : null,
             )}
           </div>
         </div>

@@ -161,6 +161,29 @@ export function servicesSchema() {
   }))
 }
 
+// SiteNavigationElement — tells Google which pages are the primary
+// navigation destinations. This is the strongest structured-data hint
+// for controlling which links appear as sitelinks in search results.
+export function siteNavigationSchema() {
+  const navItems = [
+    { name: 'Sites & Experiences', url: `${SITE_URL}/servicos/sites` },
+    { name: 'Digital Platforms', url: `${SITE_URL}/servicos/plataformas` },
+    { name: 'Intelligent Operations', url: `${SITE_URL}/servicos/automacoes` },
+    { name: 'Product Launch', url: `${SITE_URL}/servicos/produtos-digitais` },
+  ]
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    name: 'Serviços Ergon',
+    itemListElement: navItems.map((item, i) => ({
+      '@type': 'SiteNavigationElement',
+      position: i + 1,
+      name: item.name,
+      url: item.url,
+    })),
+  }
+}
+
 export function offerCatalogSchema() {
   return {
     '@context': 'https://schema.org',

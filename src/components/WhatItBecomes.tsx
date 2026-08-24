@@ -40,7 +40,7 @@ export default function WhatItBecomes() {
           [ o que isso pode virar ]
         </motion.span>
         <h2 className="max-w-xl text-3xl leading-[1.05] font-semibold tracking-tight md:text-5xl">
-          <GradualSpacing as="span" text="O que isso pode virar?" highlight={{ word: 'virar?', delay: 0.35 }} />
+          <GradualSpacing as="span" text="O que isso pode virar?" highlight={{ word: 'virar?', variant: 'circle', delay: 0.35 }} />
         </h2>
 
         <motion.div
@@ -48,7 +48,7 @@ export default function WhatItBecomes() {
           whileInView="show"
           viewport={viewportOnce}
           variants={revealContainer(0.05)}
-          className="mt-10 grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2 lg:grid-cols-4"
+          className="mt-10 grid grid-cols-2 gap-x-6 gap-y-6 lg:grid-cols-4"
         >
           {examples.map((item) => (
             <motion.div key={item.title} variants={revealUp} className="border-t border-line pt-4">

@@ -224,12 +224,19 @@ export default function ServicesHub() {
             Como trabalhamos
           </motion.span>
           <h2 className="max-w-lg text-2xl leading-[1.15] font-semibold tracking-tight md:text-4xl">
-            <GradualSpacing as="span" text="Da ideia ao produto." highlight={{ word: 'produto.', delay: 0.35 }} />
+            <GradualSpacing as="span" text="Da ideia ao produto." highlight={{ word: 'produto.', variant: 'circle', delay: 0.35 }} />
           </h2>
 
-          <div className="mt-8 grid grid-cols-1 gap-x-8 gap-y-8 sm:grid-cols-2 md:mt-10 lg:grid-cols-4 lg:divide-x lg:divide-line">
-            {DISCOVER_PROCESS.map((step) => (
-              <div key={step.n} className="lg:pl-8 lg:first:pl-0">
+          <div className="mt-8 grid grid-cols-2 md:mt-10 lg:grid-cols-4 lg:divide-x lg:divide-line">
+            {DISCOVER_PROCESS.map((step, i) => (
+              <div
+                key={step.n}
+                className={[
+                  'p-5 lg:p-0 lg:pl-8 lg:first:pl-0',
+                  i % 2 === 0 ? 'border-r border-lime lg:border-r-0' : '',
+                  i < 2 ? 'border-b border-lime lg:border-b-0' : '',
+                ].filter(Boolean).join(' ')}
+              >
                 <ProcessStep step={step} compact />
               </div>
             ))}

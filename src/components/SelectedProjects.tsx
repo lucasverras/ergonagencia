@@ -10,12 +10,13 @@ import { getCaseBySlug, type CaseMediaAsset } from '../cases/casesData'
 // Garagi lead because they show systems/dashboards, not just websites.
 // The full list lives at /portfolio. All four render at the same size —
 // no single project dominates the section.
-const SLUGS = ['vamo-nessa-sp', 'garagi', 'green-bay-car', '3ws-moldes']
+const SLUGS = ['vamo-nessa-sp', 'garagi', 'green-bay-car', 'green-bay-car-estetica', '3ws-moldes']
 
 const CATEGORY: Record<string, string> = {
   'vamo-nessa-sp': 'Plataforma · Dados · Automação',
   garagi: 'Website · CRM · Sistema',
   'green-bay-car': 'Website · UX/UI',
+  'green-bay-car-estetica': 'Website · Catálogo · UX/UI',
   '3ws-moldes': 'Website · Catálogo · SEO',
 }
 
@@ -23,6 +24,7 @@ const BLURB: Record<string, string> = {
   'vamo-nessa-sp': 'Conteúdo, performance, aquisição e operação em uma plataforma própria.',
   garagi: 'Uma nova presença digital conectada a uma ferramenta comercial interna.',
   'green-bay-car': 'Uma experiência digital premium para transformar a presença online da marca.',
+  'green-bay-car-estetica': 'Site próprio para o estúdio de estética com catálogo técnico e comparação antes e depois.',
   '3ws-moldes': 'Um grande acervo industrial transformado em uma experiência digital organizada e navegável.',
 }
 
@@ -60,8 +62,8 @@ export default function SelectedProjects() {
             >
               [ projetos ]
             </motion.span>
-            <h2 className="max-w-lg text-3xl leading-[1.05] font-semibold tracking-tight md:text-5xl">
-              <GradualSpacing as="span" text="Produto real, não conceito." highlight={{ word: 'real,', delay: 0.35 }} />
+            <h2 className="text-3xl leading-[1.05] font-semibold tracking-tight md:text-5xl">
+              <GradualSpacing as="span" text="Produtos que a Ergon Criou" highlight={{ word: 'Ergon', variant: 'circle', delay: 0.35 }} />
             </h2>
           </div>
 
@@ -81,7 +83,7 @@ export default function SelectedProjects() {
           whileInView="show"
           viewport={viewportOnce}
           variants={revealContainer(0.06)}
-          className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4 md:mt-14"
+          className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 md:mt-14"
         >
           {projects.map((project) => (
             <motion.div key={project.slug} variants={revealUp}>

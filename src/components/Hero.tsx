@@ -132,7 +132,7 @@ export default function Hero() {
   return (
     <section
       id="top"
-      className="relative flex min-h-svh flex-col overflow-hidden bg-bg pt-24 md:pt-28"
+      className="relative flex min-h-[70svh] flex-col overflow-hidden bg-bg pt-24 md:min-h-svh md:pt-28"
     >
       {/* WebGL shader background, scoped to the hero only — grainier, more
           scanline-heavy config with faster movement (per the new React
