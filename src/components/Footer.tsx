@@ -126,7 +126,7 @@ export default function Footer() {
 
         <div className="mt-10 flex flex-col-reverse items-center gap-6 border-t border-line pt-8 md:flex-row md:justify-between">
           <p className="text-xs text-graphite-dim">
-            © {new Date().getFullYear()} Ergon Digital Product Studio.
+            © {new Date().getFullYear()} Ergon Product Studio.
           </p>
 
           <Link

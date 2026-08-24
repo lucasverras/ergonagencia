@@ -15,7 +15,7 @@ import { services, DISCOVER_PROCESS } from '@/services/servicesData'
 import { getCaseBySlug } from '@/cases/casesData'
 
 const CANONICAL = `${SITE_URL}/servicos`
-const TITLE = 'Serviços | Ergon Digital Product Studio'
+const TITLE = 'Serviços | Ergon Product Studio'
 const DESCRIPTION =
   'Produtos digitais para empresas que querem vender melhor e operar melhor: sites, plataformas, automação e novos produtos.'
 

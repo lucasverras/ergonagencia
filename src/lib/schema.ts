@@ -5,7 +5,7 @@
 // visible page content or a stable identifier — nothing here is invented
 // (no ratings, prices, addresses, or dates that don't exist in the project).
 
-export const SITE_URL = 'https://www.ergonagencia.com.br'
+export const SITE_URL = 'https://www.ergonstudio.com.br'
 
 // Primary contact channel for the whole studio (every "falar sobre um
 // projeto" CTA site-wide) — Ergon Fly keeps its own separate, pre-existing
@@ -36,8 +36,8 @@ export function organizationSchema() {
     '@context': 'https://schema.org',
     '@type': 'Organization',
     '@id': ORGANIZATION_ID,
-    name: 'Ergon Digital Product Studio',
-    alternateName: ['Ergon', 'Ergon Agência'],
+    name: 'Ergon Product Studio',
+    alternateName: ['Ergon', 'Ergon Studio'],
     url: `${SITE_URL}/`,
     logo: `${SITE_URL}/favicon.png`,
     image: `${SITE_URL}/favicon.png`,
@@ -59,7 +59,7 @@ export function organizationSchema() {
         '@type': 'ContactPoint',
         contactType: 'captação aérea com drone',
         telephone: '+5511967206875',
-        email: 'contato@ergonagencia.com.br',
+        email: 'contato@ergonstudio.com.br',
         areaServed: 'BR',
       },
     ],
@@ -81,8 +81,8 @@ export function websiteSchema() {
     '@type': 'WebSite',
     '@id': WEBSITE_ID,
     url: `${SITE_URL}/`,
-    name: 'Ergon Digital Product Studio',
-    alternateName: ['Ergon', 'Ergon Agência'],
+    name: 'Ergon Product Studio',
+    alternateName: ['Ergon', 'Ergon Studio'],
     inLanguage: 'pt-BR',
     publisher: { '@id': ORGANIZATION_ID },
   }
@@ -189,7 +189,7 @@ export function offerCatalogSchema() {
     '@context': 'https://schema.org',
     '@type': 'OfferCatalog',
     '@id': `${SITE_URL}/#offer-catalog`,
-    name: 'Serviços Ergon Digital Product Studio',
+    name: 'Serviços Ergon Product Studio',
     itemListElement: SERVICES.map((s) => ({
       '@type': 'Offer',
       itemOffered: { '@id': SERVICE_IDS[s.key] },

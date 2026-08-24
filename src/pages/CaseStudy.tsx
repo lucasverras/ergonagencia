@@ -32,8 +32,8 @@ export default function CaseStudy() {
   // home, which would otherwise read as a soft-404 to crawlers
   const canonical = `${SITE_URL}/portfolio/${slug ?? ''}`
   const title = study
-    ? `${study.name} — Case Ergon Digital Product Studio`
-    : 'Página não encontrada — Ergon Digital Product Studio'
+    ? `${study.name} — Case Ergon Product Studio`
+    : 'Página não encontrada — Ergon Product Studio'
   const description = study ? study.headline : 'Este case não existe ou foi movido.'
   const relatedServices = study ? servicesForCase(study.slug) : []
   const ogImage = study?.heroMedia.kind === 'real' ? `${SITE_URL}${study.heroMedia.src}` : undefined

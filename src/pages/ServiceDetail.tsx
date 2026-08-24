@@ -18,7 +18,7 @@ export default function ServiceDetail() {
   // hook must run unconditionally (rules of hooks) — an unresolved slug
   // is a real 404 (noindex), matching CaseStudy.tsx's own pattern
   const canonical = `${SITE_URL}/servicos/${slug ?? ''}`
-  const title = service ? service.metaTitle : 'Página não encontrada — Ergon Digital Product Studio'
+  const title = service ? service.metaTitle : 'Página não encontrada — Ergon Product Studio'
   const description = service ? service.metaDescription : 'Este serviço não existe ou foi movido.'
 
   useSEO({

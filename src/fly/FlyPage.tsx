@@ -23,7 +23,7 @@ export default function FlyPage() {
     canonical: CANONICAL,
     jsonLd: [
       // the drone vertical is one Service line of the same Organization,
-      // not a second disconnected "Ergon Agência — Fly" entity — real
+      // not a second disconnected "Ergon Studio — Fly" entity — real
       // area/service info is now attached to that shared Organization's
       // contactPoint (src/lib/schema.ts) instead of being redeclared here
       webPageSchema({

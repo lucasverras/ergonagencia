@@ -39,7 +39,7 @@ export default function FlyCTA() {
               </p>
               <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
                 <motion.a
-                  href="mailto:contato@ergonagencia.com.br"
+                  href="mailto:contato@ergonstudio.com.br"
                   whileHover={{ scale: 1.04 }}
                   whileTap={{ scale: 0.96 }}
                   transition={{ type: 'spring', stiffness: 400, damping: 25 }}
@@ -62,7 +62,7 @@ export default function FlyCTA() {
                 </motion.a>
               </div>
               <p className="mt-6 text-xs tracking-[0.15em] text-graphite-dim uppercase">
-                contato@ergonagencia.com.br · (11) 96720-6875 · Resposta em até 2 horas
+                contato@ergonstudio.com.br · (11) 96720-6875 · Resposta em até 2 horas
               </p>
             </div>
           </MagicBentoCard>

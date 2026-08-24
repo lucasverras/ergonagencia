@@ -268,7 +268,7 @@ export const cases: CaseStudy[] = [
       'Vertente audiovisual da Ergon dedicada à captação profissional com drone — site próprio pra apresentar o portfólio e ser encontrado por quem já procura esse serviço.',
     servicos: ['Website institucional', 'Audiovisual', 'SEO'],
     tecnologias: ['React', 'Vite', 'Tailwind CSS'],
-    entrega: 'Página própria publicada em ergonagencia.com.br/fly.',
+    entrega: 'Página própria publicada em ergonstudio.com.br/fly.',
     ctaLabel: 'CONHECER A ERGON FLY ↗',
     ctaUrl: '/fly',
     challenge:

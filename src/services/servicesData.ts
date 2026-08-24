@@ -178,7 +178,7 @@ export const services: ServiceStudy[] = [
     finalCtaHeadline: 'Tem uma ideia que já devia estar em produção?',
     metaTitle: 'Desenvolvimento de Produtos Digitais | Ergon',
     metaDescription:
-      'MVPs, plataformas e ferramentas sob medida — da validação ao lançamento. Ergon, digital product studio.',
+      'MVPs, plataformas e ferramentas sob medida — da validação ao lançamento. Ergon, product studio.',
   },
 ]
 

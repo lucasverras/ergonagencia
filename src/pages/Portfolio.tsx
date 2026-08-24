@@ -58,7 +58,7 @@ function ProjectImage({ asset, className }: { asset: CaseMediaAsset; className?:
 
 export default function Portfolio() {
   const canonical = `${SITE_URL}/portfolio`
-  const title = 'Portfólio — Ergon Digital Product Studio'
+  const title = 'Portfólio — Ergon Product Studio'
   const description =
     'Sites, sistemas, plataformas e produtos digitais reais que a Ergon colocou para funcionar — prova do que construímos, não uma lista de clientes.'
 

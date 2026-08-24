@@ -165,7 +165,7 @@ export default function Hero() {
             gets its own line (unconstrained width, whitespace-nowrap) so
             "em operação" never wraps or reflows the line above it. */}
         <h1 className="col-headline font-display text-[clamp(4.05rem,8.8vw,9.3rem)] leading-[1.02] tracking-[0.02em] uppercase md:text-[clamp(3rem,6.5vw,6.875rem)]">
-          <GradualSpacing as="span" text="Ergon Digital" className="w-full text-lime" />
+          <GradualSpacing as="span" text="Ergon" className="w-full text-lime" />
           <GradualSpacing as="span" text="Product Studio" className="mt-1 w-full" delayMultiple={0.03} />
         </h1>
       </motion.div>
@@ -204,7 +204,7 @@ export default function Hero() {
           delay={0.9}
           className="text-right text-sm text-graphite sm:text-base"
         >
-          Somos um digital product studio dedicado a tirar ideias do papel. Da
+          Somos um product studio dedicado a tirar ideias do papel. Da
           estratégia de UX à interface final, desenhamos e construímos
           produtos digitais pensados para o ritmo de transformação que a
           tecnologia impõe&nbsp;hoje.
