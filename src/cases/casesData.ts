@@ -223,7 +223,7 @@ export const cases: CaseStudy[] = [
       'Painel administrativo para a equipe',
       'SEO técnico para buscas pelo restaurante',
     ],
-    heroMedia: { kind: 'real', src: '/images/portfolio/cardapio-franco.png', alt: 'Cardápio digital do Franco Gastrobar' },
+    heroMedia: { kind: 'real', src: '/portfolio/franco-gastrobar/hero.jpg', alt: 'Cardápio digital do Franco Gastrobar' },
     gallery: [
       {
         kind: 'placeholder',
