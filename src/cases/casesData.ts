@@ -262,36 +262,6 @@ export const cases: CaseStudy[] = [
   },
 
   {
-    slug: 'soccer-station',
-    name: 'Soccer Station',
-    headline:
-      'Site reestruturado pra vender, não só apresentar — com plataforma própria de ticketing pra reduzir a dependência de terceiros na venda de ingressos.',
-    servicos: ['Website institucional', 'Ticketing', 'UX/UI'],
-    tecnologias: ['Lovable', 'Vercel', 'Mercado Pago'],
-    entrega: 'Site publicado + plataforma própria de ticketing (ambiente privado, sem URL pública).',
-    ctaLabel: 'CONHECER A SOCCER STATION ↗',
-    ctaUrl: 'https://soccerstation.com.br/',
-    challenge:
-      'O site antigo era construído majoritariamente a partir de imagens e não acompanhava mais a operação da empresa, misturando jornadas de produtos diferentes e dificultando a conversão.',
-    built: {
-      kind: 'single',
-      text: 'Reestruturamos o site pra apresentar os produtos da Soccer Station com jornadas claras e específicas, e desenvolvemos uma plataforma própria de ticketing hospedada na Vercel, com pagamento via Mercado Pago — reduzindo a dependência de plataformas terceirizadas.',
-    },
-    deliverables: [
-      'Site institucional responsivo',
-      'Jornadas de conversão específicas por produto',
-      'Plataforma própria de ticketing',
-      'Checkout com Mercado Pago',
-      'SEO técnico',
-    ],
-    heroMedia: { kind: 'real', src: '/portfolio/soccer-station/desktop-hero.png', alt: 'Home do site da Soccer Station' },
-    gallery: [
-      { kind: 'real', src: '/portfolio/soccer-station/desktop-detail.png', alt: 'Seção de produtos/experiências da Soccer Station' },
-      { kind: 'real', src: '/portfolio/soccer-station/mobile-hero.png', alt: 'Home da Soccer Station em um dispositivo móvel' },
-    ],
-  },
-
-  {
     slug: 'radar-navegando',
     name: 'Radar Navegando',
     headline:

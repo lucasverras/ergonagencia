@@ -9,6 +9,15 @@
         "X-Robots-Tag": "noindex, nofollow, noarchive"
       }
     },
+    {
+      "src": "/portfolio/[sS][oO][cC][cC][eE][rR]-[sS][tT][aA][tT][iI][oO][nN]/?$",
+      "status": 410,
+      "dest": "/410.html",
+      "headers": {
+        "Cache-Control": "no-store",
+        "X-Robots-Tag": "noindex, nofollow, noarchive"
+      }
+    },
     { "src": "/imagens-aereas", "status": 308, "headers": { "Location": "/fly#imagens-aereas" } },
     { "src": "/filmagem-com-drone", "status": 308, "headers": { "Location": "/fly#filmagem-com-drone" } },
     { "src": "/drone-profissional", "status": 308, "headers": { "Location": "/fly#drone-profissional" } },

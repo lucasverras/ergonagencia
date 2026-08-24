@@ -83,7 +83,6 @@ export const services: ServiceStudy[] = [
       'green-bay-car',
       'ergon-fly',
       'garagi',
-      'soccer-station',
       'navegando-mkt',
       'franco-gastrobar',
       '3ws-moldes',
@@ -112,7 +111,7 @@ export const services: ServiceStudy[] = [
       { title: 'Área do cliente', desc: 'Um lugar próprio pra quem já compra acompanhar o que importa.' },
     ],
     visualExample: { kind: 'case', caseSlug: 'vamo-nessa-sp', caption: 'Painel Vamo Nessa SP, criado pela Ergon.' },
-    relatedCaseSlugs: ['garagi', 'vamo-nessa-sp', 'soccer-station', 'radar-navegando'],
+    relatedCaseSlugs: ['garagi', 'vamo-nessa-sp', 'radar-navegando'],
     finalCtaHeadline: 'Sua operação ainda roda em planilha e grupo de WhatsApp?',
     metaTitle: 'Plataformas e Sistemas Internos | Ergon',
     metaDescription:
@@ -161,7 +160,7 @@ export const services: ServiceStudy[] = [
       { title: 'Evolução de produtos existentes' },
     ],
     visualExample: { kind: 'case', caseSlug: 'vamo-nessa-sp', caption: 'Vamo Nessa SP — produto interno criado do zero pela Ergon.' },
-    relatedCaseSlugs: ['radar-navegando', 'soccer-station', 'vamo-nessa-sp'],
+    relatedCaseSlugs: ['radar-navegando', 'vamo-nessa-sp'],
     finalCtaHeadline: 'Tem uma ideia que já devia estar em produção?',
     metaTitle: 'Desenvolvimento de Produtos Digitais | Ergon',
     metaDescription:
