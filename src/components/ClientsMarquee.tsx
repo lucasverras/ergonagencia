@@ -4,21 +4,25 @@ import { revealUp, viewportOnce } from '../lib/reveal'
 import { GradualSpacing } from './ui/gradual-spacing'
 import { TextReveal } from './ui/text-reveal'
 
-// Real clients only — every name below has its own case at /portfolio/:slug.
+// Real clients only — every entry has its own case at /portfolio/:slug.
 // No Soccer Station (fully removed from the site), no Ergon Fly (that's
 // Ergon's own sub-brand, not a client), no invented names to pad the count.
+// Logos are real files pulled from each client's own site — garagi and
+// vamo-nessa-sp have none yet (Garagi's onboarding wasn't authorized;
+// Vamo Nessa SP has no public site/logo of its own), so those render as
+// blank slots rather than falling back to a text name.
 const clients = [
-  { name: 'Vamo Nessa SP', slug: 'vamo-nessa-sp' },
-  { name: 'Garagi', slug: 'garagi' },
-  { name: 'Green Bay Car', slug: 'green-bay-car' },
-  { name: '3WS Moldes', slug: '3ws-moldes' },
-  { name: 'Franco Gastrobar', slug: 'franco-gastrobar' },
-  { name: 'Navegando MKT', slug: 'navegando-mkt' },
+  { name: 'Vamo Nessa SP', slug: 'vamo-nessa-sp', logo: null },
+  { name: 'Garagi', slug: 'garagi', logo: null },
+  { name: 'Green Bay Car', slug: 'green-bay-car', logo: '/logos/green-bay-car.png' },
+  { name: '3WS Moldes', slug: '3ws-moldes', logo: '/logos/3ws-moldes.png' },
+  { name: 'Franco Gastrobar', slug: 'franco-gastrobar', logo: '/logos/franco-gastrobar.png' },
+  { name: 'Navegando MKT', slug: 'navegando-mkt', logo: '/logos/navegando-mkt.png' },
 ]
 
 export default function ClientsMarquee() {
   const reduced = useReducedMotion()
-  // tripled, not doubled — with only 6 real names, two copies repeat
+  // tripled, not doubled — with only 6 real clients, two copies repeat
   // noticeably fast at a deliberately slow speed; three keeps the loop
   // reading as continuous rather than "starting over"
   const loop = [...clients, ...clients, ...clients]
@@ -49,7 +53,7 @@ export default function ClientsMarquee() {
           >
             [ clientes ]
           </motion.span>
-          <h2 className="mt-4 max-w-2xl text-3xl leading-[1.1] font-semibold tracking-tight md:text-5xl">
+          <h2 className="mt-4 max-w-4xl text-3xl leading-[1.1] font-semibold tracking-tight md:text-5xl">
             <GradualSpacing as="span" text="Empresas que colocaram projetos" className="w-full" />
             <GradualSpacing
               as="span"
@@ -82,15 +86,28 @@ export default function ClientsMarquee() {
             className="flex shrink-0 items-center gap-14 pr-14 group-hover:[animation-play-state:paused] md:gap-20 md:pr-20"
             style={reduced ? undefined : { animation: 'marquee 42s linear infinite' }}
           >
-            {loop.map((client, i) => (
-              <Link
-                key={`${client.slug}-${i}`}
-                to={`/portfolio/${client.slug}`}
-                className="shrink-0 text-2xl font-semibold tracking-tight text-ink/25 transition-colors duration-300 hover:text-ink md:text-4xl"
-              >
-                {client.name}
-              </Link>
-            ))}
+            {loop.map((client, i) =>
+              client.logo ? (
+                <Link
+                  key={`${client.slug}-${i}`}
+                  to={`/portfolio/${client.slug}`}
+                  title={client.name}
+                  className="flex h-10 shrink-0 items-center md:h-14"
+                >
+                  <img
+                    src={client.logo}
+                    alt={client.name}
+                    className="h-full w-auto object-contain opacity-40 grayscale transition-all duration-300 hover:opacity-100 hover:grayscale-0"
+                  />
+                </Link>
+              ) : (
+                <span
+                  key={`${client.slug}-${i}`}
+                  aria-hidden="true"
+                  className="h-10 w-28 shrink-0 rounded-md border border-dashed border-line/60 md:h-14 md:w-36"
+                />
+              ),
+            )}
           </div>
         </div>
       </motion.div>

@@ -109,6 +109,38 @@ export const cases: CaseStudy[] = [
   },
 
   {
+    slug: 'green-bay-car-estetica',
+    name: 'Green Bay Car Estética',
+    headline:
+      'Site próprio para a vertente de estética automotiva do grupo Green Bay Car — catálogo de serviços, comparação de antes e depois e agendamento direto por WhatsApp.',
+    servicos: ['Website institucional', 'Catálogo de serviços', 'UX/UI'],
+    tecnologias: ['Next.js', 'Vercel'],
+    entrega: 'Site institucional publicado, com catálogo de serviços e agendamento via WhatsApp.',
+    ctaLabel: 'CONHECER A GBC ESTÉTICA ↗',
+    ctaUrl: 'https://gbc-estetica.vercel.app/',
+    challenge:
+      'A Green Bay Car precisava de uma presença digital própria para a vertente de estética automotiva — separada do site principal da loja, mas com o mesmo padrão premium, capaz de apresentar um catálogo técnico de serviços e gerar confiança para trabalhos de maior valor, como correção de pintura.',
+    built: {
+      kind: 'single',
+      text: 'Desenvolvemos um site dedicado com um catálogo completo de serviços organizado em categorias — lavagem e cuidado externo, cuidado interno, correção e polimento, e restauração —, uma seção de comparação antes e depois da pintura, e agendamento direto via WhatsApp.',
+    },
+    deliverables: [
+      'Site institucional dedicado à vertente de estética',
+      'Catálogo de serviços organizado por categoria',
+      'Seção de comparação antes e depois',
+      'Agendamento direto via WhatsApp',
+      'Localização e horário de atendimento',
+    ],
+    heroMedia: { kind: 'real', src: '/portfolio/green-bay-car-estetica/hero.jpg', alt: 'Estúdio da GBC Estética Automotiva' },
+    gallery: [
+      { kind: 'real', src: '/portfolio/green-bay-car-estetica/servico.jpg', alt: 'Serviço de lavagem técnica na GBC Estética' },
+      { kind: 'real', src: '/portfolio/green-bay-car-estetica/resultado.jpg', alt: 'Resultado de polimento na GBC Estética' },
+      { kind: 'real', src: '/portfolio/green-bay-car-estetica/showroom.jpg', alt: 'Estúdio de estética automotiva da GBC' },
+      { kind: 'real', src: '/portfolio/green-bay-car-estetica/detalhe.jpg', alt: 'Detalhe de acabamento na GBC Estética' },
+    ],
+  },
+
+  {
     slug: 'green-bay-car',
     name: 'Green Bay Car',
     headline:

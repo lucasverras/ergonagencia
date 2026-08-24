@@ -88,6 +88,7 @@ export const services: ServiceStudy[] = [
     visualExample: { kind: 'case', caseSlug: '3ws-moldes', caption: 'Site da 3WS Moldes e Equipamentos, no ar.' },
     relatedCaseSlugs: [
       'green-bay-car',
+      'green-bay-car-estetica',
       'ergon-fly',
       'garagi',
       'navegando-mkt',
