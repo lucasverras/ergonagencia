@@ -10,7 +10,7 @@ import { getCaseBySlug, type CaseMediaAsset } from '../cases/casesData'
 // Garagi lead because they show systems/dashboards, not just websites.
 // The full list lives at /portfolio. All four render at the same size —
 // no single project dominates the section.
-const SLUGS = ['vamo-nessa-sp', 'garagi', 'green-bay-car', 'green-bay-car-estetica', '3ws-moldes']
+const SLUGS = ['vamo-nessa-sp', 'garagi', 'green-bay-car', 'green-bay-car-estetica', '3ws-moldes', 'franco-gastrobar', 'navegando-mkt']
 
 const CATEGORY: Record<string, string> = {
   'vamo-nessa-sp': 'Plataforma · Dados · Automação',
@@ -18,6 +18,8 @@ const CATEGORY: Record<string, string> = {
   'green-bay-car': 'Website · UX/UI',
   'green-bay-car-estetica': 'Website · Catálogo · UX/UI',
   '3ws-moldes': 'Website · Catálogo · SEO',
+  'franco-gastrobar': 'Cardápio Digital · UX/UI',
+  'navegando-mkt': 'Website · Marketing Digital',
 }
 
 const BLURB: Record<string, string> = {
@@ -26,6 +28,8 @@ const BLURB: Record<string, string> = {
   'green-bay-car': 'Uma experiência digital premium para transformar a presença online da marca.',
   'green-bay-car-estetica': 'Site próprio para o estúdio de estética com catálogo técnico e comparação antes e depois.',
   '3ws-moldes': 'Um grande acervo industrial transformado em uma experiência digital organizada e navegável.',
+  'franco-gastrobar': 'Cardápio digital para substituir o impresso e facilitar pedidos diretos no balcão.',
+  'navegando-mkt': 'Presença digital estruturada para uma agência de marketing em crescimento.',
 }
 
 // bleeds to the card's own edge/corners — CaseMedia's own bordered,
