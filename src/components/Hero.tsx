@@ -146,8 +146,18 @@ export default function Hero() {
   return (
     <section
       id="top"
-      className="relative flex min-h-[70svh] flex-col overflow-hidden bg-bg pt-24 md:min-h-svh md:pt-28"
+      className="relative flex min-h-svh flex-col overflow-hidden bg-bg pt-24 md:pt-28"
     >
+      {/* mobile background fallback — DarkVeil is disabled on mobile (resolutionScale=0)
+          so we simulate a similar dark atmospheric feel with CSS gradients only */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 z-[1] md:hidden"
+        style={{
+          background:
+            'radial-gradient(ellipse 90% 55% at 50% -5%, rgba(227,255,12,0.07) 0%, transparent 65%), radial-gradient(ellipse 60% 40% at 80% 100%, rgba(227,255,12,0.04) 0%, transparent 60%)',
+        }}
+      />
       {/* WebGL shader background, scoped to the hero only — grainier, more
           scanline-heavy config with faster movement (per the new React
           Bits DarkVeil preset) than the original subtle/slow ambient look.
@@ -208,8 +218,8 @@ export default function Hero() {
 
       {/* support copy, bottom-right corner — in the CTA's old spot */}
       <div
-        className="absolute bottom-12 z-[var(--z-content)] max-w-[85%] sm:max-w-xs"
-        style={{ right: 'calc(var(--grid-margin) + 2.5rem)' }}
+        className="absolute bottom-10 z-[var(--z-content)] max-w-[58%] sm:max-w-xs"
+        style={{ right: 'var(--grid-margin)' }}
       >
         <TextReveal
           as="p"

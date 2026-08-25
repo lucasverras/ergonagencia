@@ -67,7 +67,7 @@ export default function SelectedProjects() {
               [ projetos ]
             </motion.span>
             <h2 className="text-3xl leading-[1.05] font-semibold tracking-tight md:text-5xl">
-              <GradualSpacing as="span" text="Produtos que a Ergon Criou" highlight={{ word: 'Ergon', variant: 'circle', delay: 0.35 }} />
+              <GradualSpacing as="span" text="Produtos que a Ergon criou" highlight={{ word: 'Ergon', variant: 'circle', delay: 0.35 }} />
             </h2>
           </div>
 
@@ -85,7 +85,7 @@ export default function SelectedProjects() {
         <motion.div
           initial="hidden"
           whileInView="show"
-          viewport={viewportOnce}
+          viewport={{ once: true, amount: 0.05 }}
           variants={revealContainer(0.06)}
           className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 md:mt-14"
         >
