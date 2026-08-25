@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import {
   useReducedMotion,
@@ -26,19 +26,33 @@ const circularLabel = 'VISUAL DESIGN STUDIO - VISUAL DESIGN STUDIO - '
 function PortfolioSlideshow() {
   const [active, setActive] = useState(0)
   const reduced = useReducedMotion()
+  const ref = useRef<HTMLAnchorElement>(null)
+  const [isVisible, setIsVisible] = useState(false)
 
   useEffect(() => {
-    if (reduced) return
+    const el = ref.current
+    if (!el) return
+    const obs = new IntersectionObserver(
+      ([entry]) => setIsVisible(entry.isIntersecting),
+      { threshold: 0.1 },
+    )
+    obs.observe(el)
+    return () => obs.disconnect()
+  }, [])
+
+  useEffect(() => {
+    if (reduced || !isVisible) return
     const id = setInterval(() => {
       setActive((i) => (i + 1) % previews.length)
     }, 3200)
     return () => clearInterval(id)
-  }, [reduced])
+  }, [reduced, isVisible])
 
   const project = previews[active]
 
   return (
     <Link
+      ref={ref}
       to="/portfolio"
       className="block h-40 w-60 sm:h-44 sm:w-72"
     >
@@ -145,7 +159,7 @@ export default function Hero() {
           scanlineIntensity={1}
           speed={3}
           scanlineFrequency={5}
-          resolutionScale={window.innerWidth < 768 ? 0.6 : 1}
+          resolutionScale={window.innerWidth < 768 ? 0 : 1}
         />
       </div>
 

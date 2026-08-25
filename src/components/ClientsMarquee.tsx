@@ -82,7 +82,7 @@ export default function ClientsMarquee() {
         <div className="group relative flex overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]">
           <div
             className="flex shrink-0 items-center gap-14 pr-14 group-hover:[animation-play-state:paused] md:gap-20 md:pr-20"
-            style={reduced ? undefined : { animation: 'marquee 42s linear infinite' }}
+            style={reduced ? undefined : { animation: 'marquee 42s linear infinite', willChange: 'transform', transform: 'translateZ(0)' }}
           >
             {loop.map((client, i) =>
               client.text ? (

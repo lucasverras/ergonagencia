@@ -107,8 +107,13 @@ export function DarkVeil({
   useEffect(() => {
     // a continuously-rendering WebGL shader is exactly the kind of motion
     // prefers-reduced-motion exists to opt out of — skip mounting the GL
-    // context entirely rather than just freezing a frame
-    if (reduced) return
+    // context entirely rather than just freezing a frame.
+    // resolutionScale === 0 is the mobile kill-switch: the cppn_fn fragment
+    // shader runs a neural-network computation per pixel per frame — it is
+    // far too expensive for mobile GPUs and is the primary cause of the
+    // 21s TBT on mobile. skip the GL context entirely when the caller
+    // signals scale=0 rather than rendering at a degraded resolution.
+    if (reduced || resolutionScale === 0) return
 
     const canvas = canvasRef.current
     const parent = canvas?.parentElement
@@ -213,7 +218,7 @@ export function DarkVeil({
     resolutionScale,
   ])
 
-  if (reduced) return null
+  if (reduced || resolutionScale === 0) return null
 
   return <canvas ref={canvasRef} className="block h-full w-full" />
 }
