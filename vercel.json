@@ -1,4 +1,18 @@
 {
+  "redirects": [
+    {
+      "source": "/(.*)",
+      "has": [{ "type": "host", "value": "ergonagencia.com.br" }],
+      "destination": "https://www.ergonstudio.com.br/$1",
+      "permanent": true
+    },
+    {
+      "source": "/(.*)",
+      "has": [{ "type": "host", "value": "www.ergonagencia.com.br" }],
+      "destination": "https://www.ergonstudio.com.br/$1",
+      "permanent": true
+    }
+  ],
   "routes": [
     {
       "src": "/portfolio/[mM][oO][sS][aA][iI][cC][lL][aA][bB]/?$",
