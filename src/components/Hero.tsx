@@ -148,28 +148,28 @@ export default function Hero() {
       id="top"
       className="relative flex min-h-svh flex-col overflow-hidden bg-bg pt-24 md:pt-28"
     >
-      {/* mobile background fallback — DarkVeil is disabled on mobile (resolutionScale=0)
-          so we simulate a similar dark atmospheric feel with CSS gradients only */}
+      {/* CSS radial glow — always present, gives the lime bloom even before WebGL
+          initialises, and stays visible on reduced-motion / very old devices */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 z-[1] md:hidden"
+        className="pointer-events-none absolute inset-0 z-[1]"
         style={{
           background:
-            'radial-gradient(ellipse 90% 55% at 50% -5%, rgba(227,255,12,0.07) 0%, transparent 65%), radial-gradient(ellipse 60% 40% at 80% 100%, rgba(227,255,12,0.04) 0%, transparent 60%)',
+            'radial-gradient(ellipse 90% 55% at 50% -5%, rgba(227,255,12,0.08) 0%, transparent 65%), radial-gradient(ellipse 60% 40% at 80% 100%, rgba(227,255,12,0.04) 0%, transparent 60%)',
         }}
       />
-      {/* WebGL shader background, scoped to the hero only — grainier, more
-          scanline-heavy config with faster movement (per the new React
-          Bits DarkVeil preset) than the original subtle/slow ambient look.
-          DarkVeil itself no-ops under prefers-reduced-motion. */}
+      {/* WebGL scanline/noise shader — on desktop full res; on mobile 0.15
+          (16× fewer pixels than the 0.6 that caused 21 000ms TBT). At 0.15
+          the CPPN neural-net shader processes <3% of full-res pixels so the
+          GPU load is dramatically lower while the atmospheric feel stays. */}
       <div className="pointer-events-none absolute inset-0 z-[1] opacity-70">
         <DarkVeil
           hueShift={0}
-          noiseIntensity={0.17}
-          scanlineIntensity={1}
-          speed={3}
+          noiseIntensity={window.innerWidth < 768 ? 0.08 : 0.17}
+          scanlineIntensity={window.innerWidth < 768 ? 0.5 : 1}
+          speed={window.innerWidth < 768 ? 1.5 : 3}
           scanlineFrequency={5}
-          resolutionScale={window.innerWidth < 768 ? 0 : 1}
+          resolutionScale={window.innerWidth < 768 ? 0.15 : 1}
         />
       </div>
 
