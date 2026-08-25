@@ -26,8 +26,13 @@ function ScrollToHash() {
 
   useEffect(() => {
     if (!hash) {
-      window.scrollTo(0, 0)
-      return
+      // use rAF + behavior:'instant' so we win against any browser scroll
+      // restoration that might fire after the synchronous effect. 'instant'
+      // prevents CSS scroll-behavior:smooth from animating us away from 0.
+      const raf = requestAnimationFrame(() =>
+        window.scrollTo({ top: 0, left: 0, behavior: 'instant' }),
+      )
+      return () => cancelAnimationFrame(raf)
     }
     const id = hash.slice(1)
     // one frame isn't always enough — the target route's own layout

@@ -166,7 +166,11 @@ export function DarkVeil({
       // at a lower resolution and letting CSS scale it back up.
       canvas.style.width = '100%'
       canvas.style.height = '100%'
-      program.uniforms.uResolution.value.set(w, h)
+      // uResolution must match the actual draw-buffer size (w*scale, h*scale),
+      // not the CSS display size (w, h). fragCoord only spans the render buffer,
+      // so if uResolution were the full display size, the UV coordinates would
+      // cover only a tiny dark corner of the neural-net pattern at low scales.
+      program.uniforms.uResolution.value.set(w * resolutionScale, h * resolutionScale)
     }
 
     window.addEventListener('resize', resize)

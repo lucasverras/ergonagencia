@@ -165,11 +165,11 @@ export default function Hero() {
       <div className="pointer-events-none absolute inset-0 z-[1] opacity-70">
         <DarkVeil
           hueShift={0}
-          noiseIntensity={window.innerWidth < 768 ? 0.08 : 0.17}
-          scanlineIntensity={window.innerWidth < 768 ? 0.5 : 1}
-          speed={window.innerWidth < 768 ? 1.5 : 3}
+          noiseIntensity={window.innerWidth < 768 ? 0.1 : 0.17}
+          scanlineIntensity={window.innerWidth < 768 ? 0.6 : 1}
+          speed={window.innerWidth < 768 ? 2 : 3}
           scanlineFrequency={5}
-          resolutionScale={window.innerWidth < 768 ? 0.15 : 1}
+          resolutionScale={window.innerWidth < 768 ? 0.3 : 1}
         />
       </div>
 
