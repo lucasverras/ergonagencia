@@ -21,6 +21,10 @@ const errors = []
 const warnings = []
 const seen = { title: new Map(), description: new Map(), canonical: new Map() }
 
+// every fetch gets a deadline — a single hung connection shouldn't stall
+// the whole audit with no output
+const get = (url, opts = {}) => fetch(url, { signal: AbortSignal.timeout(20000), ...opts })
+
 const one = (html, re) => html.match(re)?.[1]?.trim()
 const attr = (html, sel) => one(html, sel)
 
@@ -40,7 +44,7 @@ function checkJsonLd(html, route) {
 
 async function audit(route) {
   const url = route === '/' ? `${base}/` : `${base}${route}`
-  const res = await fetch(url, { redirect: 'manual' })
+  const res = await get(url, { redirect: 'manual' })
   if (res.status !== 200) return errors.push(`${route}: HTTP ${res.status}`)
   const html = await res.text()
 
@@ -132,7 +136,7 @@ for (const [path, must] of [
   ['/llms.txt', '# Ergon Studio'],
   ['/llms-full.txt', '# Ergon Studio'],
 ]) {
-  const res = await fetch(`${base}${path}`)
+  const res = await get(`${base}${path}`)
   const body = await res.text()
   if (res.status !== 200) errors.push(`${path}: HTTP ${res.status}`)
   else if (!body.includes(must)) errors.push(`${path}: missing expected content "${must}"`)
@@ -140,7 +144,7 @@ for (const [path, must] of [
 }
 
 // Sitemap must list exactly the public routes.
-const sitemap = await (await fetch(`${base}/sitemap.xml`)).text()
+const sitemap = await (await get(`${base}/sitemap.xml`)).text()
 const listed = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) =>
   m[1].replace(CANONICAL_HOST, '').replace(/^$/, '/'),
 )
@@ -150,7 +154,7 @@ for (const l of listed)
   if (!PUBLIC_ROUTES.includes(l)) errors.push(`sitemap lists non-public route ${l}`)
 
 // A URL that must not exist has to answer 404, not 200.
-const missing = await fetch(`${base}/esta-pagina-nao-existe-teste-seo`, { redirect: 'manual' })
+const missing = await get(`${base}/esta-pagina-nao-existe-teste-seo`, { redirect: 'manual' })
 if (missing.status !== 404) errors.push(`unknown URL returned HTTP ${missing.status}, expected 404`)
 else console.log(`  ${'/<unknown>'.padEnd(34)} 404 ok`)
 
