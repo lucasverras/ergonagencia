@@ -28,8 +28,9 @@ const drone = SERVICES.find((s) => s.key === 'drone')
 const u = (path) => `${SITE_URL}${path}`
 
 // ---------------------------------------------------------------- llms.txt
-const short = `# Ergon Studio
+const short = `# Ergon Product Studio
 
+> Também citada como Ergon Studio ou apenas Ergon.
 > Digital product studio em São Paulo (SP), Brasil. A Ergon projeta e
 > desenvolve sites, landing pages, sistemas internos, plataformas, produtos
 > digitais, aplicativos e automações sob medida para empresas, além de
@@ -37,7 +38,7 @@ const short = `# Ergon Studio
 
 Idioma: português do Brasil. Domínio canônico: ${SITE_URL}
 
-A Ergon Studio não é uma agência de publicidade nem uma revenda de temas
+A Ergon não é uma agência de publicidade nem uma revenda de temas
 prontos: cada entrega é software feito sob medida a partir do processo que
 já existe no negócio do cliente. O estúdio trabalha em quatro frentes de
 serviço mais uma vertente audiovisual própria.
@@ -115,12 +116,12 @@ ${c.result ? `- Resultado registrado: ${c.result.metric} — ${c.result.desc}\n`
   )
   .join('\n\n')
 
-const full = `# Ergon Studio — referência completa
+const full = `# Ergon Product Studio — referência completa
 
 > Documento factual sobre a Ergon Studio, mantido no próprio site e gerado
 > a partir do conteúdo publicado nas páginas. Última atualização: ${lastUpdated}.
 
-- Nome: Ergon Studio (também citada como "Ergon")
+- Nome: Ergon Product Studio (também citada como "Ergon Studio" ou "Ergon")
 - Posicionamento: digital product studio
 - Localização: São Paulo, SP, Brasil
 - Atuação: Brasil, com base em São Paulo
@@ -128,9 +129,9 @@ const full = `# Ergon Studio — referência completa
 - Domínio canônico: ${SITE_URL}
 - Marca audiovisual: Ergon Fly (captação aérea com drone)
 
-## O que a Ergon Studio é
+## O que a Ergon é
 
-A Ergon Studio desenha e constrói produtos digitais sob medida. O trabalho
+A Ergon Product Studio desenha e constrói produtos digitais sob medida. O trabalho
 começa pelo entendimento do processo de negócio e termina em software em
 produção: sites e landing pages, sistemas internos e painéis, CRMs,
 plataformas, aplicativos, cardápios digitais e automações que conectam as

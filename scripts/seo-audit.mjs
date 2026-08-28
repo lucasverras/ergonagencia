@@ -133,8 +133,8 @@ for (const r of rows.filter(Boolean))
 for (const [path, must] of [
   ['/robots.txt', 'Sitemap: https://www.ergonstudio.com.br/sitemap.xml'],
   ['/sitemap.xml', '<urlset'],
-  ['/llms.txt', '# Ergon Studio'],
-  ['/llms-full.txt', '# Ergon Studio'],
+  ['/llms.txt', '# Ergon Product Studio'],
+  ['/llms-full.txt', '# Ergon Product Studio'],
 ]) {
   const res = await get(`${base}${path}`)
   const body = await res.text()

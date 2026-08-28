@@ -1,9 +1,9 @@
-# Ergon Studio — referência completa
+# Ergon Product Studio — referência completa
 
 > Documento factual sobre a Ergon Studio, mantido no próprio site e gerado
 > a partir do conteúdo publicado nas páginas. Última atualização: 2026-08-28.
 
-- Nome: Ergon Studio (também citada como "Ergon")
+- Nome: Ergon Product Studio (também citada como "Ergon Studio" ou "Ergon")
 - Posicionamento: digital product studio
 - Localização: São Paulo, SP, Brasil
 - Atuação: Brasil, com base em São Paulo
@@ -11,9 +11,9 @@
 - Domínio canônico: https://www.ergonstudio.com.br
 - Marca audiovisual: Ergon Fly (captação aérea com drone)
 
-## O que a Ergon Studio é
+## O que a Ergon é
 
-A Ergon Studio desenha e constrói produtos digitais sob medida. O trabalho
+A Ergon Product Studio desenha e constrói produtos digitais sob medida. O trabalho
 começa pelo entendimento do processo de negócio e termina em software em
 produção: sites e landing pages, sistemas internos e painéis, CRMs,
 plataformas, aplicativos, cardápios digitais e automações que conectam as

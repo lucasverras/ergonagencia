@@ -36,15 +36,19 @@ export function organizationSchema() {
     '@context': 'https://schema.org',
     '@type': 'Organization',
     '@id': ORGANIZATION_ID,
-    name: 'Ergon Studio',
-    alternateName: ['Ergon', 'Ergon Product Studio'],
+    // Matches the Google Business Profile and the site's own H1 exactly.
+    // Google links a site to a business listing largely on name agreement,
+    // so the primary name here is the one the listing publishes; the
+    // shorter forms the brand also uses are alternates, not the canonical.
+    name: 'Ergon Product Studio',
+    alternateName: ['Ergon Studio', 'Ergon'],
     url: `${SITE_URL}/`,
     logo: {
       '@type': 'ImageObject',
       '@id': `${SITE_URL}/#logo`,
       url: `${SITE_URL}/favicon.png`,
       contentUrl: `${SITE_URL}/favicon.png`,
-      caption: 'Ergon Studio',
+      caption: 'Ergon Product Studio',
     },
     image: `${SITE_URL}/og/ergon-studio.png`,
     slogan: 'Digital Product Studio',
@@ -96,8 +100,8 @@ export function websiteSchema() {
     '@type': 'WebSite',
     '@id': WEBSITE_ID,
     url: `${SITE_URL}/`,
-    name: 'Ergon Studio',
-    alternateName: ['Ergon', 'Ergon Product Studio'],
+    name: 'Ergon Product Studio',
+    alternateName: ['Ergon Studio', 'Ergon'],
     inLanguage: 'pt-BR',
     publisher: { '@id': ORGANIZATION_ID },
   }
@@ -204,7 +208,7 @@ export function offerCatalogSchema() {
     '@context': 'https://schema.org',
     '@type': 'OfferCatalog',
     '@id': `${SITE_URL}/#offer-catalog`,
-    name: 'Serviços Ergon Studio',
+    name: 'Serviços Ergon Product Studio',
     itemListElement: SERVICES.map((s) => ({
       '@type': 'Offer',
       itemOffered: { '@id': SERVICE_IDS[s.key] },

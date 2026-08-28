@@ -53,7 +53,7 @@ function buildHead(head, url) {
     `<meta name="robots" content="${robots}" />`,
     `<meta name="googlebot" content="${robots}" />`,
     `<link rel="canonical" href="${esc(p.canonical)}" />`,
-    `<meta property="og:site_name" content="Ergon Studio" />`,
+    `<meta property="og:site_name" content="Ergon Product Studio" />`,
     `<meta property="og:locale" content="pt_BR" />`,
     `<meta property="og:type" content="${esc(p.ogType || 'website')}" />`,
     `<meta property="og:title" content="${esc(p.title)}" />`,

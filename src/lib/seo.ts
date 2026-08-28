@@ -85,7 +85,7 @@ export function useSEO({
     setMeta('name', 'description', description)
     setMeta('name', 'robots', robots)
     setMeta('name', 'googlebot', robots)
-    setMeta('property', 'og:site_name', 'Ergon Studio')
+    setMeta('property', 'og:site_name', 'Ergon Product Studio')
     setMeta('property', 'og:locale', 'pt_BR')
     setMeta('property', 'og:title', title)
     setMeta('property', 'og:description', description)
