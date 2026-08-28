@@ -1,7 +1,8 @@
 {
-  "name": "Ergon Digital Product Studio",
+  "name": "Ergon Studio",
   "short_name": "Ergon",
-  "description": "Automação, sistemas e produtos digitais.",
+  "description": "Digital product studio em São Paulo: sites, sistemas, aplicativos e automações sob medida.",
+  "lang": "pt-BR",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#05000f",
