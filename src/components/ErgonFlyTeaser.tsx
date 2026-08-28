@@ -22,7 +22,7 @@ export default function ErgonFlyTeaser() {
             <div className="relative overflow-hidden rounded-3xl">
               <div className="relative min-h-[360px] sm:aspect-[5/2] sm:min-h-0">
                 <img
-                  src="/images/fly-drone.jpg"
+                  src="/images/fly-drone.webp"
                   alt=""
                   aria-hidden="true"
                   loading="lazy"

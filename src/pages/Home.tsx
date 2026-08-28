@@ -13,18 +13,18 @@ const CANONICAL = `${SITE_URL}/`
 
 export default function Home() {
   useSEO({
-    title: 'Ergon Product Studio — Sites, Sistemas e Automações',
+    title: 'Ergon Studio | Sites, Sistemas e Automações sob Medida',
     description:
-      'A Ergon é um product studio: entendemos problemas de negócio e construímos sites, sistemas internos, plataformas e automações para resolvê-los.',
+      'Ergon Studio é um product studio em São Paulo: criamos sites, landing pages, sistemas internos, CRM, aplicativos e automações sob medida para empresas.',
     canonical: CANONICAL,
     ogImage: `${SITE_URL}/favicon.png`,
     jsonLd: [
       webPageSchema({
         id: `${SITE_URL}/#webpage`,
         url: CANONICAL,
-        name: 'Ergon Product Studio — Sites, Sistemas e Automações',
+        name: 'Ergon Studio | Sites, Sistemas e Automações sob Medida',
         description:
-          'A Ergon é um product studio: entendemos problemas de negócio e construímos sites, sistemas internos, plataformas e automações para resolvê-los.',
+          'Ergon Studio é um product studio em São Paulo: criamos sites, landing pages, sistemas internos, CRM, aplicativos e automações sob medida para empresas.',
         about: [ORGANIZATION_ID],
       }),
     ],

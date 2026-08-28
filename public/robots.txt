@@ -1,4 +1,10 @@
+# https://www.ergonstudio.com.br
+# Everything public is crawlable. Nothing here blocks CSS, JS, fonts or
+# images — the pages are prerendered, but crawlers still need the assets to
+# render and evaluate them.
+
 User-agent: *
 Allow: /
+Disallow: /404
 
 Sitemap: https://www.ergonstudio.com.br/sitemap.xml

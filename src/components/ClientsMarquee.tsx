@@ -31,7 +31,7 @@ export default function ClientsMarquee() {
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 bg-cover bg-top opacity-80"
         style={{
-          backgroundImage: 'url(/images/results-grid.png)',
+          backgroundImage: 'url(/images/results-grid.webp)',
           maskImage:
             'linear-gradient(to bottom, transparent, black 25%, black 75%, transparent)',
           WebkitMaskImage:

@@ -1,13 +1,20 @@
 {
-  "name": "tmp-scaffold",
+  "name": "ergon-studio-site",
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
+    "build": "tsc -b && npm run build:client && npm run build:server && npm run prerender && npm run sitemap && npm run llms",
     "lint": "oxlint",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "build:client": "vite build",
+    "build:server": "vite build --ssr src/entry-server.tsx --outDir dist/server --emptyOutDir false",
+    "prerender": "node scripts/prerender.mjs",
+    "sitemap": "node scripts/generate-sitemap.mjs",
+    "audit:seo": "node scripts/seo-audit.mjs",
+    "typecheck": "tsc -b --noEmit false --force",
+    "llms": "node scripts/generate-llms.mjs"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.3.3",
@@ -27,6 +34,7 @@
     "@vitejs/plugin-react": "^6.0.3",
     "oxlint": "^1.71.0",
     "playwright": "^1.62.1",
+    "sharp": "^0.35.4",
     "typescript": "~6.0.2",
     "vite": "^8.1.1"
   }

@@ -1,0 +1,277 @@
+# Ergon Studio — referência completa
+
+> Documento factual sobre a Ergon Studio, mantido no próprio site e gerado
+> a partir do conteúdo publicado nas páginas. Última atualização: 2026-08-27.
+
+- Nome: Ergon Studio (também citada como "Ergon")
+- Posicionamento: digital product studio
+- Localização: São Paulo, SP, Brasil
+- Atuação: Brasil, com base em São Paulo
+- Idioma: português do Brasil
+- Domínio canônico: https://www.ergonstudio.com.br
+- Marca audiovisual: Ergon Fly (captação aérea com drone)
+
+## O que a Ergon Studio é
+
+A Ergon Studio desenha e constrói produtos digitais sob medida. O trabalho
+começa pelo entendimento do processo de negócio e termina em software em
+produção: sites e landing pages, sistemas internos e painéis, CRMs,
+plataformas, aplicativos, cardápios digitais e automações que conectam as
+ferramentas que a empresa já usa.
+
+O estúdio se diferencia de uma agência tradicional em três pontos visíveis
+no próprio portfólio: as entregas são construídas sobre o processo real do
+cliente em vez de templates; site e sistema interno costumam ser tratados
+como um único produto (como no case Garagi); e integrações — estoque, APIs,
+IA — fazem parte do escopo, não de um projeto separado.
+
+## Como a Ergon trabalha
+
+01. **Discover** (entender) — Entendemos o problema, o processo e o negócio antes de propor qualquer resposta.
+02. **Design** (desenhar) — Desenhamos a solução — fluxo, telas e regras — antes de escrever a primeira linha de código.
+03. **Build** (construir) — Colocamos para funcionar: desenvolvimento, integrações e publicação.
+04. **Evolve** (evoluir) — Continuamos melhorando com o uso real, não paramos no lançamento.
+
+## Serviços
+
+### Sites e experiências digitais
+
+URL: https://www.ergonstudio.com.br/servicos/sites
+
+Não fazemos apenas uma página bonita. Criamos uma experiência digital que ajuda a empresa a ser entendida, percebida e escolhida.
+
+**Problema que resolve:** Um site bonito que não converte é só uma imagem cara. Cada página existe pra fazer alguém agir — entender, confiar e entrar em contato.
+
+**O que a Ergon entrega nesta frente:**
+
+- Sites institucionais
+- Landing pages e páginas de lançamento
+- Portfólios e catálogos digitais
+- Páginas comerciais e de eventos
+- Cardápios digitais
+- SEO técnico e performance
+
+**Cases que comprovam este trabalho:** [Green Bay Car](https://www.ergonstudio.com.br/portfolio/green-bay-car), [Green Bay Car Estética](https://www.ergonstudio.com.br/portfolio/green-bay-car-estetica), [Ergon Fly](https://www.ergonstudio.com.br/portfolio/ergon-fly), [Garagi — CRM + Website](https://www.ergonstudio.com.br/portfolio/garagi), [Navegando MKT](https://www.ergonstudio.com.br/portfolio/navegando-mkt), [Franco Gastrobar](https://www.ergonstudio.com.br/portfolio/franco-gastrobar), [3WS Moldes e Equipamentos](https://www.ergonstudio.com.br/portfolio/3ws-moldes)
+
+### Plataformas e sistemas sob medida
+
+URL: https://www.ergonstudio.com.br/servicos/plataformas
+
+Quando planilhas, WhatsApp e ferramentas diferentes começam a controlar a operação, provavelmente existe espaço para uma plataforma própria.
+
+**Problema que resolve:** Se sua empresa depende de cinco planilhas e três grupos de WhatsApp para funcionar, provavelmente já existe um sistema esperando para ser criado.
+
+**O que a Ergon entrega nesta frente:**
+
+- CRM — Organize contatos, oportunidades, histórico e etapas comerciais.
+- Controle de estoque — Centralize produtos, movimentações e informações em um único lugar.
+- Orçamentos — Crie, organize, acompanhe e envie propostas através de um sistema próprio.
+- Painel de gestão — Transforme informações espalhadas em uma visão única da operação.
+- Agendamento — Disponibilidade, reservas, clientes e gestão em um mesmo fluxo.
+- Área do cliente — Um lugar próprio pra quem já compra acompanhar o que importa.
+
+**Cases que comprovam este trabalho:** [Garagi — CRM + Website](https://www.ergonstudio.com.br/portfolio/garagi), [Vamo Nessa SP](https://www.ergonstudio.com.br/portfolio/vamo-nessa-sp), [Radar Navegando](https://www.ergonstudio.com.br/portfolio/radar-navegando)
+
+### Automação e operações inteligentes
+
+URL: https://www.ergonstudio.com.br/servicos/automacoes
+
+Se uma tarefa acontece várias vezes da mesma maneira, provavelmente não deveria continuar sendo feita manualmente.
+
+**Problema que resolve:** Você não precisa de mais uma ferramenta. Precisa parar de repetir tarefas que um sistema já poderia fazer sozinho.
+
+**O que a Ergon entrega nesta frente:**
+
+- Social selling e Direct automático
+- Automação de atendimento (WhatsApp e Instagram)
+- Qualificação de leads
+- Integrações entre sistemas via API
+- Geração automática de propostas
+- Relatórios e notificações automáticas
+
+**Cases que comprovam este trabalho:** [Radar Navegando](https://www.ergonstudio.com.br/portfolio/radar-navegando), [Vamo Nessa SP](https://www.ergonstudio.com.br/portfolio/vamo-nessa-sp)
+
+### Produtos digitais, do conceito ao lançamento
+
+URL: https://www.ergonstudio.com.br/servicos/produtos-digitais
+
+Não construímos tecnologia por construir. Pensamos, desenhamos e colocamos produtos digitais pra funcionar — da ideia até uma versão que alguém realmente consegue usar.
+
+**Problema que resolve:** Software só faz sentido quando começa a economizar tempo. Criamos ferramentas que entram na operação, não apresentações que ficam no Drive.
+
+**O que a Ergon entrega nesta frente:**
+
+- MVPs validados
+- Aplicativos e plataformas mobile
+- SaaS interno
+- Novos canais de atendimento
+- Evolução de produtos existentes
+
+**Cases que comprovam este trabalho:** [Radar Navegando](https://www.ergonstudio.com.br/portfolio/radar-navegando), [Vamo Nessa SP](https://www.ergonstudio.com.br/portfolio/vamo-nessa-sp)
+
+### Captação Aérea e Produção Audiovisual com Drone
+
+URL: https://www.ergonstudio.com.br/fly
+
+Captação aérea profissional com drone para empresas, imóveis, eventos e turismo, com piloto certificado ANAC. Área de atendimento: São Paulo e todo o Brasil.
+
+## Cases
+
+### Vamo Nessa SP
+
+URL: https://www.ergonstudio.com.br/portfolio/vamo-nessa-sp
+
+Painel próprio que transforma conteúdo, audiência e comentários em uma operação com dados — pra um creator não precisar abrir cinco telas pra entender o que está acontecendo com o próprio conteúdo.
+
+- Solução principal: Painel de dados e automação
+- Serviços aplicados: Painel / Dashboard, Automação de redes sociais, Social selling, Integração com IA
+- Tecnologias confirmadas: Vercel, Integração com Instagram/Meta, IA para respostas assistidas
+- Formato de entrega: Painel próprio, de uso privado do creator — sem URL pública.
+- Resultado registrado: +40% — de seguidores em apenas 30 dias
+
+**Desafio:** Acompanhar o desempenho do conteúdo, os comentários e as oportunidades de contato significava abrir várias telas diferentes — sem um lugar único pra entender o que estava funcionando e o que precisava de resposta.
+
+### Garagi — CRM + Website
+
+URL: https://www.ergonstudio.com.br/portfolio/garagi
+
+Website institucional e sistema interno de orçamentos — duas ferramentas pro mesmo negócio: uma pra quem chega de fora, outra pra quem toca a operação por dentro.
+
+- Solução principal: Website e CRM de orçamentos
+- Serviços aplicados: Website institucional, Sistema interno, CRM, UX/UI
+- Tecnologias confirmadas: Lovable
+- Formato de entrega: Website institucional publicado + sistema interno de orçamentos e CRM comercial (uso interno, sem URL pública).
+- Resultado registrado: Retenção ↑ Conversão ↑ — mais retenção de clientes e mais conversões na operação
+
+**Desafio:** Por fora, a Garagi precisava de uma presença digital que transmitisse melhor a qualidade do trabalho da oficina. Por dentro, cada orçamento era montado de um jeito diferente, sem um lugar central pra acompanhar clientes, pendências e retornos.
+
+### Green Bay Car Estética
+
+URL: https://www.ergonstudio.com.br/portfolio/green-bay-car-estetica
+
+Site próprio para a vertente de estética automotiva do grupo Green Bay Car — catálogo de serviços, comparação de antes e depois e agendamento direto por WhatsApp.
+
+- Solução principal: Site e catálogo de serviços
+- Serviços aplicados: Website institucional, Catálogo de serviços, UX/UI
+- Tecnologias confirmadas: Next.js, Vercel
+- Formato de entrega: Site institucional publicado, com catálogo de serviços e agendamento via WhatsApp.
+
+**Desafio:** A Green Bay Car precisava de uma presença digital própria para a vertente de estética automotiva — separada do site principal da loja, mas com o mesmo padrão premium, capaz de apresentar um catálogo técnico de serviços e gerar confiança para trabalhos de maior valor, como correção de pintura.
+
+### Green Bay Car
+
+URL: https://www.ergonstudio.com.br/portfolio/green-bay-car
+
+Site institucional conectado em tempo real ao estoque da loja — cada veículo publicado na Webmotors ganha automaticamente sua própria página, indexável pelo Google.
+
+- Solução principal: Site integrado ao estoque
+- Serviços aplicados: Website institucional, Integração de estoque, SEO técnico
+- Tecnologias confirmadas: Next.js, React, Tailwind CSS, Framer Motion, Vercel, Webmotors API
+- Formato de entrega: Site institucional publicado, com sincronização automática do estoque via API da Webmotors.
+- Resultado registrado: +300% — de visitas ao site
+
+**Desafio:** O site anterior praticamente não gerava tráfego orgânico: um CAPTCHA dificultava o acesso de crawlers como o Google, e o estoque ficava concentrado em uma página genérica, sem cada veículo ter sua própria URL indexável.
+
+### 3WS Moldes e Equipamentos
+
+URL: https://www.ergonstudio.com.br/portfolio/3ws-moldes
+
+Site que transforma um acervo industrial de mais de 1,5 milhão de kg em ferramentas em uma experiência digital técnica, organizada e indexável.
+
+- Solução principal: Catálogo industrial
+- Serviços aplicados: Website institucional, Arquitetura de informação, SEO técnico, UX/UI
+- Tecnologias confirmadas: Next.js, React, TypeScript, Tailwind CSS, Framer Motion, Vercel
+- Formato de entrega: Site institucional e comercial com catálogo técnico organizado, publicado na Vercel.
+
+**Desafio:** O site anterior era institucional demais: dedicava muito espaço à história da empresa e pouco às oportunidades comerciais, sem destacar o estoque de mais de 1,5 milhão de kg em ferramentas nem a compra e venda por quilo.
+
+### Franco Gastrobar
+
+URL: https://www.ergonstudio.com.br/portfolio/franco-gastrobar
+
+Cardápio digital em formato de site — acessível pelo QR Code na mesa e por quem ainda está decidindo onde comer, com painel próprio pra equipe atualizar tudo sem depender da Ergon.
+
+- Solução principal: Cardápio digital para restaurante
+- Serviços aplicados: Cardápio digital, UX/UI, SEO, Painel administrativo
+- Tecnologias confirmadas: Lovable
+- Formato de entrega: Cardápio digital publicado + painel administrativo para a equipe gerenciar o conteúdo.
+
+**Desafio:** Cardápios físicos exigem manutenção constante: placas quebram, preços mudam, e cada ajuste depende de uma nova impressão. Um cardápio pensado só pra dentro do restaurante também desperdiça quem já pesquisa o Franco antes de chegar.
+
+### Navegando MKT
+
+URL: https://www.ergonstudio.com.br/portfolio/navegando-mkt
+
+Site que transforma a audiência que a Navegando já construiu nas redes em um ativo de marca — portfólio, metodologia e geração de leads em um só lugar.
+
+- Solução principal: Site e geração de leads
+- Serviços aplicados: Website institucional, Portfólio digital, UX/UI, Geração de leads
+- Tecnologias confirmadas: Lovable
+- Formato de entrega: Site institucional e de portfólio publicado, com formulário de geração de leads.
+
+**Desafio:** A Navegando já tinha reconhecimento pelas redes sociais, mas esse reconhecimento estava preso ao Instagram e ao TikTok — faltava um ambiente próprio pra reunir clientes, metodologia e resultados e transformar audiência em oportunidade comercial.
+
+### Ergon Fly
+
+URL: https://www.ergonstudio.com.br/portfolio/ergon-fly
+
+Vertente audiovisual da Ergon dedicada à captação profissional com drone — site próprio pra apresentar o portfólio e ser encontrado por quem já procura esse serviço.
+
+- Solução principal: Site da vertente audiovisual
+- Serviços aplicados: Website institucional, Audiovisual, SEO
+- Tecnologias confirmadas: React, Vite, Tailwind CSS
+- Formato de entrega: Página própria publicada em ergonstudio.com.br/fly.
+
+**Desafio:** O site precisava comunicar a qualidade do equipamento e das filmagens, funcionar como portfólio e, ao mesmo tempo, ser encontrado por quem já pesquisa captação aérea profissional.
+
+### Radar Navegando
+
+URL: https://www.ergonstudio.com.br/portfolio/radar-navegando
+
+Plataforma interna de prospecção ativa que separa descoberta de oportunidade — encontrando estabelecimentos por região e qualificando leads com apoio de IA.
+
+- Solução principal: Plataforma interna de prospecção
+- Serviços aplicados: Sistema interno, CRM, Sales intelligence, Automação
+- Tecnologias confirmadas: Next.js, React, TypeScript, Supabase, OpenAI API, Google Places API, Vercel, Tailwind CSS
+- Formato de entrega: Sistema interno de uso privado da Navegando MKT, sem URL pública.
+
+**Desafio:** A prospecção de restaurantes dependia de uma sequência extensa de tarefas manuais — pesquisar estabelecimentos, avaliar potencial, achar o decisor — e uma busca ampla podia retornar centenas de resultados sem relevância comercial.
+
+## Perguntas frequentes sobre captação com drone
+
+**Quanto custa uma filmagem com drone em São Paulo?**
+
+O valor de uma filmagem com drone profissional varia conforme a duração da captação, o número de locações e o nível de edição. A sessão padrão dura cerca de 2 horas, inclui imagens aéreas em 4K nos formatos horizontal e vertical e entrega em até 3 dias úteis. O orçamento é gratuito e sem compromisso.
+
+**Preciso de autorização para voar de drone?**
+
+Sim. Toda operação aérea comercial no Brasil exige cadastro do equipamento no SISANT (ANAC), autorização de voo pelo SARPAS (DECEA) e seguro de responsabilidade civil (RETA). Operamos com piloto certificado ANAC e toda a documentação regularizada.
+
+**Vocês gravam em formato vertical e horizontal?**
+
+Sim. Captamos em formato horizontal (16:9) para sites, YouTube e apresentações, e também em formato vertical (9:16) otimizado para Instagram Reels, TikTok e Stories, na mesma sessão e sem custo adicional de retorno.
+
+**Em quanto tempo recebo as imagens e vídeos?**
+
+A entrega padrão é de até 3 dias úteis após a captação, incluindo edição profissional, tratamento de cor e exportação em formatos otimizados para cada plataforma.
+
+**Vocês atendem apenas São Paulo ou viajam para outras cidades?**
+
+Atendemos São Paulo capital, Grande São Paulo (Campinas, Santos, ABC, Guarulhos) e viajamos para qualquer cidade do Brasil.
+
+**Quais equipamentos vocês utilizam?**
+
+Utilizamos o drone DJI Mini 4 Pro com câmera de até 48MP e gravação em resolução 4K, um equipamento de última geração que garante estabilidade, precisão e qualidade de imagem superior.
+
+## Contato
+
+- WhatsApp (estúdio): https://wa.me/5511988162883
+- WhatsApp (Ergon Fly / drone): https://wa.me/5511967206875
+- E-mail: agenciaergon0@gmail.com
+- Site: https://www.ergonstudio.com.br
+
+## Observações sobre este documento
+
+Preço, prazo e escopo não estão listados porque variam por projeto e não são
+publicados no site. Números de clientes, avaliações e datas de projeto também
+não constam: só entram aqui informações que estão publicadas nas páginas.

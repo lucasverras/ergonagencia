@@ -9,6 +9,7 @@ import { services } from '../services/servicesData'
 import { WHATSAPP_URL } from '../lib/schema'
 
 const ergonLinks = [
+  { label: 'Todos os serviços', href: '/servicos' },
   { label: 'Projetos', href: '/portfolio' },
   { label: 'Método', href: '/#processo' },
   { label: 'Ergon Fly', href: '/fly' },
@@ -126,7 +127,7 @@ export default function Footer() {
 
         <div className="mt-10 flex flex-col-reverse items-center gap-6 border-t border-line pt-8 md:flex-row md:justify-between">
           <p className="text-xs text-graphite-dim">
-            © {new Date().getFullYear()} Ergon Product Studio ·{' '}
+            © {new Date().getFullYear()} Ergon Studio ·{' '}
             <a
               href="https://www.ergonstudio.com.br"
               target="_blank"

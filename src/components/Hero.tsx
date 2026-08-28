@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState, type ComponentType } from 'react'
 import { Link } from 'react-router-dom'
 import {
   useReducedMotion,
@@ -6,22 +6,44 @@ import {
   AnimatePresence,
   type Variants,
 } from 'framer-motion'
-import { DarkVeil } from './ui/dark-veil'
 import MagicBentoCard from './ui/MagicBentoCard'
 import CircularText from './ui/CircularText'
 import { GradualSpacing } from './ui/gradual-spacing'
 import { TextReveal } from './ui/text-reveal'
+import { useIsMobile } from '@/lib/useIsMobile'
 
 // small preview loop for the hero slideshow — kept local and short (not the
 // full case-study data from Portfolio.tsx) since this is a glance, not the
 // portfolio section itself
 const previews = [
-  { name: 'GBC', category: 'Website & Digital Experience', image: '/portfolio/green-bay-car/desktop-hero.png' },
-  { name: 'Garagi', category: 'Automotive Digital Experience', image: '/portfolio/garagi/desktop-hero.png' },
-  { name: 'Cardápio Franco', category: 'Digital Menu', image: '/images/portfolio/cardapio-franco.png' },
+  { name: 'GBC', category: 'Website & Digital Experience', image: '/portfolio/green-bay-car/desktop-hero.webp' },
+  { name: 'Garagi', category: 'Automotive Digital Experience', image: '/portfolio/garagi/desktop-hero.webp' },
+  { name: 'Cardápio Franco', category: 'Digital Menu', image: '/images/portfolio/cardapio-franco.webp' },
 ]
 
 const circularLabel = 'VISUAL DESIGN STUDIO - VISUAL DESIGN STUDIO - '
+
+// DarkVeil pulls in ogl (WebGL) — about a fifth of the app bundle for a
+// purely decorative background that sits behind a CSS gradient which
+// already carries the look on its own. Loading it after mount keeps it out
+// of the bundle the browser must parse before it can hydrate and paint the
+// headline. Renders nothing server-side and nothing on the client's first
+// pass, so there's no hydration mismatch to recover from.
+type DarkVeilProps = React.ComponentProps<typeof import('./ui/dark-veil')['DarkVeil']>
+
+function useDeferredDarkVeil() {
+  const [Veil, setVeil] = useState<ComponentType<DarkVeilProps> | null>(null)
+  useEffect(() => {
+    let alive = true
+    import('./ui/dark-veil').then((m) => {
+      if (alive) setVeil(() => m.DarkVeil)
+    })
+    return () => {
+      alive = false
+    }
+  }, [])
+  return Veil
+}
 
 function PortfolioSlideshow() {
   const [active, setActive] = useState(0)
@@ -141,6 +163,8 @@ const container: Variants = {
 
 
 export default function Hero() {
+  const isMobile = useIsMobile()
+  const DarkVeil = useDeferredDarkVeil()
   const reduced = useReducedMotion()
 
   return (
@@ -163,14 +187,14 @@ export default function Hero() {
           the CPPN neural-net shader processes <3% of full-res pixels so the
           GPU load is dramatically lower while the atmospheric feel stays. */}
       <div className="pointer-events-none absolute inset-0 z-[1] opacity-70">
-        <DarkVeil
+        {DarkVeil && <DarkVeil
           hueShift={0}
-          noiseIntensity={window.innerWidth < 768 ? 0.1 : 0.17}
-          scanlineIntensity={window.innerWidth < 768 ? 0.6 : 1}
-          speed={window.innerWidth < 768 ? 2 : 3}
+          noiseIntensity={isMobile ? 0.1 : 0.17}
+          scanlineIntensity={isMobile ? 0.6 : 1}
+          speed={isMobile ? 2 : 3}
           scanlineFrequency={5}
-          resolutionScale={window.innerWidth < 768 ? 0.3 : 1}
-        />
+          resolutionScale={isMobile ? 0.3 : 1}
+        />}
       </div>
 
       {/* real content sits on its own explicit stacking layer above decoration/background.

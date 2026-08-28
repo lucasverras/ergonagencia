@@ -6,36 +6,53 @@
     <link rel="apple-touch-icon" href="/favicon.png" />
     <link rel="manifest" href="/site.webmanifest" />
     <link rel="stylesheet" href="/fonts/agharti.css" />
+    <!-- The H1 on every page is set in Agharti-DemiUltraWide and is the LCP
+         element on most routes; it's referenced from agharti.css, so without
+         this preload the browser can't start fetching it until that
+         stylesheet has been parsed. -->
+    <link
+      rel="preload"
+      href="/fonts/agharti/Agharti-DemiUltraWide.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="robots" content="index, follow" />
 
-    <!-- Static fallback for crawlers that don't execute JS — every route
-         overwrites these via src/lib/seo.ts's useSEO on mount, since this
-         same file is served for every path (see vercel.json's SPA rewrite). -->
-    <title>Ergon Product Studio — Sites, Sistemas e Automações</title>
+    <!-- SEO-FALLBACK:START — everything between these markers is replaced
+         per route by scripts/prerender.mjs. Each public route is prerendered
+         with its own title/description/canonical/OG/JSON-LD; these values
+         are only what a request that somehow misses a prerendered file
+         would get. Nothing outside the markers is touched. -->
+    <title>Ergon Studio | Sites, Sistemas e Automações sob Medida</title>
     <meta
       name="description"
-      content="A Ergon é um product studio: entendemos problemas de negócio e construímos sites, sistemas internos, plataformas e automações para resolvê-los."
+      content="Ergon Studio é um product studio em São Paulo: criamos sites, landing pages, sistemas internos, CRM, aplicativos e automações sob medida para empresas."
     />
     <link rel="canonical" href="https://www.ergonstudio.com.br/" />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
 
-    <meta property="og:site_name" content="Ergon Product Studio" />
+    <meta property="og:site_name" content="Ergon Studio" />
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="pt_BR" />
-    <meta property="og:title" content="Ergon Product Studio — Sites, Sistemas e Automações" />
+    <meta property="og:title" content="Ergon Studio | Sites, Sistemas e Automações sob Medida" />
     <meta
       property="og:description"
-      content="A Ergon é um product studio: entendemos problemas de negócio e construímos sites, sistemas internos, plataformas e automações para resolvê-los."
+      content="Ergon Studio é um product studio em São Paulo: criamos sites, landing pages, sistemas internos, CRM, aplicativos e automações sob medida para empresas."
     />
     <meta property="og:url" content="https://www.ergonstudio.com.br/" />
-    <meta property="og:image" content="https://www.ergonstudio.com.br/favicon.png" />
+    <meta property="og:image" content="https://www.ergonstudio.com.br/og/ergon-studio.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
 
-    <meta name="twitter:card" content="summary" />
-    <meta name="twitter:title" content="Ergon Product Studio — Sites, Sistemas e Automações" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Ergon Studio | Sites, Sistemas e Automações sob Medida" />
     <meta
       name="twitter:description"
-      content="A Ergon é um product studio: entendemos problemas de negócio e construímos sites, sistemas internos, plataformas e automações para resolvê-los."
+      content="Ergon Studio é um product studio em São Paulo: criamos sites, landing pages, sistemas internos, CRM, aplicativos e automações sob medida para empresas."
     />
+    <meta name="twitter:image" content="https://www.ergonstudio.com.br/og/ergon-studio.png" />
+    <!-- SEO-FALLBACK:END -->
   </head>
   <body>
     <div id="root"></div>

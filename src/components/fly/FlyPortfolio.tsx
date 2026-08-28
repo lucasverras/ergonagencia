@@ -11,7 +11,7 @@ const clips = [
     title: 'Imagens Rurais',
     description: 'Capturas aéreas de paisagens e propriedades rurais.',
     src: '/fly/videos/portfolio-imagens-rurais.mp4',
-    poster: '/fly/images/portfolio-imagens-rurais-poster.jpg',
+    poster: '/fly/images/portfolio-imagens-rurais-poster.webp',
     accent: 'lime',
   },
   {
@@ -19,7 +19,7 @@ const clips = [
     title: 'Natureza',
     description: 'A beleza natural vista de uma perspectiva única.',
     src: '/fly/videos/portfolio-natureza.mp4',
-    poster: '/fly/images/portfolio-natureza-poster.jpg',
+    poster: '/fly/images/portfolio-natureza-poster.webp',
     accent: 'violet',
   },
   {

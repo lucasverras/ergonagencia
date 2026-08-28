@@ -36,11 +36,26 @@ export function organizationSchema() {
     '@context': 'https://schema.org',
     '@type': 'Organization',
     '@id': ORGANIZATION_ID,
-    name: 'Ergon Product Studio',
-    alternateName: ['Ergon', 'Ergon Studio'],
+    name: 'Ergon Studio',
+    alternateName: ['Ergon', 'Ergon Product Studio'],
     url: `${SITE_URL}/`,
-    logo: `${SITE_URL}/favicon.png`,
-    image: `${SITE_URL}/favicon.png`,
+    logo: {
+      '@type': 'ImageObject',
+      '@id': `${SITE_URL}/#logo`,
+      url: `${SITE_URL}/favicon.png`,
+      contentUrl: `${SITE_URL}/favicon.png`,
+      caption: 'Ergon Studio',
+    },
+    image: `${SITE_URL}/og/ergon-studio.png`,
+    slogan: 'Digital Product Studio',
+    // São Paulo is the studio's stated base and the drone vertical's
+    // stated coverage; no street address or opening hours are published
+    // anywhere on the site, so no PostalAddress / LocalBusiness is
+    // claimed here.
+    areaServed: [
+      { '@type': 'City', name: 'São Paulo' },
+      { '@type': 'Country', name: 'Brasil' },
+    ],
     description:
       'A Ergon projeta e desenvolve automações, sistemas personalizados, produtos digitais e websites para empresas que precisam transformar processos manuais em ferramentas que funcionam. Também produz captação aérea com drone como serviço complementar.',
     // Two real, currently-visible contact channels — the studio's own
@@ -81,8 +96,8 @@ export function websiteSchema() {
     '@type': 'WebSite',
     '@id': WEBSITE_ID,
     url: `${SITE_URL}/`,
-    name: 'Ergon Product Studio',
-    alternateName: ['Ergon', 'Ergon Studio'],
+    name: 'Ergon Studio',
+    alternateName: ['Ergon', 'Ergon Product Studio'],
     inLanguage: 'pt-BR',
     publisher: { '@id': ORGANIZATION_ID },
   }
@@ -189,7 +204,7 @@ export function offerCatalogSchema() {
     '@context': 'https://schema.org',
     '@type': 'OfferCatalog',
     '@id': `${SITE_URL}/#offer-catalog`,
-    name: 'Serviços Ergon Product Studio',
+    name: 'Serviços Ergon Studio',
     itemListElement: SERVICES.map((s) => ({
       '@type': 'Offer',
       itemOffered: { '@id': SERVICE_IDS[s.key] },
@@ -254,5 +269,144 @@ export function webPageSchema(page: WebPageDef) {
     ...(page.about && page.about.length > 0
       ? { about: page.about.map((id) => ({ '@id': id })) }
       : {}),
+  }
+}
+
+// One @graph instead of eight sibling <script> blocks: the site-wide
+// entities all reference each other by @id, so emitting them as a single
+// connected graph is both smaller on the wire and unambiguous for parsers
+// about which Organization the Services belong to.
+export function globalGraphSchema() {
+  const strip = (o: object) => {
+    const { '@context': _ctx, ...rest } = o as Record<string, unknown>
+    return rest
+  }
+  return {
+    '@context': 'https://schema.org',
+    '@graph': [
+      strip(organizationSchema()),
+      strip(websiteSchema()),
+      ...servicesSchema().map(strip),
+      strip(offerCatalogSchema()),
+      strip(siteNavigationSchema()),
+    ],
+  }
+}
+
+export interface CollectionPageDef {
+  id: string
+  url: string
+  name: string
+  description: string
+  /** the things actually listed on the page, in the order they appear */
+  items: { name: string; url: string }[]
+}
+
+// /servicos and /portfolio are both real listing pages — CollectionPage
+// with a mainEntity ItemList describes exactly what a visitor sees, one
+// entry per card actually rendered.
+export function collectionPageSchema(page: CollectionPageDef) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    '@id': page.id,
+    url: page.url,
+    name: page.name,
+    description: page.description,
+    isPartOf: { '@id': WEBSITE_ID },
+    about: { '@id': ORGANIZATION_ID },
+    mainEntity: {
+      '@type': 'ItemList',
+      itemListElement: page.items.map((item, i) => ({
+        '@type': 'ListItem',
+        position: i + 1,
+        name: item.name,
+        url: item.url,
+      })),
+    },
+  }
+}
+
+export interface CaseWorkDef {
+  url: string
+  /** the project/client name as shown in the page's own H1 */
+  name: string
+  description: string
+  image?: string
+  /** what Ergon actually built, from the case's own visible copy */
+  about: string[]
+  /** @ids of the Service entities this case demonstrates */
+  serviceIds: string[]
+}
+
+// A case study is a piece of work Ergon authored about a client project —
+// CreativeWork with Ergon as `creator`/`author` and the client as the
+// `about` subject. Deliberately NOT Article (these aren't dated editorial
+// posts, and no real publish dates exist to claim) and deliberately not
+// anything that would read as the client's own site.
+export function caseWorkSchema(c: CaseWorkDef) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'CreativeWork',
+    '@id': `${c.url}/#case`,
+    url: c.url,
+    name: `${c.name} — case Ergon Studio`,
+    headline: c.name,
+    description: c.description,
+    inLanguage: 'pt-BR',
+    ...(c.image ? { image: c.image } : {}),
+    // Ergon made this case study AND did the work it describes; the client
+    // is the subject, never the owner of this page.
+    author: { '@id': ORGANIZATION_ID },
+    creator: { '@id': ORGANIZATION_ID },
+    publisher: { '@id': ORGANIZATION_ID },
+    mainEntityOfPage: { '@id': `${c.url}/#webpage` },
+    about: [
+      { '@type': 'Organization', name: c.name },
+      ...c.serviceIds.map((id) => ({ '@id': id })),
+    ],
+    keywords: c.about,
+  }
+}
+
+export interface PageServiceDef {
+  id: string
+  url: string
+  name: string
+  description: string
+  serviceType: string
+  /** @id of the site-wide Service entity this page is the detail view of */
+  sameAs: string
+  /** the deliverables the page itself lists, as an OfferCatalog */
+  offerings: string[]
+}
+
+// Page-scoped Service for a /servicos/:slug page. Separate from the
+// site-wide SERVICES entities (which exist so every page can reference the
+// same @ids); this one carries the detail the page itself shows. No
+// `offers`/price: nothing on these pages publishes one.
+export function serviceSchema(s: PageServiceDef) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    '@id': s.id,
+    url: s.url,
+    name: s.name,
+    description: s.description,
+    serviceType: s.serviceType,
+    provider: { '@id': ORGANIZATION_ID },
+    areaServed: [
+      { '@type': 'City', name: 'São Paulo' },
+      { '@type': 'Country', name: 'Brasil' },
+    ],
+    isSimilarTo: { '@id': s.sameAs },
+    hasOfferCatalog: {
+      '@type': 'OfferCatalog',
+      name: s.name,
+      itemListElement: s.offerings.map((title) => ({
+        '@type': 'Offer',
+        itemOffered: { '@type': 'Service', name: title },
+      })),
+    },
   }
 }

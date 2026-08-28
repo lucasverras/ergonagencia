@@ -7,6 +7,10 @@ import type { CaseStudy } from '@/cases/casesData'
 import { CaseMedia } from './CaseMedia'
 
 export function CaseHero({ study }: { study: CaseStudy }) {
+  // some names carry their own " — subtitle"; the attribution line wants
+  // just the client
+  const clientName = study.name.split(' — ')[0]
+
   return (
     <header className="relative overflow-hidden pt-32 pb-14 md:pt-40 md:pb-20">
       <GradientBars
@@ -45,7 +49,7 @@ export function CaseHero({ study }: { study: CaseStudy }) {
               animate={{ opacity: [0.4, 1, 0.4] }}
               transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
             />
-            Case / Ergon
+            Case · Ergon Studio
           </motion.span>
 
           <motion.h1
@@ -57,6 +61,17 @@ export function CaseHero({ study }: { study: CaseStudy }) {
 
           <motion.p variants={revealUp} className="mt-6 max-w-2xl text-base text-graphite md:text-lg">
             {study.headline}
+          </motion.p>
+
+          {/* One plain, unambiguous line of attribution. A case page ranks
+              for the client's name, so it has to say in body copy — not just
+              in an eyebrow — whose work this is and whose site it isn't. */}
+          <motion.p variants={revealUp} className="mt-4 max-w-2xl text-sm text-graphite-dim">
+            Projeto desenvolvido pela{' '}
+            <Link to="/" className="text-graphite underline underline-offset-4 transition-colors hover:text-lime">
+              Ergon Studio
+            </Link>
+            . Esta é a página do case, não o site oficial de {clientName}.
           </motion.p>
 
           {study.ctaUrl && study.ctaLabel && (

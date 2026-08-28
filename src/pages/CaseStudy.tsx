@@ -4,7 +4,7 @@ import { Check } from 'lucide-react'
 import { getCaseBySlug, getNextCase } from '@/cases/casesData'
 import { servicesForCase } from '@/services/servicesData'
 import { useSEO } from '@/lib/seo'
-import { SITE_URL, SERVICE_IDS, breadcrumbSchema, webPageSchema } from '@/lib/schema'
+import { SITE_URL, SERVICE_IDS, breadcrumbSchema, webPageSchema, caseWorkSchema } from '@/lib/schema'
 import { revealUp, revealContainer, viewportOnce } from '@/lib/reveal'
 import { CaseHero } from '@/components/case/CaseHero'
 import { CaseQuickInfo } from '@/components/case/CaseQuickInfo'
@@ -31,17 +31,24 @@ export default function CaseStudy() {
   // unresolved slug is a real 404 (noindex), not silently redirected to
   // home, which would otherwise read as a soft-404 to crawlers
   const canonical = `${SITE_URL}/portfolio/${slug ?? ''}`
+  // "[Cliente] — [solução] | Case Ergon" so the SERP result can never be
+  // mistaken for the client's own site — the case framing is in the title
+  // itself, not only in the body copy.
+  // a couple of case names already carry their own " — subtitle" (e.g.
+  // "Garagi — CRM + Website"); the title only needs the client name in
+  // front of the solution, or it reads as two dashes in a row.
+  const clientName = study?.name.split(' — ')[0]
   const title = study
-    ? `${study.name} — Case Ergon Product Studio`
-    : 'Página não encontrada — Ergon Product Studio'
-  const description = study ? study.headline : 'Este case não existe ou foi movido.'
+    ? `${clientName} — ${study.solution} | Case Ergon`
+    : 'Página não encontrada | Ergon Studio'
+  const description = study ? study.metaDescription : 'Este case não existe ou foi movido.'
   const relatedServices = study ? servicesForCase(study.slug) : []
   const ogImage = study?.heroMedia.kind === 'real' ? `${SITE_URL}${study.heroMedia.src}` : undefined
 
   useSEO({
     title,
     description,
-    canonical: study ? canonical : `${SITE_URL}/`,
+    canonical: study ? canonical : `${SITE_URL}/404`,
     ogImage,
     noindex: !study,
     jsonLd: study
@@ -59,6 +66,16 @@ export default function CaseStudy() {
             { name: 'Portfólio', url: `${SITE_URL}/portfolio` },
             { name: study.name, url: canonical },
           ]),
+          // the case study itself as a work Ergon authored — the client is
+          // the subject of it, never its publisher
+          caseWorkSchema({
+            url: canonical,
+            name: study.name,
+            description: study.headline,
+            image: ogImage,
+            about: study.servicos,
+            serviceIds: relatedServices.map((s) => SERVICE_IDS[s.serviceKey]),
+          }),
         ]
       : [],
   })

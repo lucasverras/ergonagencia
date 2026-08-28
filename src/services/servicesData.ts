@@ -51,6 +51,11 @@ export interface ServiceStudy {
   finalCtaHeadline: string
   metaTitle: string
   metaDescription: string
+  /** Real questions this service gets asked, answered with what the studio
+   * can honestly state. Where price or duration genuinely varies, the
+   * answer names the factors instead of inventing a range — no figure
+   * appears here that isn't already true elsewhere on the site. */
+  faq: { question: string; answer: string }[]
 }
 
 // One process, reused as-is across every service page — Discover → Design
@@ -96,9 +101,31 @@ export const services: ServiceStudy[] = [
       '3ws-moldes',
     ],
     finalCtaHeadline: 'Tem algo na sua operação que poderia funcionar melhor?',
-    metaTitle: 'Criação de Sites e Experiências Digitais | Ergon',
+    metaTitle: 'Criação de Sites Profissionais e Landing Pages | Ergon Studio',
     metaDescription:
       'Sites institucionais, landing pages e produtos web com SEO técnico e UX pensados pra converter, não só pra existir.',
+    faq: [
+      {
+        question: 'Qual a diferença entre um site institucional e uma landing page?',
+        answer:
+          'Um site institucional apresenta a empresa inteira — quem é, o que faz, para quem, com várias páginas e navegação. Uma landing page existe para uma única ação: um lançamento, uma campanha, um serviço específico. Na prática, a escolha vem do objetivo: se a pessoa precisa entender o negócio antes de decidir, é site; se ela já chegou decidida por um anúncio, é landing page. A Ergon constrói os dois, e às vezes o projeto tem site institucional com landing pages de campanha por cima.',
+      },
+      {
+        question: 'Quanto tempo leva para desenvolver um site?',
+        answer:
+          'Depende de três coisas: quantas páginas e seções o site tem, se o conteúdo (textos, fotos, catálogo) já existe ou precisa ser produzido, e se há integração com algum sistema — estoque, agendamento, cardápio. Um site de apresentação com conteúdo pronto é bem mais rápido que um site conectado em tempo real a um estoque, como o da Green Bay Car. O prazo é definido depois da etapa de Discover, quando já se sabe o escopo real.',
+      },
+      {
+        question: 'O cliente consegue atualizar o conteúdo depois?',
+        answer:
+          'Sim, quando isso faz parte do escopo. No Franco Gastrobar, por exemplo, a equipe do restaurante atualiza o cardápio por um painel próprio, sem depender da Ergon. Em sites cujo conteúdo quase não muda, às vezes não compensa construir um painel — e isso é conversado antes, não depois.',
+      },
+      {
+        question: 'O site já vem preparado para aparecer no Google?',
+        answer:
+          'Sim. A estrutura de conteúdo e o SEO técnico são definidos antes de qualquer tela ser desenhada: hierarquia de títulos, URLs legíveis, metadados por página, dados estruturados, HTML que o buscador lê sem precisar executar a página inteira, e performance. Foi assim no 3WS Moldes, onde um acervo industrial grande precisou virar uma estrutura navegável e indexável.',
+      },
+    ],
   },
   {
     slug: 'plataformas',
@@ -123,9 +150,31 @@ export const services: ServiceStudy[] = [
     visualExample: { kind: 'case', caseSlug: 'vamo-nessa-sp', caption: 'Painel Vamo Nessa SP, criado pela Ergon.' },
     relatedCaseSlugs: ['garagi', 'vamo-nessa-sp', 'radar-navegando'],
     finalCtaHeadline: 'Sua operação ainda roda em planilha e grupo de WhatsApp?',
-    metaTitle: 'Plataformas e Sistemas Internos | Ergon',
+    metaTitle: 'Desenvolvimento de Sistemas Sob Medida | Ergon Studio',
     metaDescription:
-      'CRM, controle de estoque, orçamentos, painéis e agendamento — plataformas sob medida, construídas sobre o processo que já existe na sua empresa.',
+      'CRM, controle de estoque, orçamentos, painéis administrativos e agendamento — sistemas sob medida, construídos sobre o processo que já existe na sua empresa.',
+    faq: [
+      {
+        question: 'Quanto custa desenvolver um sistema sob medida?',
+        answer:
+          'Não existe tabela, porque o custo acompanha o escopo: quantos fluxos o sistema cobre, quantos perfis de usuário existem, se precisa integrar com ferramentas que a empresa já usa e se há migração de dados. O caminho é sempre o mesmo — entender o processo, desenhar o escopo e só então orçar em cima de algo concreto. Orçamento feito antes de entender a operação é chute.',
+      },
+      {
+        question: 'Dá para integrar o sistema com as ferramentas que já usamos?',
+        answer:
+          'Sim, quando a ferramenta oferece API ou algum outro meio de integração. O site da Green Bay Car é conectado em tempo real ao estoque publicado na Webmotors; o Radar Navegando usa Google Places e OpenAI dentro do próprio fluxo de prospecção. A pergunta prática não é se dá para integrar, e sim se aquela ferramenta específica permite — o que se verifica na etapa de Discover.',
+      },
+      {
+        question: 'Por que não usar um CRM pronto do mercado?',
+        answer:
+          'Muitas vezes vale usar. Um sistema sob medida faz sentido quando o processo da empresa não cabe no que a ferramenta pronta assume — quando a equipe preenche campos com significado diferente do rótulo, mantém uma planilha paralela ou usa metade do produto. Aí a ferramenta genérica vira custo de adaptação permanente, e um sistema construído sobre o processo real sai na frente.',
+      },
+      {
+        question: 'Onde o sistema fica hospedado?',
+        answer:
+          'Nos projetos publicados aqui, na Vercel — é a infraestrutura que a Ergon usa e mantém. O acesso e a propriedade do que foi construído ficam com o cliente.',
+      },
+    ],
   },
   {
     slug: 'automacoes',
@@ -150,9 +199,31 @@ export const services: ServiceStudy[] = [
     visualExample: { kind: 'flow', steps: ['Comentário', 'Resposta', 'Direct', 'Conversa', 'Lead'] },
     relatedCaseSlugs: ['radar-navegando', 'vamo-nessa-sp'],
     finalCtaHeadline: 'Tem uma operação que ainda depende demais de trabalho manual?',
-    metaTitle: 'Automação para Empresas | Ergon',
+    metaTitle: 'Automação de Processos e Atendimento | Ergon Studio',
     metaDescription:
       'Automação de atendimento, social selling e processos internos com integrações via API. Menos operação manual, mais coisa acontecendo sozinha.',
+    faq: [
+      {
+        question: 'Como funciona uma automação de atendimento?',
+        answer:
+          'A automação assume a parte repetível da conversa: responder um comentário, iniciar o direct, fazer as perguntas de qualificação, registrar o lead e avisar quem precisa continuar. O que ela não faz é substituir a conversa humana — ela entrega uma pessoa já qualificada para quem vai fechar. É o fluxo que roda no Vamo Nessa SP: comentário, resposta, direct, conversa, lead.',
+      },
+      {
+        question: 'Que tipo de tarefa vale a pena automatizar?',
+        answer:
+          'A que acontece muitas vezes da mesma maneira e tem regra clara: follow-up que segue sempre o mesmo roteiro, qualificação com as mesmas perguntas, geração de proposta a partir dos mesmos campos, relatório recorrente, notificação de status. Tarefa cujo critério muda a cada caso normalmente não deve ser automatizada — deve ser simplificada antes.',
+      },
+      {
+        question: 'A automação funciona com WhatsApp e Instagram?',
+        answer:
+          'Sim, esses são os dois canais mais frequentes nos projetos da Ergon, tanto em atendimento quanto em social selling. A automação também liga esses canais ao que vem depois: um CRM, um painel, uma planilha ou o sistema interno da própria empresa.',
+      },
+      {
+        question: 'Precisamos trocar as ferramentas que já usamos?',
+        answer:
+          'Normalmente não. O ponto da automação é justamente conectar o que já existe via API, para que a informação pare de ser copiada de um lugar para outro à mão. Trocar de ferramenta só entra na conversa se a atual não permitir integração nenhuma.',
+      },
+    ],
   },
   {
     slug: 'produtos-digitais',
@@ -176,9 +247,31 @@ export const services: ServiceStudy[] = [
     visualExample: { kind: 'case', caseSlug: 'vamo-nessa-sp', caption: 'Vamo Nessa SP — produto interno criado do zero pela Ergon.' },
     relatedCaseSlugs: ['radar-navegando', 'vamo-nessa-sp'],
     finalCtaHeadline: 'Tem uma ideia que já devia estar em produção?',
-    metaTitle: 'Desenvolvimento de Produtos Digitais | Ergon',
+    metaTitle: 'Desenvolvimento de Produtos Digitais e Aplicativos | Ergon Studio',
     metaDescription:
-      'MVPs, plataformas e ferramentas sob medida — da validação ao lançamento. Ergon, product studio.',
+      'MVPs, aplicativos e plataformas sob medida, da validação ao lançamento — desenvolvidos pela Ergon Studio, product studio em São Paulo.',
+    faq: [
+      {
+        question: 'O que é um MVP e por que começar por ele?',
+        answer:
+          'É a menor versão do produto que já resolve o problema de verdade para alguém — não um protótipo de demonstração. Começar por ele encurta o caminho entre a ideia e o uso real, e o uso real é o que mostra o que deve ser construído em seguida. O Radar Navegando nasceu assim: uma plataforma interna resolvendo prospecção antes de virar qualquer coisa maior.',
+      },
+      {
+        question: 'Vocês desenvolvem aplicativos?',
+        answer:
+          'Sim — aplicativos e plataformas mobile fazem parte desta frente, junto com MVPs, SaaS interno e a evolução de produtos que já estão em produção. A escolha entre app, web app ou plataforma responsiva sai do Discover, a partir de como as pessoas vão realmente usar o produto.',
+      },
+      {
+        question: 'O que acontece depois do lançamento?',
+        answer:
+          'Evolve é uma etapa do processo, não um extra: o produto continua sendo melhorado com base no uso real. Um produto digital que para de mudar depois do lançamento normalmente para de ser usado logo em seguida.',
+      },
+      {
+        question: 'De quem é a propriedade do que foi construído?',
+        answer:
+          'Do cliente. O que a Ergon desenvolve pertence a quem contratou — código, dados e acessos.',
+      },
+    ],
   },
 ]
 

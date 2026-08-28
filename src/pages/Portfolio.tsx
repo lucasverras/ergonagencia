@@ -2,18 +2,19 @@ import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { ArrowUpRight } from 'lucide-react'
 import { useSEO } from '@/lib/seo'
-import { SITE_URL, ORGANIZATION_ID, breadcrumbSchema, webPageSchema } from '@/lib/schema'
+import { SITE_URL, breadcrumbSchema, collectionPageSchema } from '@/lib/schema'
 import { revealUp, revealContainer, viewportOnce } from '@/lib/reveal'
 import { GradualSpacing } from '@/components/ui/gradual-spacing'
 import { TextReveal } from '@/components/ui/text-reveal'
 import { GradientBars } from '@/components/ui/gradient-bars-background'
 import MagicBentoCard from '@/components/ui/MagicBentoCard'
 import { getCaseBySlug, type CaseMediaAsset } from '@/cases/casesData'
+import { srcSetFor } from '@/lib/responsiveImage'
 
-// Selective, in the order that best shows range of capability — not every
-// case Ergon has ever shipped. Green Bay Car Estética is a real, planned
-// 7th entry with no source material yet (no URL, no local project, no
-// screenshots) — it isn't listed here rather than being invented.
+// In the order that best shows range of capability. This list is also the
+// only internal path to each case page, so it has to cover every slug the
+// sitemap publishes — Radar Navegando and Ergon Fly were already indexed
+// but unreachable from the navigation, which made them orphan pages.
 const PORTFOLIO_SLUGS = [
   'vamo-nessa-sp',
   'garagi',
@@ -22,6 +23,8 @@ const PORTFOLIO_SLUGS = [
   '3ws-moldes',
   'franco-gastrobar',
   'navegando-mkt',
+  'radar-navegando',
+  'ergon-fly',
 ]
 
 const CATEGORY: Record<string, string> = {
@@ -32,6 +35,8 @@ const CATEGORY: Record<string, string> = {
   '3ws-moldes': 'Website · Catálogo · SEO',
   'franco-gastrobar': 'Cardápio Digital · UX/UI',
   'navegando-mkt': 'Website · Portfólio · Leads',
+  'radar-navegando': 'Sistema Interno · CRM · Automação',
+  'ergon-fly': 'Website · Audiovisual · SEO',
 }
 
 const BLURB: Record<string, string> = {
@@ -42,15 +47,32 @@ const BLURB: Record<string, string> = {
   '3ws-moldes': 'Um grande acervo industrial transformado em uma experiência digital organizada e navegável.',
   'franco-gastrobar': 'Cardápio digital em formato de site — para dentro e fora do restaurante.',
   'navegando-mkt': 'Presença digital para transformar audiência em portfólio, metodologia e leads.',
+  'radar-navegando': 'Prospecção ativa em plataforma própria: descoberta por região e qualificação com apoio de IA.',
+  'ergon-fly': 'A vertente audiovisual da Ergon, com site próprio para portfólio e captação de demanda.',
 }
 
-function ProjectImage({ asset, className }: { asset: CaseMediaAsset; className?: string }) {
+function ProjectImage({
+  asset,
+  className,
+  priority = false,
+}: {
+  asset: CaseMediaAsset
+  className?: string
+  /** the first cards are above the fold — lazy-loading them delays the LCP
+   * they're responsible for */
+  priority?: boolean
+}) {
   if (asset.kind !== 'real' || !asset.src) return <div className={`bg-surface-2 ${className ?? ''}`} />
   return (
     <img
       src={asset.src}
+      srcSet={srcSetFor(asset.src)}
+      // one card per row on phones, two on tablet, three on desktop
+      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
       alt={asset.alt}
-      loading="lazy"
+      loading={priority ? 'eager' : 'lazy'}
+      fetchPriority={priority ? 'high' : 'auto'}
+      decoding="async"
       className={`h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.02] ${className ?? ''}`}
     />
   )
@@ -58,21 +80,28 @@ function ProjectImage({ asset, className }: { asset: CaseMediaAsset; className?:
 
 export default function Portfolio() {
   const canonical = `${SITE_URL}/portfolio`
-  const title = 'Portfólio — Ergon Product Studio'
+  const title = 'Projetos de Sites, Sistemas e Automação | Portfólio Ergon'
   const description =
-    'Sites, sistemas, plataformas e produtos digitais reais que a Ergon colocou para funcionar — prova do que construímos, não uma lista de clientes.'
+    'Cases reais da Ergon Studio: sites institucionais, cardápio digital, CRM, painéis internos e plataformas de dados que colocamos para funcionar.'
+
+  const projects = PORTFOLIO_SLUGS.map((slug) => getCaseBySlug(slug)).filter((c) => c !== undefined)
 
   useSEO({
     title,
     description,
     canonical,
     jsonLd: [
-      webPageSchema({
+      // CollectionPage + ItemList: one entry per card actually rendered
+      // below, in the same order a visitor reads them.
+      collectionPageSchema({
         id: `${canonical}/#webpage`,
         url: canonical,
         name: title,
         description,
-        about: [ORGANIZATION_ID],
+        items: projects.map((c) => ({
+          name: c.name,
+          url: `${SITE_URL}/portfolio/${c.slug}`,
+        })),
       }),
       breadcrumbSchema([
         { name: 'Ergon', url: `${SITE_URL}/` },
@@ -80,8 +109,6 @@ export default function Portfolio() {
       ]),
     ],
   })
-
-  const projects = PORTFOLIO_SLUGS.map((slug) => getCaseBySlug(slug)).filter((c) => c !== undefined)
 
   return (
     <main>
@@ -146,12 +173,12 @@ export default function Portfolio() {
             variants={revealContainer(0.06)}
             className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3"
           >
-            {projects.map((project) => (
+            {projects.map((project, i) => (
               <motion.div key={project.slug} variants={revealUp}>
                 <Link to={`/portfolio/${project.slug}`} className="block h-full">
                   <MagicBentoCard className="group flex h-full flex-col overflow-hidden rounded-3xl border border-line bg-surface/60 transition-colors duration-300 hover:border-lime/30">
                     <div className="overflow-hidden aspect-[4/3]">
-                      <ProjectImage asset={project.heroMedia} />
+                      <ProjectImage asset={project.heroMedia} priority={i === 0} />
                     </div>
                     <div className="flex flex-1 flex-col justify-between gap-4 p-5">
                       <div>

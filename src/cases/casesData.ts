@@ -23,6 +23,12 @@ export type CaseResult = { metric: string; desc: string }
 export type CaseStudy = {
   slug: string
   name: string
+  /** the one solution this case leads with, for the page <title> — kept
+   * short because it sits between the client name and "| Case Ergon" */
+  solution: string
+  /** ~150-char meta description. Written so the snippet reads as Ergon's
+   * case study of a client project, never as the client's own site. */
+  metaDescription: string
   /** 2-3 line hero blurb — what Ergon built, not the client's life story */
   headline: string
   servicos: string[]
@@ -42,6 +48,9 @@ export type CaseStudy = {
 export const cases: CaseStudy[] = [
   {
     slug: 'vamo-nessa-sp',
+    solution: 'Painel de dados e automação',
+    metaDescription:
+      'Case Ergon Studio: painel próprio que reúne conteúdo, audiência e comentários do Vamo Nessa SP em uma só operação, com automação de redes e apoio de IA.',
     name: 'Vamo Nessa SP',
     headline:
       'Painel próprio que transforma conteúdo, audiência e comentários em uma operação com dados — pra um creator não precisar abrir cinco telas pra entender o que está acontecendo com o próprio conteúdo.',
@@ -62,16 +71,19 @@ export const cases: CaseStudy[] = [
       'Campanhas de contato com fila, envios e erros',
       'Aprovação assistida por IA para respostas',
     ],
-    heroMedia: { kind: 'real', src: '/portfolio/vamo-nessa-sp/hero.png', alt: 'Visão geral do painel Vamo Nessa SP' },
+    heroMedia: { kind: 'real', src: '/portfolio/vamo-nessa-sp/hero.webp', alt: 'Visão geral do painel Vamo Nessa SP' },
     gallery: [
-      { kind: 'real', src: '/portfolio/vamo-nessa-sp/conteudos.png', alt: 'Desempenho de conteúdos por canal no painel Vamo Nessa SP' },
-      { kind: 'real', src: '/portfolio/vamo-nessa-sp/campanhas.png', alt: 'Campanhas de contato e envio no painel Vamo Nessa SP' },
-      { kind: 'real', src: '/portfolio/vamo-nessa-sp/aprovacoes-ia.png', alt: 'Aprovação de respostas assistidas por IA no painel Vamo Nessa SP' },
+      { kind: 'real', src: '/portfolio/vamo-nessa-sp/conteudos.webp', alt: 'Desempenho de conteúdos por canal no painel Vamo Nessa SP' },
+      { kind: 'real', src: '/portfolio/vamo-nessa-sp/campanhas.webp', alt: 'Campanhas de contato e envio no painel Vamo Nessa SP' },
+      { kind: 'real', src: '/portfolio/vamo-nessa-sp/aprovacoes-ia.webp', alt: 'Aprovação de respostas assistidas por IA no painel Vamo Nessa SP' },
     ],
   },
 
   {
     slug: 'garagi',
+    solution: 'Website e CRM de orçamentos',
+    metaDescription:
+      'Case Ergon Studio: website institucional e sistema interno de orçamentos para a Garagi — uma ferramenta para quem chega de fora, outra para quem toca a operação.',
     name: 'Garagi — CRM + Website',
     headline:
       'Website institucional e sistema interno de orçamentos — duas ferramentas pro mesmo negócio: uma pra quem chega de fora, outra pra quem toca a operação por dentro.',
@@ -96,10 +108,10 @@ export const cases: CaseStudy[] = [
       'Painel de tarefas da semana',
       'UX/UI para as duas experiências',
     ],
-    heroMedia: { kind: 'real', src: '/portfolio/garagi/desktop-hero.png', alt: 'Home do site institucional da Garagi' },
+    heroMedia: { kind: 'real', src: '/portfolio/garagi/desktop-hero.webp', alt: 'Home do site institucional da Garagi' },
     gallery: [
-      { kind: 'real', src: '/portfolio/garagi/desktop-detail.png', alt: 'Página de serviços do site institucional da Garagi' },
-      { kind: 'real', src: '/portfolio/garagi/mobile-hero.png', alt: 'Home da Garagi em um dispositivo móvel' },
+      { kind: 'real', src: '/portfolio/garagi/desktop-detail.webp', alt: 'Página de serviços do site institucional da Garagi' },
+      { kind: 'real', src: '/portfolio/garagi/mobile-hero.webp', alt: 'Home da Garagi em um dispositivo móvel' },
       { kind: 'real', src: '/portfolio/garagi/crm-dashboard.jpg', alt: 'Painel administrativo do CRM interno da Garagi' },
       { kind: 'real', src: '/portfolio/garagi/crm-orcamentos.jpg', alt: 'Lista de orçamentos no sistema interno da Garagi' },
       { kind: 'real', src: '/portfolio/garagi/crm-novo-orcamento.jpg', alt: 'Formulário de novo orçamento no CRM da Garagi' },
@@ -108,6 +120,9 @@ export const cases: CaseStudy[] = [
 
   {
     slug: 'green-bay-car-estetica',
+    solution: 'Site e catálogo de serviços',
+    metaDescription:
+      'Case Ergon Studio: site próprio da vertente de estética automotiva do grupo Green Bay Car, com catálogo de serviços, antes e depois e agendamento por WhatsApp.',
     name: 'Green Bay Car Estética',
     headline:
       'Site próprio para a vertente de estética automotiva do grupo Green Bay Car — catálogo de serviços, comparação de antes e depois e agendamento direto por WhatsApp.',
@@ -129,17 +144,20 @@ export const cases: CaseStudy[] = [
       'Agendamento direto via WhatsApp',
       'Localização e horário de atendimento',
     ],
-    heroMedia: { kind: 'real', src: '/portfolio/green-bay-car-estetica/hero.png', alt: 'Home do site da GBC Estética — CUIDADO TÉCNICO. PADRÃO DE ESTUDIO.' },
+    heroMedia: { kind: 'real', src: '/portfolio/green-bay-car-estetica/hero.webp', alt: 'Home do site da GBC Estética — CUIDADO TÉCNICO. PADRÃO DE ESTUDIO.' },
     gallery: [
-      { kind: 'real', src: '/portfolio/green-bay-car-estetica/servicos-intro.png', alt: 'Seção "Muito além da lavagem" — diferenciais técnicos da GBC Estética' },
-      { kind: 'real', src: '/portfolio/green-bay-car-estetica/servicos-grid.png', alt: 'Grade de serviços: Lavagem & Cuidado Externo, Cuidado Interno, Correção & Polimento, Restauração' },
-      { kind: 'real', src: '/portfolio/green-bay-car-estetica/lavagem-externa.png', alt: 'Catálogo de serviços de lavagem e cuidado externo com preços' },
-      { kind: 'real', src: '/portfolio/green-bay-car-estetica/antes-depois.png', alt: 'Comparação antes e depois de correção de pintura técnica na GBC Estética' },
+      { kind: 'real', src: '/portfolio/green-bay-car-estetica/servicos-intro.webp', alt: 'Seção "Muito além da lavagem" — diferenciais técnicos da GBC Estética' },
+      { kind: 'real', src: '/portfolio/green-bay-car-estetica/servicos-grid.webp', alt: 'Grade de serviços: Lavagem & Cuidado Externo, Cuidado Interno, Correção & Polimento, Restauração' },
+      { kind: 'real', src: '/portfolio/green-bay-car-estetica/lavagem-externa.webp', alt: 'Catálogo de serviços de lavagem e cuidado externo com preços' },
+      { kind: 'real', src: '/portfolio/green-bay-car-estetica/antes-depois.webp', alt: 'Comparação antes e depois de correção de pintura técnica na GBC Estética' },
     ],
   },
 
   {
     slug: 'green-bay-car',
+    solution: 'Site integrado ao estoque',
+    metaDescription:
+      'Case Ergon Studio: site institucional da Green Bay Car conectado em tempo real ao estoque — cada veículo ganha automaticamente sua própria página indexável.',
     name: 'Green Bay Car',
     headline:
       'Site institucional conectado em tempo real ao estoque da loja — cada veículo publicado na Webmotors ganha automaticamente sua própria página, indexável pelo Google.',
@@ -162,15 +180,18 @@ export const cases: CaseStudy[] = [
       'Arquitetura de URLs por veículo (antes: /estoque — agora: /nome-do-carro)',
       'SEO técnico',
     ],
-    heroMedia: { kind: 'real', src: '/portfolio/green-bay-car/desktop-hero.png', alt: 'Home do site da Green Bay Car' },
+    heroMedia: { kind: 'real', src: '/portfolio/green-bay-car/desktop-hero.webp', alt: 'Home do site da Green Bay Car' },
     gallery: [
-      { kind: 'real', src: '/portfolio/green-bay-car/desktop-detail.png', alt: 'Página de detalhe de um veículo da Green Bay Car' },
-      { kind: 'real', src: '/portfolio/green-bay-car/mobile-hero.png', alt: 'Home da Green Bay Car em um dispositivo móvel' },
+      { kind: 'real', src: '/portfolio/green-bay-car/desktop-detail.webp', alt: 'Página de detalhe de um veículo da Green Bay Car' },
+      { kind: 'real', src: '/portfolio/green-bay-car/mobile-hero.webp', alt: 'Home da Green Bay Car em um dispositivo móvel' },
     ],
   },
 
   {
     slug: '3ws-moldes',
+    solution: 'Catálogo industrial',
+    metaDescription:
+      'Case Ergon Studio: site da 3WS Moldes que transforma um acervo industrial de mais de 1,5 milhão de kg em ferramentas numa experiência digital organizada e indexável.',
     name: '3WS Moldes e Equipamentos',
     headline:
       'Site que transforma um acervo industrial de mais de 1,5 milhão de kg em ferramentas em uma experiência digital técnica, organizada e indexável.',
@@ -192,15 +213,18 @@ export const cases: CaseStudy[] = [
       'SEO técnico e dados estruturados',
       'Animações e microinterações com Framer Motion',
     ],
-    heroMedia: { kind: 'real', src: '/portfolio/3ws-moldes/desktop-hero.png', alt: 'Home do site da 3WS Moldes e Equipamentos' },
+    heroMedia: { kind: 'real', src: '/portfolio/3ws-moldes/desktop-hero.webp', alt: 'Home do site da 3WS Moldes e Equipamentos' },
     gallery: [
-      { kind: 'real', src: '/portfolio/3ws-moldes/desktop-detail.png', alt: 'Página de categorias/serviços da 3WS' },
-      { kind: 'real', src: '/portfolio/3ws-moldes/mobile-hero.png', alt: 'Home da 3WS em um dispositivo móvel' },
+      { kind: 'real', src: '/portfolio/3ws-moldes/desktop-detail.webp', alt: 'Página de categorias/serviços da 3WS' },
+      { kind: 'real', src: '/portfolio/3ws-moldes/mobile-hero.webp', alt: 'Home da 3WS em um dispositivo móvel' },
     ],
   },
 
   {
     slug: 'franco-gastrobar',
+    solution: 'Cardápio digital para restaurante',
+    metaDescription:
+      'Case Ergon Studio: cardápio digital em formato de site para o Franco Gastrobar, acessível por QR Code na mesa, com painel próprio para a equipe atualizar o menu.',
     name: 'Franco Gastrobar',
     headline:
       'Cardápio digital em formato de site — acessível pelo QR Code na mesa e por quem ainda está decidindo onde comer, com painel próprio pra equipe atualizar tudo sem depender da Ergon.',
@@ -221,7 +245,7 @@ export const cases: CaseStudy[] = [
       'Painel administrativo para a equipe',
       'SEO técnico para buscas pelo restaurante',
     ],
-    heroMedia: { kind: 'real', src: '/portfolio/franco-gastrobar/hero.jpg', alt: 'Cardápio digital do Franco Gastrobar' },
+    heroMedia: { kind: 'real', src: '/portfolio/franco-gastrobar/hero.webp', alt: 'Cardápio digital do Franco Gastrobar' },
     gallery: [
       {
         kind: 'placeholder',
@@ -233,6 +257,9 @@ export const cases: CaseStudy[] = [
 
   {
     slug: 'navegando-mkt',
+    solution: 'Site e geração de leads',
+    metaDescription:
+      'Case Ergon Studio: site da Navegando MKT que transforma a audiência já construída nas redes em portfólio, metodologia e geração de leads em um só lugar.',
     name: 'Navegando MKT',
     headline:
       'Site que transforma a audiência que a Navegando já construiu nas redes em um ativo de marca — portfólio, metodologia e geração de leads em um só lugar.',
@@ -254,15 +281,18 @@ export const cases: CaseStudy[] = [
       'Formulário de geração e qualificação de leads',
       'SEO técnico',
     ],
-    heroMedia: { kind: 'real', src: '/portfolio/navegando-mkt/desktop-hero.png', alt: 'Home do site da Navegando MKT' },
+    heroMedia: { kind: 'real', src: '/portfolio/navegando-mkt/desktop-hero.webp', alt: 'Home do site da Navegando MKT' },
     gallery: [
-      { kind: 'real', src: '/portfolio/navegando-mkt/desktop-detail.png', alt: 'Página de portfólio/cases da Navegando MKT' },
-      { kind: 'real', src: '/portfolio/navegando-mkt/mobile-hero.png', alt: 'Home da Navegando MKT em um dispositivo móvel' },
+      { kind: 'real', src: '/portfolio/navegando-mkt/desktop-detail.webp', alt: 'Página de portfólio/cases da Navegando MKT' },
+      { kind: 'real', src: '/portfolio/navegando-mkt/mobile-hero.webp', alt: 'Home da Navegando MKT em um dispositivo móvel' },
     ],
   },
 
   {
     slug: 'ergon-fly',
+    solution: 'Site da vertente audiovisual',
+    metaDescription:
+      'Case Ergon Studio: site próprio da Ergon Fly, a vertente audiovisual do estúdio, criado para apresentar o portfólio de captação com drone e ser encontrado na busca.',
     name: 'Ergon Fly',
     headline:
       'Vertente audiovisual da Ergon dedicada à captação profissional com drone — site próprio pra apresentar o portfólio e ser encontrado por quem já procura esse serviço.',
@@ -283,7 +313,7 @@ export const cases: CaseStudy[] = [
       'SEO técnico',
       'Design responsivo',
     ],
-    heroMedia: { kind: 'real', src: '/fly/images/aerial-beach.jpg', alt: 'Captação aérea de drone da Ergon Fly' },
+    heroMedia: { kind: 'real', src: '/fly/images/aerial-beach.webp', alt: 'Captação aérea de drone da Ergon Fly' },
     gallery: [
       { kind: 'real', src: '/fly/images/portfolio-avenidas-poster.jpg', alt: 'Portfólio audiovisual Ergon Fly — avenidas' },
       { kind: 'real', src: '/fly/images/portfolio-logistica-poster.jpg', alt: 'Portfólio audiovisual Ergon Fly — logística' },
@@ -292,6 +322,9 @@ export const cases: CaseStudy[] = [
 
   {
     slug: 'radar-navegando',
+    solution: 'Plataforma interna de prospecção',
+    metaDescription:
+      'Case Ergon Studio: plataforma interna de prospecção ativa que encontra estabelecimentos por região e qualifica leads com apoio de IA.',
     name: 'Radar Navegando',
     headline:
       'Plataforma interna de prospecção ativa que separa descoberta de oportunidade — encontrando estabelecimentos por região e qualificando leads com apoio de IA.',

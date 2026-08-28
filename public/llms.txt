@@ -1,0 +1,53 @@
+# Ergon Studio
+
+> Digital product studio em São Paulo (SP), Brasil. A Ergon projeta e
+> desenvolve sites, landing pages, sistemas internos, plataformas, produtos
+> digitais, aplicativos e automações sob medida para empresas, além de
+> captação aérea com drone pela marca Ergon Fly.
+
+Idioma: português do Brasil. Domínio canônico: https://www.ergonstudio.com.br
+
+A Ergon Studio não é uma agência de publicidade nem uma revenda de temas
+prontos: cada entrega é software feito sob medida a partir do processo que
+já existe no negócio do cliente. O estúdio trabalha em quatro frentes de
+serviço mais uma vertente audiovisual própria.
+
+## Serviços
+
+- [Sites e experiências digitais](https://www.ergonstudio.com.br/servicos/sites): Sites e experiências digitais para apresentar melhor uma empresa, produto ou serviço.
+- [Plataformas e sistemas sob medida](https://www.ergonstudio.com.br/servicos/plataformas): Sistemas e ferramentas próprias para organizar operações específicas.
+- [Automação e operações inteligentes](https://www.ergonstudio.com.br/servicos/automacoes): Automações e integrações para reduzir tarefas manuais e conectar operações.
+- [Produtos digitais, do conceito ao lançamento](https://www.ergonstudio.com.br/servicos/produtos-digitais): Da ideia até uma primeira versão funcional de um novo produto digital.
+- [Captação Aérea e Produção Audiovisual com Drone](https://www.ergonstudio.com.br/fly): Captação aérea profissional com drone para empresas, imóveis, eventos e turismo, com piloto certificado ANAC.
+
+## Portfólio
+
+- [Vamo Nessa SP — Painel de dados e automação](https://www.ergonstudio.com.br/portfolio/vamo-nessa-sp): Painel próprio que transforma conteúdo, audiência e comentários em uma operação com dados — pra um creator não precisar abrir cinco telas pra entender o que está acontecendo com o próprio conteúdo.
+- [Garagi — CRM + Website — Website e CRM de orçamentos](https://www.ergonstudio.com.br/portfolio/garagi): Website institucional e sistema interno de orçamentos — duas ferramentas pro mesmo negócio: uma pra quem chega de fora, outra pra quem toca a operação por dentro.
+- [Green Bay Car Estética — Site e catálogo de serviços](https://www.ergonstudio.com.br/portfolio/green-bay-car-estetica): Site próprio para a vertente de estética automotiva do grupo Green Bay Car — catálogo de serviços, comparação de antes e depois e agendamento direto por WhatsApp.
+- [Green Bay Car — Site integrado ao estoque](https://www.ergonstudio.com.br/portfolio/green-bay-car): Site institucional conectado em tempo real ao estoque da loja — cada veículo publicado na Webmotors ganha automaticamente sua própria página, indexável pelo Google.
+- [3WS Moldes e Equipamentos — Catálogo industrial](https://www.ergonstudio.com.br/portfolio/3ws-moldes): Site que transforma um acervo industrial de mais de 1,5 milhão de kg em ferramentas em uma experiência digital técnica, organizada e indexável.
+- [Franco Gastrobar — Cardápio digital para restaurante](https://www.ergonstudio.com.br/portfolio/franco-gastrobar): Cardápio digital em formato de site — acessível pelo QR Code na mesa e por quem ainda está decidindo onde comer, com painel próprio pra equipe atualizar tudo sem depender da Ergon.
+- [Navegando MKT — Site e geração de leads](https://www.ergonstudio.com.br/portfolio/navegando-mkt): Site que transforma a audiência que a Navegando já construiu nas redes em um ativo de marca — portfólio, metodologia e geração de leads em um só lugar.
+- [Ergon Fly — Site da vertente audiovisual](https://www.ergonstudio.com.br/portfolio/ergon-fly): Vertente audiovisual da Ergon dedicada à captação profissional com drone — site próprio pra apresentar o portfólio e ser encontrado por quem já procura esse serviço.
+- [Radar Navegando — Plataforma interna de prospecção](https://www.ergonstudio.com.br/portfolio/radar-navegando): Plataforma interna de prospecção ativa que separa descoberta de oportunidade — encontrando estabelecimentos por região e qualificando leads com apoio de IA.
+
+## Páginas principais
+
+- [Home](https://www.ergonstudio.com.br/): posicionamento, serviços e projetos em destaque.
+- [Serviços](https://www.ergonstudio.com.br/servicos): as quatro frentes de serviço, lado a lado.
+- [Portfólio](https://www.ergonstudio.com.br/portfolio): todos os cases publicados.
+- [Ergon Fly](https://www.ergonstudio.com.br/fly): filmagem e captação aérea com drone em São Paulo.
+
+## Contato
+
+- WhatsApp (estúdio): https://wa.me/5511988162883
+- WhatsApp (Ergon Fly / drone): https://wa.me/5511967206875
+- E-mail: agenciaergon0@gmail.com
+
+## Complementar
+
+- [sitemap.xml](https://www.ergonstudio.com.br/sitemap.xml)
+- [llms-full.txt](https://www.ergonstudio.com.br/llms-full.txt)
+
+Última atualização: 2026-08-27

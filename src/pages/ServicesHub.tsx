@@ -10,14 +10,14 @@ import ProcessStep from '@/components/ProcessStep'
 import { CaseMedia } from '@/components/case/CaseMedia'
 import { ServiceFinalCTA } from '@/components/service/ServiceFinalCTA'
 import { useSEO } from '@/lib/seo'
-import { SITE_URL, ORGANIZATION_ID, SERVICES, breadcrumbSchema, webPageSchema } from '@/lib/schema'
+import { SITE_URL, SERVICES, breadcrumbSchema, collectionPageSchema } from '@/lib/schema'
 import { services, DISCOVER_PROCESS } from '@/services/servicesData'
 import { getCaseBySlug } from '@/cases/casesData'
 
 const CANONICAL = `${SITE_URL}/servicos`
-const TITLE = 'Serviços | Ergon Product Studio'
+const TITLE = 'Sites, Sistemas e Automações para Empresas | Ergon Studio'
 const DESCRIPTION =
-  'Produtos digitais para empresas que querem vender melhor e operar melhor: sites, plataformas, automação e novos produtos.'
+  'Criação de sites e landing pages, sistemas sob medida, CRM e painéis, automação de processos e produtos digitais — os serviços da Ergon Studio, um a um.'
 
 const droneEntry = SERVICES.find((s) => s.key === 'drone')!
 
@@ -47,12 +47,17 @@ export default function ServicesHub() {
     description: DESCRIPTION,
     canonical: CANONICAL,
     jsonLd: [
-      webPageSchema({
+      // the five service cards this page actually renders — the four
+      // /servicos/:slug pages plus the drone vertical at /fly
+      collectionPageSchema({
         id: `${CANONICAL}/#webpage`,
         url: CANONICAL,
         name: TITLE,
         description: DESCRIPTION,
-        about: [ORGANIZATION_ID],
+        items: [
+          ...services.map((s) => ({ name: s.name, url: `${SITE_URL}/servicos/${s.slug}` })),
+          { name: droneEntry.name, url: droneEntry.url },
+        ],
       }),
       breadcrumbSchema([
         { name: 'Ergon', url: `${SITE_URL}/` },

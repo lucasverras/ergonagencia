@@ -1,4 +1,5 @@
 import type { CaseMediaAsset } from '@/cases/casesData'
+import { srcSetFor } from '@/lib/responsiveImage'
 
 function initialsOf(alt: string) {
   const words = alt.split(' ').filter(Boolean)
@@ -32,14 +33,23 @@ export function CaseMedia({
   aspect?: string
 }) {
   const src = asset.kind === 'real' && asset.src ? asset.src : placeholderSrc(asset.alt)
+  const srcSet = srcSetFor(asset.kind === 'real' ? asset.src : undefined)
 
   return (
     <figure className={className}>
       <div className={`relative overflow-hidden rounded-2xl border border-line bg-surface ${aspect}`}>
         <img
           src={src}
+          srcSet={srcSet}
+          // the media sits inside the page shell, so it never exceeds the
+          // content column: full viewport width on phones, ~1200px above
+          sizes={srcSet ? '(max-width: 768px) 100vw, min(1200px, 92vw)' : undefined}
           alt={asset.alt}
           loading={eager ? 'eager' : 'lazy'}
+          // the case hero image is the LCP element on a case page — it must
+          // not be deprioritised behind the rest of the page's requests
+          fetchPriority={eager ? 'high' : 'auto'}
+          decoding={eager ? 'sync' : 'async'}
           className="h-full w-full object-cover object-top"
         />
         {asset.kind === 'placeholder' && (

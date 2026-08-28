@@ -39,7 +39,7 @@ export default function FlyIntro() {
           className="overflow-hidden rounded-2xl border border-line"
         >
           <img
-            src="/fly/images/aerial-beach.jpg"
+            src="/fly/images/aerial-beach.webp"
             alt="Vista aérea de costão rochoso e piscinas naturais em São Paulo"
             className="aspect-[4/3] w-full object-cover"
             loading="lazy"

@@ -71,7 +71,7 @@ export default function FlyEquipment() {
           className="order-1 overflow-hidden rounded-2xl border border-line md:order-2"
         >
           <img
-            src="/fly/images/drone-controller.jpg"
+            src="/fly/images/drone-controller.webp"
             alt="Controle remoto de drone DJI em uso"
             className="aspect-[4/3] w-full object-cover"
             loading="lazy"

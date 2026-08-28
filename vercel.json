@@ -2,13 +2,23 @@
   "redirects": [
     {
       "source": "/(.*)",
-      "has": [{ "type": "host", "value": "ergonagencia.com.br" }],
+      "has": [
+        {
+          "type": "host",
+          "value": "ergonagencia.com.br"
+        }
+      ],
       "destination": "https://www.ergonstudio.com.br/$1",
       "permanent": true
     },
     {
       "source": "/(.*)",
-      "has": [{ "type": "host", "value": "www.ergonagencia.com.br" }],
+      "has": [
+        {
+          "type": "host",
+          "value": "www.ergonagencia.com.br"
+        }
+      ],
       "destination": "https://www.ergonstudio.com.br/$1",
       "permanent": true
     }
@@ -32,26 +42,114 @@
         "X-Robots-Tag": "noindex, nofollow, noarchive"
       }
     },
-    { "src": "/imagens-aereas", "status": 308, "headers": { "Location": "/fly#imagens-aereas" } },
-    { "src": "/filmagem-com-drone", "status": 308, "headers": { "Location": "/fly#filmagem-com-drone" } },
-    { "src": "/drone-profissional", "status": 308, "headers": { "Location": "/fly#drone-profissional" } },
+    {
+      "src": "/imagens-aereas",
+      "status": 308,
+      "headers": {
+        "Location": "/fly#imagens-aereas"
+      }
+    },
+    {
+      "src": "/filmagem-com-drone",
+      "status": 308,
+      "headers": {
+        "Location": "/fly#filmagem-com-drone"
+      }
+    },
+    {
+      "src": "/drone-profissional",
+      "status": 308,
+      "headers": {
+        "Location": "/fly#drone-profissional"
+      }
+    },
     {
       "src": "/drone-para-imobiliarias",
       "status": 308,
-      "headers": { "Location": "/fly#drone-para-imobiliarias" }
+      "headers": {
+        "Location": "/fly#drone-para-imobiliarias"
+      }
     },
     {
       "src": "/drone-para-restaurantes",
       "status": 308,
-      "headers": { "Location": "/fly#drone-para-restaurantes" }
+      "headers": {
+        "Location": "/fly#drone-para-restaurantes"
+      }
     },
-    { "src": "/drone-para-hoteis", "status": 308, "headers": { "Location": "/fly#drone-para-hoteis" } },
-    { "src": "/drone-para-eventos", "status": 308, "headers": { "Location": "/fly#drone-para-eventos" } },
-    { "src": "/drone-sao-paulo", "status": 308, "headers": { "Location": "/fly" } },
-    { "src": "/captacao-aerea", "status": 308, "headers": { "Location": "/fly#captacao-aerea" } },
-    { "src": "/video-aereo-drone", "status": 308, "headers": { "Location": "/fly#video-aereo-drone" } },
-    { "src": "/guia-filmagem-com-drone", "status": 308, "headers": { "Location": "/fly#faq" } },
-    { "handle": "filesystem" },
-    { "src": "/(.*)", "dest": "/index.html" }
+    {
+      "src": "/drone-para-hoteis",
+      "status": 308,
+      "headers": {
+        "Location": "/fly#drone-para-hoteis"
+      }
+    },
+    {
+      "src": "/drone-para-eventos",
+      "status": 308,
+      "headers": {
+        "Location": "/fly#drone-para-eventos"
+      }
+    },
+    {
+      "src": "/drone-sao-paulo",
+      "status": 308,
+      "headers": {
+        "Location": "/fly"
+      }
+    },
+    {
+      "src": "/captacao-aerea",
+      "status": 308,
+      "headers": {
+        "Location": "/fly#captacao-aerea"
+      }
+    },
+    {
+      "src": "/video-aereo-drone",
+      "status": 308,
+      "headers": {
+        "Location": "/fly#video-aereo-drone"
+      }
+    },
+    {
+      "src": "/guia-filmagem-com-drone",
+      "status": 308,
+      "headers": {
+        "Location": "/fly#faq"
+      }
+    },
+    {
+      "src": "^/(.+)/$",
+      "status": 308,
+      "headers": {
+        "Location": "/$1"
+      }
+    },
+    {
+      "src": "^/assets/(.*)$",
+      "headers": {
+        "Cache-Control": "public, max-age=31536000, immutable"
+      },
+      "continue": true
+    },
+    {
+      "src": "^/(og|fonts|images|logos|portfolio|videos|fly)/(.*)\\.(png|jpg|jpeg|webp|avif|svg|mp4|webm|woff2?|ttf)$",
+      "headers": {
+        "Cache-Control": "public, max-age=2592000"
+      },
+      "continue": true
+    },
+    {
+      "handle": "filesystem"
+    },
+    {
+      "src": "/(.*)",
+      "status": 404,
+      "dest": "/404.html",
+      "headers": {
+        "X-Robots-Tag": "noindex"
+      }
+    }
   ]
 }

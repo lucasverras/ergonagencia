@@ -23,10 +23,10 @@ export function CaseNextProject({ next }: { next: CaseStudy }) {
             <span className="text-xs tracking-[0.25em] text-graphite-dim uppercase">
               Próximo projeto
             </span>
-            <h3 className="mt-3 flex items-center gap-4 font-display text-[clamp(2.5rem,7vw,6rem)] leading-[0.98] text-ink transition-colors group-hover:text-lime">
+            <h2 className="mt-3 flex items-center gap-4 font-display text-[clamp(2.5rem,7vw,6rem)] leading-[0.98] text-ink transition-colors group-hover:text-lime">
               {next.name}
               <ArrowUpRight className="h-8 w-8 shrink-0 transition-transform group-hover:-translate-y-1 group-hover:translate-x-1 md:h-12 md:w-12" />
-            </h3>
+            </h2>
           </div>
           <div className="w-full max-w-xs overflow-hidden rounded-2xl md:w-64">
             <div className="transition-transform duration-500 group-hover:scale-105">
