@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.ergonagencia.com.br/sitemap.xml
+Sitemap: https://www.ergonstudio.com.br/sitemap.xml
