@@ -331,6 +331,11 @@ export interface CaseWorkDef {
   url: string
   /** the project/client name as shown in the page's own H1 */
   name: string
+  /** just the client, with any " — subtitle" the display name carries
+   * stripped off: the `about` Organization below is the real company, and
+   * naming it "Garagi — CRM + Website" would be describing an entity that
+   * doesn't exist */
+  clientName: string
   description: string
   image?: string
   /** what Ergon actually built, from the case's own visible copy */
@@ -362,7 +367,7 @@ export function caseWorkSchema(c: CaseWorkDef) {
     publisher: { '@id': ORGANIZATION_ID },
     mainEntityOfPage: { '@id': `${c.url}/#webpage` },
     about: [
-      { '@type': 'Organization', name: c.name },
+      { '@type': 'Organization', name: c.clientName },
       ...c.serviceIds.map((id) => ({ '@id': id })),
     ],
     keywords: c.about,

@@ -71,6 +71,7 @@ export default function CaseStudy() {
           caseWorkSchema({
             url: canonical,
             name: study.name,
+            clientName: clientName!,
             description: study.headline,
             image: ogImage,
             about: study.servicos,
