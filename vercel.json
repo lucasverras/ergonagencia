@@ -1,29 +1,31 @@
 {
-  "redirects": [
+  "routes": [
     {
-      "source": "/(.*)",
+      "src": "/(.*)",
       "has": [
         {
           "type": "host",
           "value": "ergonagencia.com.br"
         }
       ],
-      "destination": "https://www.ergonstudio.com.br/$1",
-      "permanent": true
+      "status": 308,
+      "headers": {
+        "Location": "https://www.ergonstudio.com.br/$1"
+      }
     },
     {
-      "source": "/(.*)",
+      "src": "/(.*)",
       "has": [
         {
           "type": "host",
           "value": "www.ergonagencia.com.br"
         }
       ],
-      "destination": "https://www.ergonstudio.com.br/$1",
-      "permanent": true
-    }
-  ],
-  "routes": [
+      "status": 308,
+      "headers": {
+        "Location": "https://www.ergonstudio.com.br/$1"
+      }
+    },
     {
       "src": "/portfolio/[mM][oO][sS][aA][iI][cC][lL][aA][bB]/?$",
       "status": 410,
