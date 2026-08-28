@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && npm run build:client && npm run build:server && npm run prerender && npm run sitemap && npm run llms",
+    "build": "tsc -b && npm run build:client && npm run build:server && npm run prerender && npm run dates && npm run sitemap && npm run llms",
     "lint": "oxlint",
     "preview": "vite preview",
     "build:client": "vite build",
@@ -14,7 +14,8 @@
     "sitemap": "node scripts/generate-sitemap.mjs",
     "audit:seo": "node scripts/seo-audit.mjs",
     "typecheck": "tsc -b --noEmit false --force",
-    "llms": "node scripts/generate-llms.mjs"
+    "llms": "node scripts/generate-llms.mjs",
+    "dates": "node scripts/content-dates.mjs"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.3.3",

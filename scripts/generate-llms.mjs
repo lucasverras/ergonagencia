@@ -5,7 +5,7 @@
 // no invented clients, dates, prices, metrics or team.
 
 import { writeFileSync } from 'node:fs'
-import { execFileSync } from 'node:child_process'
+import { readDates } from './content-dates.mjs'
 import { dirname, join, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
@@ -15,12 +15,14 @@ const dist = join(root, 'dist')
 const { services, cases, SERVICES, flyFaq, DISCOVER_PROCESS, SITE_URL } =
   await import(join(dist, 'server', 'entry-server.js'))
 
-// Real date of the last content change, not the build clock.
-const lastUpdated = execFileSync(
-  'git',
-  ['log', '-1', '--format=%cs', '--', 'src', 'public', 'index.html'],
-  { cwd: root, encoding: 'utf8' },
-).trim()
+// Real date of the last content change, not the build clock. Resolved from
+// git on a developer machine and committed (see scripts/content-dates.mjs);
+// the Vercel build has no .git to ask.
+const { site: lastUpdated } = readDates()
+if (!lastUpdated) {
+  console.error('content-dates.json has no site date — run: node scripts/content-dates.mjs')
+  process.exit(1)
+}
 
 const drone = SERVICES.find((s) => s.key === 'drone')
 const u = (path) => `${SITE_URL}${path}`
