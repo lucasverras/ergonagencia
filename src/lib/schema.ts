@@ -185,15 +185,19 @@ export function servicesSchema() {
 // for controlling which links appear as sitelinks in search results.
 export function siteNavigationSchema() {
   const navItems = [
-    { name: 'Sites & Experiences', url: `${SITE_URL}/servicos/sites` },
-    { name: 'Digital Platforms', url: `${SITE_URL}/servicos/plataformas` },
-    { name: 'Intelligent Operations', url: `${SITE_URL}/servicos/automacoes` },
-    { name: 'Product Launch', url: `${SITE_URL}/servicos/produtos-digitais` },
+    { name: 'Serviços', url: `${SITE_URL}/servicos` },
+    { name: 'Automações', url: `${SITE_URL}/servicos/automacoes` },
+    { name: 'Plataformas', url: `${SITE_URL}/servicos/plataformas` },
+    { name: 'Websites', url: `${SITE_URL}/servicos/sites` },
+    { name: 'Produtos Digitais', url: `${SITE_URL}/servicos/produtos-digitais` },
+    { name: 'Portfólio', url: `${SITE_URL}/portfolio` },
+    { name: 'Quem Somos', url: `${SITE_URL}/` },
+    { name: 'Contato', url: `${SITE_URL}/#contato` },
   ]
   return {
     '@context': 'https://schema.org',
     '@type': 'ItemList',
-    name: 'Serviços Ergon',
+    name: 'Navegação Ergon Studio',
     itemListElement: navItems.map((item, i) => ({
       '@type': 'SiteNavigationElement',
       position: i + 1,
