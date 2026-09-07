@@ -45,80 +45,12 @@
       }
     },
     {
-      "src": "/imagens-aereas",
-      "status": 308,
+      "src": "/(imagens-aereas|filmagem-com-drone|drone-profissional|drone-para-imobiliarias|drone-para-restaurantes|drone-para-hoteis|drone-para-eventos|drone-sao-paulo|captacao-aerea|video-aereo-drone|guia-filmagem-com-drone)/?$",
+      "status": 410,
+      "dest": "/410.html",
       "headers": {
-        "Location": "/fly#imagens-aereas"
-      }
-    },
-    {
-      "src": "/filmagem-com-drone",
-      "status": 308,
-      "headers": {
-        "Location": "/fly#filmagem-com-drone"
-      }
-    },
-    {
-      "src": "/drone-profissional",
-      "status": 308,
-      "headers": {
-        "Location": "/fly#drone-profissional"
-      }
-    },
-    {
-      "src": "/drone-para-imobiliarias",
-      "status": 308,
-      "headers": {
-        "Location": "/fly#drone-para-imobiliarias"
-      }
-    },
-    {
-      "src": "/drone-para-restaurantes",
-      "status": 308,
-      "headers": {
-        "Location": "/fly#drone-para-restaurantes"
-      }
-    },
-    {
-      "src": "/drone-para-hoteis",
-      "status": 308,
-      "headers": {
-        "Location": "/fly#drone-para-hoteis"
-      }
-    },
-    {
-      "src": "/drone-para-eventos",
-      "status": 308,
-      "headers": {
-        "Location": "/fly#drone-para-eventos"
-      }
-    },
-    {
-      "src": "/drone-sao-paulo",
-      "status": 308,
-      "headers": {
-        "Location": "/fly"
-      }
-    },
-    {
-      "src": "/captacao-aerea",
-      "status": 308,
-      "headers": {
-        "Location": "/fly#captacao-aerea"
-      }
-    },
-    {
-      "src": "/video-aereo-drone",
-      "status": 308,
-      "headers": {
-        "Location": "/fly#video-aereo-drone"
-      }
-    },
-    {
-      "src": "/guia-filmagem-com-drone",
-      "status": 308,
-      "headers": {
-        "Location": "/fly#faq"
+        "Cache-Control": "no-store",
+        "X-Robots-Tag": "noindex, nofollow, noarchive"
       }
     },
     {
