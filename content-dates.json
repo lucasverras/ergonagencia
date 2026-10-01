@@ -1,12 +1,12 @@
 {
-  "site": "2026-09-24",
+  "site": "2026-09-25",
   "routes": {
-    "/": "2026-09-24",
-    "/servicos": "2026-09-24",
-    "/servicos/sites": "2026-09-24",
-    "/servicos/plataformas": "2026-09-24",
-    "/servicos/automacoes": "2026-09-24",
-    "/servicos/produtos-digitais": "2026-09-24",
-    "/fly": "2026-09-24"
+    "/": "2026-09-25",
+    "/servicos": "2026-09-25",
+    "/servicos/sites": "2026-09-25",
+    "/servicos/plataformas": "2026-09-25",
+    "/servicos/automacoes": "2026-09-25",
+    "/servicos/produtos-digitais": "2026-09-25",
+    "/fly": "2026-09-25"
   }
 }

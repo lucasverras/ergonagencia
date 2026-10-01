@@ -3,14 +3,23 @@ import { motion } from 'framer-motion'
 import { ArrowRight, ArrowUpRight } from 'lucide-react'
 import { revealUp, revealContainer, viewportOnce } from '../lib/reveal'
 import { GradualSpacing } from './ui/gradual-spacing'
-import MagicBentoCard from './ui/MagicBentoCard'
 import { getCaseBySlug, type CaseMediaAsset } from '../cases/casesData'
 
-// Only the projects that best prove current capability — Vamo Nessa and
-// Garagi lead because they show systems/dashboards, not just websites.
-// The full list lives at /portfolio. All four render at the same size —
-// no single project dominates the section.
-const SLUGS = ['vamo-nessa-sp', 'garagi', 'green-bay-car', 'green-bay-car-estetica', '3ws-moldes', 'franco-gastrobar', 'navegando-mkt']
+// Every project carries the same weight, so the count has to close evenly
+// with the columns: 8 in two columns is four full rows with nothing stranded
+// alone (the old 7-in-three-columns left the last card by itself). Two
+// columns also buys noticeably larger images than the old grid. The complete
+// archive lives at /portfolio.
+const SLUGS = [
+  'vamo-nessa-sp',
+  'garagi',
+  'green-bay-car',
+  'green-bay-car-estetica',
+  '3ws-moldes',
+  'franco-gastrobar',
+  'navegando-mkt',
+  'radar-navegando',
+]
 
 const CATEGORY: Record<string, string> = {
   'vamo-nessa-sp': 'Plataforma · Dados · Automação',
@@ -20,6 +29,7 @@ const CATEGORY: Record<string, string> = {
   '3ws-moldes': 'Website · Catálogo · SEO',
   'franco-gastrobar': 'Cardápio Digital · UX/UI',
   'navegando-mkt': 'Website · Marketing Digital',
+  'radar-navegando': 'Sistema Interno · CRM · Automação',
 }
 
 const BLURB: Record<string, string> = {
@@ -30,20 +40,25 @@ const BLURB: Record<string, string> = {
   '3ws-moldes': 'Um grande acervo industrial transformado em uma experiência digital organizada e navegável.',
   'franco-gastrobar': 'Cardápio digital para substituir o impresso e facilitar pedidos diretos no balcão.',
   'navegando-mkt': 'Presença digital estruturada para uma agência de marketing em crescimento.',
+  'radar-navegando': 'Prospecção ativa em plataforma própria: descoberta por região e qualificação com apoio de IA.',
 }
 
-// bleeds to the card's own edge/corners — CaseMedia's own bordered,
-// independently-rounded wrapper would nest a second border inside this
-// card's border, so the image is rendered plain here instead
+// The work carries the section — no card border, no background panel, no
+// glow. Just the image, rounded, with a restrained hover scale. Client
+// material is never tinted or filtered.
 function ProjectImage({ asset }: { asset: CaseMediaAsset }) {
-  if (asset.kind !== 'real' || !asset.src) return <div className="aspect-[4/3] bg-surface-2" />
+  if (asset.kind !== 'real' || !asset.src) {
+    return <div className="aspect-[4/3] rounded-2xl bg-surface-2" />
+  }
   return (
-    <div className="overflow-hidden aspect-[4/3]">
+    <div className="aspect-[4/3] overflow-hidden rounded-2xl bg-surface-2">
       <img
         src={asset.src}
         alt={asset.alt}
         loading="lazy"
-        className="h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.02]"
+        decoding="async"
+        sizes="(max-width: 768px) 100vw, 50vw"
+        className="h-full w-full object-cover object-top transition-transform duration-[600ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.03]"
       />
     </div>
   )
@@ -53,7 +68,7 @@ export default function SelectedProjects() {
   const projects = SLUGS.map((s) => getCaseBySlug(s)).filter((c) => c !== undefined)
 
   return (
-    <section id="portfolio" className="border-t border-line py-14 md:py-20">
+    <section id="portfolio" className="border-t border-line py-16 md:py-24">
       <div className="grid-shell">
         <div className="flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-end">
           <div>
@@ -67,7 +82,11 @@ export default function SelectedProjects() {
               [ projetos ]
             </motion.span>
             <h2 className="text-3xl leading-[1.05] font-semibold tracking-tight md:text-5xl">
-              <GradualSpacing as="span" text="Produtos que a Ergon criou" highlight={{ word: 'Ergon', variant: 'circle', delay: 0.35 }} />
+              <GradualSpacing
+                as="span"
+                text="Produtos que a Ergon criou"
+                highlight={{ word: 'Ergon', variant: 'circle', delay: 0.35 }}
+              />
             </h2>
           </div>
 
@@ -87,24 +106,27 @@ export default function SelectedProjects() {
           whileInView="show"
           viewport={{ once: true, amount: 0.05 }}
           variants={revealContainer(0.06)}
-          className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 md:mt-14"
+          className="mt-12 grid grid-cols-1 gap-x-8 gap-y-14 md:mt-16 md:grid-cols-2"
         >
           {projects.map((project) => (
             <motion.div key={project.slug} variants={revealUp}>
-              <Link to={`/portfolio/${project.slug}`} className="block h-full">
-                <MagicBentoCard className="group flex h-full flex-col overflow-hidden rounded-3xl border border-line bg-surface/60 transition-colors duration-300 hover:border-lime/30">
-                  <ProjectImage asset={project.heroMedia} />
-                  <div className="flex flex-1 flex-col justify-between gap-4 p-5">
-                    <div>
-                      <span className="font-mono text-[11px] tracking-[0.12em] text-lime uppercase">
-                        {CATEGORY[project.slug]}
-                      </span>
-                      <h3 className="mt-2 text-lg font-semibold tracking-tight text-ink">{project.name}</h3>
-                      <p className="mt-1 text-sm text-graphite">{BLURB[project.slug]}</p>
-                    </div>
-                    <ArrowUpRight className="h-4 w-4 shrink-0 self-end text-graphite-dim transition-colors group-hover:text-lime" />
+              <Link to={`/portfolio/${project.slug}`} className="group block">
+                <ProjectImage asset={project.heroMedia} />
+                <div className="mt-5 flex items-start justify-between gap-5">
+                  <div>
+                    <h3 className="text-lg font-semibold tracking-tight text-ink transition-colors duration-200 group-hover:text-lime md:text-xl">
+                      {project.name}
+                    </h3>
+                    <p className="mt-2 max-w-md text-sm text-graphite">{BLURB[project.slug]}</p>
                   </div>
-                </MagicBentoCard>
+                  <div className="flex shrink-0 items-center gap-3 pt-1">
+                    {/* category labels, it doesn't shout */}
+                    <span className="hidden text-xs tracking-[0.12em] text-graphite-dim uppercase sm:block">
+                      {CATEGORY[project.slug]}
+                    </span>
+                    <ArrowUpRight className="h-5 w-5 shrink-0 text-graphite-dim transition-all duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-lime" />
+                  </div>
+                </div>
               </Link>
             </motion.div>
           ))}
