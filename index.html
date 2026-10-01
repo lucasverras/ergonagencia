@@ -19,6 +19,12 @@
     />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+    <!-- Opening intro loader (vanilla, no dependencies). Loaded here so the
+         library is parsed before the body renders; .play() is called right
+         after #root exists, since it resolves the `content` selector
+         immediately. -->
+    <script src="/ergon-loader.js"></script>
+
     <!-- SEO-FALLBACK:START — everything between these markers is replaced
          per route by scripts/prerender.mjs. Each public route is prerendered
          with its own title/description/canonical/OG/JSON-LD; these values
@@ -56,6 +62,21 @@
   </head>
   <body>
     <div id="root"></div>
+    <!-- runs synchronously before the first paint, so the overlay is already
+         in place and the prerendered markup never flashes. `once: true`
+         (default) keeps it to one play per session via sessionStorage, and
+         reduced-motion is honoured by the loader itself. -->
+    <script>
+      if (window.ErgonLoader) {
+        window.ErgonLoader.play({
+          content: '#root',
+          background: '#05000F',
+          holdUntil: new Promise(function (resolve) {
+            window.addEventListener('load', resolve)
+          }),
+        })
+      }
+    </script>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

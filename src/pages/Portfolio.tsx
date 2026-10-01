@@ -8,7 +8,6 @@ import { revealUp, revealContainer, viewportOnce } from '@/lib/reveal'
 import { GradualSpacing } from '@/components/ui/gradual-spacing'
 import { TextReveal } from '@/components/ui/text-reveal'
 import { GradientBars } from '@/components/ui/gradient-bars-background'
-import MagicBentoCard from '@/components/ui/MagicBentoCard'
 import { getCaseBySlug, type CaseMediaAsset } from '@/cases/casesData'
 import { srcSetFor } from '@/lib/responsiveImage'
 
@@ -56,26 +55,57 @@ function ProjectImage({
   asset,
   className,
   priority = false,
+  sizes = '(max-width: 768px) 100vw, 50vw',
 }: {
   asset: CaseMediaAsset
   className?: string
   /** the first cards are above the fold — lazy-loading them delays the LCP
    * they're responsible for */
   priority?: boolean
+  sizes?: string
 }) {
   if (asset.kind !== 'real' || !asset.src) return <div className={`bg-surface-2 ${className ?? ''}`} />
   return (
     <img
       src={asset.src}
       srcSet={srcSetFor(asset.src)}
-      // one card per row on phones, two on tablet, three on desktop
-      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+      sizes={sizes}
       alt={asset.alt}
       loading={priority ? 'eager' : 'lazy'}
       fetchPriority={priority ? 'high' : 'auto'}
       decoding="async"
-      className={`h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.02] ${className ?? ''}`}
+      className={`h-full w-full object-cover object-top transition-transform duration-[600ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.03] ${className ?? ''}`}
     />
+  )
+}
+
+// Caption block sized for a three-column row: the title and arrow share the
+// top line, the category sits quietly underneath instead of fighting the
+// title for horizontal space.
+function ProjectMeta({
+  slug,
+  name,
+  category,
+  blurb,
+}: {
+  slug: string
+  name: string
+  category: Record<string, string>
+  blurb: Record<string, string>
+}) {
+  return (
+    <div className="mt-5">
+      <div className="flex items-start justify-between gap-4">
+        <h2 className="text-lg font-semibold tracking-tight text-ink transition-colors duration-200 group-hover:text-lime">
+          {name}
+        </h2>
+        <ArrowUpRight className="mt-0.5 h-5 w-5 shrink-0 text-graphite-dim transition-all duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-lime" />
+      </div>
+      <p className="mt-2 text-sm text-graphite">{blurb[slug]}</p>
+      <span className="mt-3 block text-xs tracking-[0.12em] text-graphite-dim uppercase">
+        {category[slug]}
+      </span>
+    </div>
   )
 }
 
@@ -174,34 +204,31 @@ export default function Portfolio() {
 
       <section className="border-t border-line py-14 md:py-20">
         <div className="grid-shell">
+          {/* every case carries the same weight — nine in three columns is
+              three full rows, so none is ever stranded alone on a final row */}
           <motion.div
             initial="hidden"
             whileInView="show"
             viewport={{ once: true, amount: 0.05 }}
             variants={revealContainer(0.06)}
-            className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3"
+            className="grid grid-cols-1 gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-3"
           >
             {projects.map((project, i) => (
               <motion.div key={project.slug} variants={revealUp}>
-                <Link to={`/portfolio/${project.slug}`} className="block h-full">
-                  <MagicBentoCard className="group flex h-full flex-col overflow-hidden rounded-3xl border border-line bg-surface/60 transition-colors duration-300 hover:border-lime/30">
-                    <div className="overflow-hidden aspect-[4/3]">
-                      <ProjectImage asset={project.heroMedia} priority={i === 0} />
-                    </div>
-                    <div className="flex flex-1 flex-col justify-between gap-4 p-5">
-                      <div>
-                        <span className="font-mono text-[11px] tracking-[0.12em] text-lime uppercase">
-                          {CATEGORY[project.slug]}
-                        </span>
-                        <h2 className="mt-2 text-lg font-semibold tracking-tight text-ink">{project.name}</h2>
-                        <p className="mt-1 text-sm text-graphite">{BLURB[project.slug]}</p>
-                      </div>
-                      <span className="flex items-center gap-1.5 self-end text-xs tracking-[0.1em] text-graphite-dim uppercase transition-colors group-hover:text-lime">
-                        Ver case
-                        <ArrowUpRight className="h-3.5 w-3.5" />
-                      </span>
-                    </div>
-                  </MagicBentoCard>
+                <Link to={`/portfolio/${project.slug}`} className="group block">
+                  <div className="aspect-[4/3] overflow-hidden rounded-2xl bg-surface-2">
+                    <ProjectImage
+                      asset={project.heroMedia}
+                      priority={i === 0}
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    />
+                  </div>
+                  <ProjectMeta
+                    slug={project.slug}
+                    name={project.name}
+                    category={CATEGORY}
+                    blurb={BLURB}
+                  />
                 </Link>
               </motion.div>
             ))}
